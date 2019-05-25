@@ -6,6 +6,6 @@ class GroupTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(App\Models\Group::class, 300)->create();
+        factory(App\Models\Group::class, 1000)->create();
     }
 }
