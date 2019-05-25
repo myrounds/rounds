@@ -1,0 +1,36 @@
+version: "3.0"
+
+services:
+
+  api:
+    tty: true
+    image: bitnami/laravel:5-debian-9
+    environment:
+      - DB_HOST=database
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - database
+    ports:
+      - ${APP_PORT}:3000
+    volumes:
+      - ./:/app
+
+  database:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USERNAME=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:3306
+    expose:
+      - 3306
+    volumes:
+      - rounds-db:/var/lib/mysql
+
+volumes:
+  rounds-db:
