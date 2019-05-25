@@ -5,7 +5,7 @@
 echo all: %*
 for /f "tokens=1,* delims= " %%a in ("%*") do set ALL_BUT_FIRST=%%b
 
-IF NOT DEFINED "%1" (
+IF NOT DEFINED "%1%" (
     ECHO Error! usage: rounds [start, stop, ...]
 ) ELSE IF "%1%"=="dev" (
     docker-compose up -d
