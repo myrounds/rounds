@@ -86,6 +86,6 @@ $factory->define(Task::class, function (Faker $faker) {
         'name' => $faker->randomElement(['t-shirts', 'jackets', 'pants', 'coats', 'bags']),
         'quantity' => $faker->numberBetween(1, 6),
         'notes' => $faker->text,
-        'complete' => $faker->boolean,
+        'completed_at' => $faker->dateTime,
     ];
 });
