@@ -11000,8 +11000,19 @@ button {
 }
 
 #map {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 200px;
+  /*--*/
+}
+
+#map b {
+  padding: 15px;
+  display: block;
+  color: var(--light);
+  background-color: var(--primaryColor);
 }
 
 .mapboxgl-ctrl-bottom-left,
@@ -11010,7 +11021,7 @@ button {
 }
 
 .mapboxgl-ctrl-group > button {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
 

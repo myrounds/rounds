@@ -28,7 +28,8 @@
             </li>
         </ul>
 
-<div id='map'></div>
+
+<div id='map'><b>Locate Yourself</b></div>
 
     </div>
 </template>

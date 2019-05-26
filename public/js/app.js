@@ -1881,6 +1881,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2912,7 +2913,7 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _c("div", { attrs: { id: "map" } })
+      _vm._m(1)
     ]
   )
 }
@@ -2936,6 +2937,14 @@ var staticRenderFns = [
         ])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "map" } }, [
+      _c("b", [_vm._v("Locate Yourself")])
+    ])
   }
 ]
 render._withStripped = true
