@@ -209,12 +209,12 @@ button {
   padding:0;
 }
 
-.my-rounds .group_hold {
+.my-rounds .group-hold {
   margin: 0 0 10px 0;
   border-radius: 50px;
   background: var(--primaryColor);
 }
-.my-rounds .group_hold:nth-child(odd) {
+.my-rounds .group-hold:nth-child(odd) {
   background: var(--primaryDark);  
 }
 
@@ -223,7 +223,7 @@ button {
   margin: 0;
   box-shadow: none;
   /*--*/
-  .group_address {
+  .group-address {
     display: none;
   } 
 }
@@ -241,31 +241,31 @@ button {
   text-transform: capitalize;
 }
 
-.rounds_logo {
+.rounds-logo {
   height: 40px;
   margin: 10px 0 10px 15px;
 }
 
-#dateBar {
+#date-bar {
     position: relative;
     display: flex;
     width: 100%;
     background-color: white;
 
-    span.displayDay {
+    span.display-day {
       display: inline-flex;
       float: left;
-      width: 48%;
+      width: calc(100% - 150px);
       text-align: left;
       background-color: white;
       color: var(--primaryColor);
       font-size: 150%;
       padding-left: 15px;
     }
-    span.displayDate {
+    span.display-date {
       display: inline-flex;
       float: right;
-      width: 52%;
+      width: 150px;
       text-align: right;
       background-color: var(--primaryColor);
       color: var(--light);
@@ -287,7 +287,7 @@ button {
 
       /*--*/
 
-      ul.day_selector {
+      ul.day-selector {
         position: absolute;
         background: var(--light);
         top: -20px;
@@ -314,7 +314,7 @@ button {
           background-color: white;
         }
 
-        .activeDay {
+        .active-day {
           font-weight: bold;
           color: var(--compColor);
         }
@@ -333,7 +333,13 @@ button {
   overflow: hidden;
   height: 50px;
 }
-.slideUpHd {
+
+.spinner {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.slide-up-hd {
   height: 0;
   min-height: 0;
 }

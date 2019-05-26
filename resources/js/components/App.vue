@@ -1,35 +1,9 @@
 <template>
     <div>
 
-        <sidedrawer></sidedrawer>
+        <appdrawer></appdrawer>
 
-        <header id="header">
-            <div class="mui-appbar mui--appbar-line-height">
-                    <span class="mui--text-title mui--visible-xs-inline-block">
-                        <img src='img/rounds.svg' class='rounds_logo'>
-                    </span>
-                    <a class="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer"><img src='img/human.svg'></a>
-                    <a class="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer"><img src='img/human.svg'></a>
-            </div>
-            <div id='dateBar'>
-                <span class='displayDay'>Monday</span>
-                <span class='displayDate'>
-                    26/05/2019 
-                    <a class='openWeek'></a>
-                    <ul class='day_selector'>
-                        <li class='activeDay'>M</li>
-                        <li>T</li>
-                        <li>W</li>
-                        <li>T</li>
-                        <li>F</li>
-                        <li>S</li> 
-                        <li>S</li>                                                
-                    </ul>
-                </span>
-            </div>
-        </header>
-
-
+        <appheader></appheader>
 
         <div id="content-wrapper">
             <div class="container">
@@ -37,41 +11,20 @@
             </div>
         </div>
 
-        <!--<footer id="footer">-->
-            <!--<div class="mui-container-fluid">-->
-                <!--<br>-->
-                <!--Footer Content-->
-            <!--</div>-->
-        <!--</footer>-->
+        <!--<appfooter></appfooter>-->
 
     </div>
 </template>
 <script>
-    import Sidedrawer from './Sidedrawer.vue';
+    import Appdrawer from './Drawer.vue';
+    import Appheader from './Header.vue';
+    import Appfooter from './Footer.vue';
 
     export default {
-        components: {Sidedrawer},
+        components: {
+            Appdrawer,
+            Appheader,
+            Appfooter
+        },
     }
-
-    $(window).scroll(function() {    
-        var scroll = $(window).scrollTop();
-
-        if (scroll >= 50) {
-            $(".mui-appbar").addClass('slideUpHd');
-        } else {
-            $(".mui-appbar").removeClass('slideUpHd');
-        }
-    });
-
-
-$(document).ready(function() { 
-$('.openWeek').click(function(){
-    $(".day_selector").toggleClass('opened');
-});
-});
-
-
-
-
-
 </script>

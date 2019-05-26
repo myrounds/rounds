@@ -4,21 +4,18 @@
         <div class="mui-container-fluid">
 
             <br>
-            
-            <div class="loading" v-if="loading">
-                Loading...
-            </div>
+            <spinner v-bind:loading="loading"></spinner>
 
-            <div v-for="group in groups" class='group_hold'>
+            <div v-for="group in groups" class='group-hold'>
                 <div class="mui-panel" v-bind:tasks="JSON.stringify(group.tasks)" @click="showDetails">
                     <div>
                          <span class="group_name"> <b> {{ group.name }} </b> &bull; {{ group.tasks.length }} items </span>
                          <span class="time">{{ group.time }}</span>
                     </div>
-                    <div class="mui--divider-top group_address">
+                    <div class="mui--divider-top group-address">
                         {{ group.address }}
                     </div>
-                    <div id='group_tasks'></div>
+                    <div id='group-tasks'></div>
                 </div>
                <!--  <div style="width: 100%; text-align: center; margin-top: -20px; color: #aaa;">v</div> -->
             </div>
@@ -32,13 +29,17 @@
 
 <script>
     import axios from 'axios';
+    import DateTime from '../../helpers/datetime';
+    import Spinner from '../../components/spinner';
     export default {
+        components: {Spinner},
         data() {
             return {
                 loading: false,
                 groups: null,
                 error: null,
-                groupId: null
+                groupId: null,
+                day: null
             };
         },
         created() {
@@ -50,24 +51,25 @@
                 this.loading = true;
                 const Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('user')).token;
 
+                this.day = DateTime.getCurrentDay();
+
                 axios
                     .get('/api/groups/search', {
                         headers: { Authorization },
                         params: {
-                            s_day: 'monday',
-                            e_day: 'friday',
+                            s_day: this.day,
+                            e_day: this.day,
                         }
                     })
                     .then(response => {
                         const payload = response.data;
                         this.groups = payload.data;
-                        console.log(this.groups);
                         this.loading = false;
                     })
                     .catch(error => {
                         const payload = error.response.data;
-                        console.log(payload.message);
                         this.loading = false;
+                        this.$msg(payload.message);
                     });
             },
             showDetails(event) {
@@ -79,15 +81,22 @@
                 modalEl.style.padding = '20px';
 
                 const tasks = JSON.parse(event.target.getAttribute('tasks') || event.target.parentNode.getAttribute('tasks'));
-                console.log(tasks);
 
-                modalEl.innerHTML += `<legend>Tasks</legend>`;
+                modalEl.innerHTML += `
+                <legend>Tasks</legend>`;
                 tasks.forEach(task => {
-                    modalEl.innerHTML += `<div class="mui--divider-top">`;
-                    modalEl.innerHTML += `<div><strong>${task.name} | ${task.quantity} | ${task.complete ? 'completed' : 'pending'}</strong></div>`;
-                    modalEl.innerHTML += `<div><em>${task.notes}</em></div>`;
-                    modalEl.innerHTML += `</div>`;
-                })
+                    modalEl.innerHTML += `
+                    <div class="mui--divider-top">
+                        <div>
+                            <strong>
+                                ${task.name} | ${task.quantity} | ${task.complete ? 'completed' : 'pending'}
+                            </strong>
+                            <div>
+                                ${task.notes}
+                            </div>
+                        </div>
+                    </div>`;
+                });
 
                 // show modal
                 mui.overlay('on', modalEl);

@@ -10872,13 +10872,13 @@ button {
   padding: 0;
 }
 
-.my-rounds .group_hold {
+.my-rounds .group-hold {
   margin: 0 0 10px 0;
   border-radius: 50px;
   background: var(--primaryColor);
 }
 
-.my-rounds .group_hold:nth-child(odd) {
+.my-rounds .group-hold:nth-child(odd) {
   background: var(--primaryDark);
 }
 
@@ -10889,7 +10889,7 @@ button {
   /*--*/
 }
 
-.my-rounds .mui-panel .group_address {
+.my-rounds .mui-panel .group-address {
   display: none;
 }
 
@@ -10904,22 +10904,22 @@ button {
   text-transform: capitalize;
 }
 
-.rounds_logo {
+.rounds-logo {
   height: 40px;
   margin: 10px 0 10px 15px;
 }
 
-#dateBar {
+#date-bar {
   position: relative;
   display: flex;
   width: 100%;
   background-color: white;
 }
 
-#dateBar span.displayDay {
+#date-bar span.display-day {
   display: inline-flex;
   float: left;
-  width: 48%;
+  width: calc(100% - 150px);
   text-align: left;
   background-color: white;
   color: var(--primaryColor);
@@ -10927,10 +10927,10 @@ button {
   padding-left: 15px;
 }
 
-#dateBar span.displayDate {
+#date-bar span.display-date {
   display: inline-flex;
   float: right;
-  width: 52%;
+  width: 150px;
   text-align: right;
   background-color: var(--primaryColor);
   color: var(--light);
@@ -10944,14 +10944,14 @@ button {
   /*--*/
 }
 
-#dateBar span.displayDate a:after {
+#date-bar span.display-date a:after {
   font-family: FontAwesome;
   content: "\F133";
   cursor: pointer;
   margin-left: 5px;
 }
 
-#dateBar span.displayDate ul.day_selector {
+#date-bar span.display-date ul.day-selector {
   position: absolute;
   background: var(--light);
   top: -20px;
@@ -10967,7 +10967,7 @@ button {
   /*--*/
 }
 
-#dateBar span.displayDate ul.day_selector li {
+#date-bar span.display-date ul.day-selector li {
   display: inline-block;
   width: 14.28%;
   float: left;
@@ -10977,16 +10977,16 @@ button {
   color: var(--secondaryColor);
 }
 
-#dateBar span.displayDate ul.day_selector li:nth-child(odd) {
+#date-bar span.display-date ul.day-selector li:nth-child(odd) {
   background-color: white;
 }
 
-#dateBar span.displayDate ul.day_selector .activeDay {
+#date-bar span.display-date ul.day-selector .active-day {
   font-weight: bold;
   color: var(--compColor);
 }
 
-#dateBar span.displayDate .opened {
+#date-bar span.display-date .opened {
   top: 34px !important;
 }
 
@@ -10996,7 +10996,12 @@ button {
   height: 50px;
 }
 
-.slideUpHd {
+.spinner {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.slide-up-hd {
   height: 0;
   min-height: 0;
 }

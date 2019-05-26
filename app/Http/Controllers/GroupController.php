@@ -151,11 +151,6 @@ class GroupController extends Controller
 
         $result = $groups->get()->toArray();
 
-        if ($result) {
-            return response()->json(['data' => $result], 200);
-        }
-        else {
-            return response()->json(['message' => 'Search error'], 401);
-        }
+        return response()->json(['data' => $result], 200);
     }
 }
