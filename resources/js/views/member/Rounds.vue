@@ -6,16 +6,17 @@
             <br>
             <spinner v-bind:loading="loading"></spinner>
 
-            <div v-for="task in tasks" class='group-hold'>
+            <div v-for="task in tasks" class='task-btn'>
                 <div class="mui-panel" v-bind:tasks="JSON.stringify(task.items)" @click="showDetails">
                     <div>
-                         <span class="group-name"> <b> {{ task.name }} </b> &bull; {{ task.items.length }} items </span>
-                         <span class="time">{{ task.time }}</span>
+                         <span class="name non-selectable">
+                             <strong> {{ task.name }} </strong> &bull; {{ task.items.length }} items
+                         </span>
+                         <span class="time non-selectable">{{ task.time }}</span>
                     </div>
-                    <div class="mui--divider-top group-address">
+                    <div class="mui--divider-top address non-selectable">
                         {{ task.address }}
                     </div>
-                    <div id='group-tasks'></div>
                 </div>
                <!--  <div style="width: 100%; text-align: center; margin-top: -20px; color: #aaa;">v</div> -->
             </div>
@@ -72,30 +73,30 @@
                     });
             },
             showDetails(event) {
-                var modalEl = document.createElement('div');
+                const tasks = JSON.parse(event.target.getAttribute('tasks') || event.target.parentNode.getAttribute('tasks'));
+                const modalEl = document.createElement('div');
+
                 modalEl.style.width = '90%';
                 modalEl.style.minHeight = '300px';
                 modalEl.style.margin = '100px auto';
                 modalEl.style.backgroundColor = '#fff';
                 modalEl.style.padding = '20px';
-
-                const tasks = JSON.parse(event.target.getAttribute('tasks') || event.target.parentNode.getAttribute('tasks'));
-
                 modalEl.innerHTML += `
-                <legend>Task Items</legend>`;
-                tasks.forEach(task => {
-                    modalEl.innerHTML += `
-                    <div class="mui--divider-top">
-                        <div>
-                            <strong>
-                                ${task.name} | ${task.quantity} | ${task.complete ? 'completed' : 'pending'}
-                            </strong>
+                    <legend>Task Items</legend>
+                    ${tasks.map(task => {
+                        return `
+                        <div class="mui--divider-top">
                             <div>
-                                ${task.notes}
+                                <strong>
+                                    ${task.name} | ${task.quantity} | ${task.complete ? 'completed' : 'pending'}
+                                </strong>
+                                <div>
+                                    ${task.notes}
+                                </div>
                             </div>
-                        </div>
-                    </div>`;
-                });
+                        </div>`;
+                    })}
+                `;
 
                 // show modal
                 mui.overlay('on', modalEl);

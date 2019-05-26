@@ -1,6 +1,6 @@
 <template>
     <div id="sidedrawer" class="mui--no-user-select">
-        <div id="sidedrawer-brand" class="mui--appbar-line-height">
+        <div class="brand mui--appbar-line-height">
             <span class="mui--text-title">
                 <img src="../../images/rounds.svg" class='rounds-logo' />
             </span>

@@ -2249,6 +2249,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2295,17 +2296,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     showDetails: function showDetails(event) {
+      var tasks = JSON.parse(event.target.getAttribute('tasks') || event.target.parentNode.getAttribute('tasks'));
       var modalEl = document.createElement('div');
       modalEl.style.width = '90%';
       modalEl.style.minHeight = '300px';
       modalEl.style.margin = '100px auto';
       modalEl.style.backgroundColor = '#fff';
       modalEl.style.padding = '20px';
-      var tasks = JSON.parse(event.target.getAttribute('tasks') || event.target.parentNode.getAttribute('tasks'));
-      modalEl.innerHTML += "\n            <legend>Task Items</legend>";
-      tasks.forEach(function (task) {
-        modalEl.innerHTML += "\n                <div class=\"mui--divider-top\">\n                    <div>\n                        <strong>\n                            ".concat(task.name, " | ").concat(task.quantity, " | ").concat(task.complete ? 'completed' : 'pending', "\n                        </strong>\n                        <div>\n                            ").concat(task.notes, "\n                        </div>\n                    </div>\n                </div>");
-      }); // show modal
+      modalEl.innerHTML += "\n                <legend>Task Items</legend>\n                ".concat(tasks.map(function (task) {
+        return "\n                    <div class=\"mui--divider-top\">\n                        <div>\n                            <strong>\n                                ".concat(task.name, " | ").concat(task.quantity, " | ").concat(task.complete ? 'completed' : 'pending', "\n                            </strong>\n                            <div>\n                                ").concat(task.notes, "\n                            </div>\n                        </div>\n                    </div>");
+      }), "\n            "); // show modal
 
       mui.overlay('on', modalEl);
     }
@@ -2940,21 +2940,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "mui--appbar-line-height",
-        attrs: { id: "sidedrawer-brand" }
-      },
-      [
-        _c("span", { staticClass: "mui--text-title" }, [
-          _c("img", {
-            staticClass: "rounds-logo",
-            attrs: { src: __webpack_require__(/*! ../../images/rounds.svg */ "./resources/images/rounds.svg") }
-          })
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "brand mui--appbar-line-height" }, [
+      _c("span", { staticClass: "mui--text-title" }, [
+        _c("img", {
+          staticClass: "rounds-logo",
+          attrs: { src: __webpack_require__(/*! ../../images/rounds.svg */ "./resources/images/rounds.svg") }
+        })
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -3366,7 +3359,7 @@ var render = function() {
         _c("spinner", { attrs: { loading: _vm.loading } }),
         _vm._v(" "),
         _vm._l(_vm.tasks, function(task) {
-          return _c("div", { staticClass: "group-hold" }, [
+          return _c("div", { staticClass: "task-btn" }, [
             _c(
               "div",
               {
@@ -3376,25 +3369,31 @@ var render = function() {
               },
               [
                 _c("div", [
-                  _c("span", { staticClass: "group-name" }, [
-                    _c("b", [_vm._v(" " + _vm._s(task.name) + " ")]),
-                    _vm._v(" • " + _vm._s(task.items.length) + " items ")
+                  _c("span", { staticClass: "name non-selectable" }, [
+                    _c("strong", [_vm._v(" " + _vm._s(task.name) + " ")]),
+                    _vm._v(
+                      " • " +
+                        _vm._s(task.items.length) +
+                        " items\n                     "
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("span", { staticClass: "time" }, [
+                  _c("span", { staticClass: "time non-selectable" }, [
                     _vm._v(_vm._s(task.time))
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "mui--divider-top group-address" }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(task.address) +
-                      "\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { attrs: { id: "group-tasks" } })
+                _c(
+                  "div",
+                  { staticClass: "mui--divider-top address non-selectable" },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(task.address) +
+                        "\n                "
+                    )
+                  ]
+                )
               ]
             )
           ])
@@ -18714,7 +18713,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
-  name: 'login',
+  name: 'home',
   component: _views_Login__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   path: '/login',

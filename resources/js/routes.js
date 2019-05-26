@@ -5,7 +5,7 @@ import AccountRounds from './views/account/Rounds';
 export default [
     {
         path: '/',
-        name: 'login',
+        name: 'home',
         component: Login,
     },
     {
