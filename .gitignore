@@ -2,7 +2,9 @@
 /public/hot
 /public/storage
 /vendor
+/.idea
 .phpunit.result.cache
+.env
 Homestead.json
 Homestead.yaml
 npm-debug.log
