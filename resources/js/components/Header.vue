@@ -11,11 +11,11 @@
                 <img src='../../images/human.svg'>
             </a>
         </div>
-        <div id='date-bar'>
+        <div id='date-bar' @click="showDaySelector">
             <span class='display-day'>{{day}}</span>
             <span class='display-date'>
                 {{date}}
-                <a class='open-week' @click="openWeek"></a>
+                <a class='calander-icon'></a>
                 <ul class='day-selector'>
                     <li v-bind:class="{ 'active-day': day === 'Monday' }">M</li>
                     <li v-bind:class="{ 'active-day': day === 'Tuesday' }">T</li>
@@ -54,7 +54,7 @@
             });
         },
         methods: {
-            openWeek() {
+            showDaySelector() {
                 $(".day-selector").toggleClass('opened');
             }
         }

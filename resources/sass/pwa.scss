@@ -113,11 +113,12 @@ button {
     display: flex;
     width: 100%;
     background-color: white;
+    cursor: pointer;
 
     span.display-day {
       display: inline-flex;
       float: left;
-      width: calc(100% - 150px);
+      width: calc(100% - 155px);
       text-align: left;
       background-color: white;
       color: var(--primaryColor);
@@ -127,7 +128,7 @@ button {
     span.display-date {
       display: inline-flex;
       float: right;
-      width: 150px;
+      width: 155px;
       text-align: right;
       background-color: var(--primaryColor);
       color: var(--light);
@@ -138,6 +139,9 @@ button {
       padding-right: 15px;
       justify-content: flex-end;
 
+      .calander-icon {
+        margin-left: 3px;
+      }
       a:after {
         font-family: FontAwesome;
         content:"\f133";
@@ -171,7 +175,6 @@ button {
         li:nth-child(odd) {
           background-color: white;
         }
-
         .active-day {
           font-weight: bold;
           color: var(--compColor);
@@ -316,6 +319,7 @@ button {
     margin: 0 0 10px 0;
     border-radius: 50px;
     background: var(--primaryColor);
+    cursor: pointer;
   }
   .task-btn:nth-child(odd) {
     background: var(--primaryDark);
