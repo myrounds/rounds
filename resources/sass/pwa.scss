@@ -200,11 +200,11 @@ button {
   transition: transform 0.2s;
   border-right: 1px var(--light) solid;
 
+  &.active {
+    transform: translate(200px);
+  }
   .brand {
 
-  }
-  .active {
-    transform: translate(200px);
   }
   ul {
     list-style: none;

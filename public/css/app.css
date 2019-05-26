@@ -10860,7 +10860,7 @@ button {
   border-right: 1px var(--light) solid;
 }
 
-#sidedrawer .active {
+#sidedrawer.active {
   -webkit-transform: translate(200px);
           transform: translate(200px);
 }
