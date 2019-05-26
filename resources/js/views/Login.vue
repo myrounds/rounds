@@ -19,7 +19,7 @@
                     <div class="mui-select">
                         <select v-model="type">
                             <option value="account">Account</option>
-                            <option value="assignee">Assignee</option>
+                            <option value="member">Member</option>
                         </select>
                         <label>Type</label>
                     </div>
@@ -88,8 +88,8 @@
                         this.$router.push({name: "account.rounds"});
                         this.$msg('Login successful');
                     }
-                    else if (this.type === 'assignee') {
-                        this.$router.push({name: "assignee.rounds"});
+                    else if (this.type === 'member') {
+                        this.$router.push({name: "member.rounds"});
                         this.$msg('Login successful');
                     } else {
                         this.$msg('Could not log in');

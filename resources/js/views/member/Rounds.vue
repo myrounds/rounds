@@ -6,14 +6,14 @@
             <br>
             <spinner v-bind:loading="loading"></spinner>
 
-            <div v-for="group in groups" class='group-hold'>
-                <div class="mui-panel" v-bind:tasks="JSON.stringify(group.tasks)" @click="showDetails">
+            <div v-for="task in tasks" class='group-hold'>
+                <div class="mui-panel" v-bind:tasks="JSON.stringify(task.items)" @click="showDetails">
                     <div>
-                         <span class="group_name"> <b> {{ group.name }} </b> &bull; {{ group.tasks.length }} items </span>
-                         <span class="time">{{ group.time }}</span>
+                         <span class="group-name"> <b> {{ task.name }} </b> &bull; {{ task.items.length }} items </span>
+                         <span class="time">{{ task.time }}</span>
                     </div>
                     <div class="mui--divider-top group-address">
-                        {{ group.address }}
+                        {{ task.address }}
                     </div>
                     <div id='group-tasks'></div>
                 </div>
@@ -36,9 +36,8 @@
         data() {
             return {
                 loading: false,
-                groups: null,
+                tasks: null,
                 error: null,
-                groupId: null,
                 day: null
             };
         },
@@ -54,7 +53,7 @@
                 this.day = DateTime.getCurrentDay();
 
                 axios
-                    .get('/api/groups/search', {
+                    .get('/api/tasks/search', {
                         headers: { Authorization },
                         params: {
                             s_day: this.day,
@@ -63,7 +62,7 @@
                     })
                     .then(response => {
                         const payload = response.data;
-                        this.groups = payload.data;
+                        this.tasks = payload.data;
                         this.loading = false;
                     })
                     .catch(error => {
@@ -83,7 +82,7 @@
                 const tasks = JSON.parse(event.target.getAttribute('tasks') || event.target.parentNode.getAttribute('tasks'));
 
                 modalEl.innerHTML += `
-                <legend>Tasks</legend>`;
+                <legend>Task Items</legend>`;
                 tasks.forEach(task => {
                     modalEl.innerHTML += `
                     <div class="mui--divider-top">

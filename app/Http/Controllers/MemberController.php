@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Assignee;
+use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
-class AssigneeController extends Controller
+class MemberController extends Controller
 {
     public function login()
     {
-        $users = Assignee::where('email', request('email'))->get();
+        $users = Member::where('email', request('email'))->get();
         $authed = null;
         foreach ($users as $user) {
             if (password_verify(request('password'), $user->password)) {
@@ -48,7 +48,7 @@ class AssigneeController extends Controller
         $oldPassword = request('old_password');
         $newPassword = request('new_password');
 
-        $accounts = Assignee::where('account_id', $accountId)
+        $accounts = Member::where('account_id', $accountId)
             ->where('email', $email)
             ->get();
 
@@ -76,8 +76,7 @@ class AssigneeController extends Controller
 
         // validate input
         $validator = Validator::make($input, [
-            'first_name' => 'required',
-            'last_name' => '',
+            'name' => 'required',
             'email' => 'email',
             'phone' => 'numeric',
             'license_plate' => '',
@@ -91,11 +90,11 @@ class AssigneeController extends Controller
             return response()->json(['errors' => $validator->errors()], 401);
         }
 
-        // check for existing assignee
+        // check for existing member
         $email = request('email');
         $phone = request('phone');
 
-        $existing = Assignee::where('account_id', $user['account_id'] || $user['id'])
+        $existing = Member::where('account_id', $user['account_id'] || $user['id'])
             ->where(function($q) use ($email, $phone) {
                 $q->where('email', $email)->orWhere('phone', $phone);
             })
@@ -104,7 +103,7 @@ class AssigneeController extends Controller
             return response()->json(['message' => 'Phone number or email address are already in use.'], 401);
         }
 
-        // store assignee
+        // store member
         $userType = $user->getType();
         $userData = [ $userType.'_id' => $user['id'] ];
         if ($userType !== 'account' && $user['account_id']) {
@@ -113,38 +112,37 @@ class AssigneeController extends Controller
 
         $input['password'] = bcrypt($input['password']);
 
-        $assignee = Assignee::create(array_merge($input, $userData));
-        if ($assignee) {
-            return response()->json(['data' => $assignee->toArray()], 200);
+        $member = Member::create(array_merge($input, $userData));
+        if ($member) {
+            return response()->json(['data' => $member->toArray()], 200);
         }
         else {
-            return response()->json(['message' => 'Assignee could not be saved'], 401);
+            return response()->json(['message' => 'Member could not be saved'], 401);
         }
     }
 
     public function find(Request $request, $id)
     {
         $user = Auth::user();
-        $assignee = Assignee::find($id);
-        if (!$user->hasAccessToModel($assignee)) {
+        $member = Member::find($id);
+        if (!$user->hasAccessToModel($member)) {
             return response()->json(['message' => 'Permission error. Access is denied.'], 401);
         }
 
-        return response()->json(['data' => $assignee], 200);
+        return response()->json(['data' => $member], 200);
     }
 
     public function update(Request $request, $id)
     {
         $user = Auth::user();
-        $assignee = Assignee::find($id);
-        if (!$user->hasAccessToModel($assignee)) {
+        $member = Member::find($id);
+        if (!$user->hasAccessToModel($member)) {
             return response()->json(['message' => 'Permission error. Access is denied.'], 401);
         }
 
         $input = $request->all();
         $validator = Validator::make($input, [
-            'first_name' => '',
-            'last_name' => '',
+            'name' => '',
             'email' => 'email',
             'phone' => 'numeric',
             'license_plate' => '',
@@ -156,26 +154,26 @@ class AssigneeController extends Controller
             return response()->json(['errors' => $validator->errors()], 401);
         }
 
-        if ($assignee->update($input)) {
-            return response()->json(['data' => array_merge($assignee->toArray(), $input)], 200);
+        if ($member->update($input)) {
+            return response()->json(['data' => array_merge($member->toArray(), $input)], 200);
         }
         else {
-            return response()->json(['message' => 'Assignee could not be updated'], 401);
+            return response()->json(['message' => 'member could not be updated'], 401);
         }
     }
 
     public function delete(Request $request, $id)
     {
         $user = Auth::user();
-        $assignee = Assignee::find($id);
-        if (!$user->hasAccessToModel($assignee)) {
+        $member = Member::find($id);
+        if (!$user->hasAccessToModel($member)) {
             return response()->json(['message' => 'Permission error. Access is denied.'], 401);
         }
-        if ($assignee->delete()) {
-            return response()->json(['message' => 'Assignee was deleted'], 200);
+        if ($member->delete()) {
+            return response()->json(['message' => 'Member was deleted'], 200);
         }
         else {
-            return response()->json(['message' => 'Assignee could not be deleted'], 401);
+            return response()->json(['message' => 'Member could not be deleted'], 401);
         }
     }
 
@@ -187,11 +185,11 @@ class AssigneeController extends Controller
         }
 
         $name = $request->get('name');
-        $assignees = Assignee::where('account_id', '=', $user->id);
+        $members = Member::where('account_id', '=', $user->id);
         if ($name) {
-            $assignees->whereRaw("concat(first_name, last_name) LIKE '$name%'");
+            $members->whereRaw("concat(first_name, last_name) LIKE '$name%'");
         }
-        $result = $assignees->get()->toArray();
+        $result = $members->get()->toArray();
         if ($result) {
             return response()->json(['data' => $result], 200);
         }

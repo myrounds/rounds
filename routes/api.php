@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 Route::post('accounts/create', 'AccountController@create');
 Route::post('accounts/login', 'AccountController@login');
-Route::post('assignees/login', 'AssigneeController@login');
+Route::post('members/login', 'MemberController@login');
 
 Route::group(['middleware' => ['api', 'multiauth:account']], function() {
 
@@ -23,26 +23,26 @@ Route::group(['middleware' => ['api', 'multiauth:account']], function() {
     Route::put('accounts/update/{id}', 'AccountController@update');
     Route::delete('accounts/delete/{id}', 'AccountController@delete');
 
-    Route::get('assignees/search', 'AssigneeController@search');
-    Route::post('assignees/create', 'AssigneeController@create');
-    Route::delete('assignees/delete/{id}', 'AssigneeController@delete');
-
-    Route::post('groups/create', 'GroupController@create');
-    Route::delete('groups/delete/{id}', 'GroupController@delete');
+    Route::get('members/search', 'MemberController@search');
+    Route::post('members/create', 'MemberController@create');
+    Route::delete('members/delete/{id}', 'MemberController@delete');
 
     Route::post('tasks/create', 'TaskController@create');
     Route::delete('tasks/delete/{id}', 'TaskController@delete');
+
+    Route::post('items/create', 'ItemController@create');
+    Route::delete('items/delete/{id}', 'ItemController@delete');
 });
 
-Route::group(['middleware' => ['api', 'multiauth:assignee,account']], function() {
+Route::group(['middleware' => ['api', 'multiauth:member,account']], function() {
 
-    Route::get('assignees/find/{id}', 'AssigneeController@find');
-    Route::put('assignees/update/{id}', 'AssigneeController@update');
+    Route::get('members/find/{id}', 'MemberController@find');
+    Route::put('members/update/{id}', 'MemberController@update');
 
-    Route::get('groups/search', 'GroupController@search');
-    Route::get('groups/find/{id}', 'GroupController@find');
-    Route::put('groups/update/{id}', 'GroupController@update');
-
+    Route::get('tasks/search', 'TaskController@search');
     Route::get('tasks/find/{id}', 'TaskController@find');
     Route::put('tasks/update/{id}', 'TaskController@update');
+
+    Route::get('items/find/{id}', 'ItemController@find');
+    Route::put('items/update/{id}', 'ItemController@update');
 });

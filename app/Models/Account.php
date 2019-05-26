@@ -36,18 +36,18 @@ class Account extends Authenticatable
         return $this->belongsTo('App\Models\Category');
     }
 
+    public function items()
+    {
+        return $this->hasMany('App\Models\Item');
+    }
+
     public function tasks()
     {
         return $this->hasMany('App\Models\Task');
     }
 
-    public function groups()
+    public function members()
     {
-        return $this->hasMany('App\Models\Group');
-    }
-
-    public function assignees()
-    {
-        return $this->hasMany('App\Models\Group');
+        return $this->hasMany('App\Models\Member');
     }
 }

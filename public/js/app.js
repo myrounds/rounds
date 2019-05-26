@@ -2129,9 +2129,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             name: "account.rounds"
           });
           this.$msg('Login successful');
-        } else if (this.type === 'assignee') {
+        } else if (this.type === 'member') {
           this.$router.push({
-            name: "assignee.rounds"
+            name: "member.rounds"
           });
           this.$msg('Login successful');
         } else {
@@ -2196,7 +2196,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       this.error = this.users = null;
       this.loading = true; // axios
-      //     .get('/api/assignees/find/1')
+      //     .get('/api/members/find/1')
       //     .then(response => {
       //         console.log(response);
       //     });
@@ -2206,10 +2206,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/assignee/Rounds.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/assignee/Rounds.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/member/Rounds.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/member/Rounds.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2259,9 +2259,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: false,
-      groups: null,
+      tasks: null,
       error: null,
-      groupId: null,
       day: null
     };
   },
@@ -2276,7 +2275,7 @@ __webpack_require__.r(__webpack_exports__);
       this.loading = true;
       var Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('user')).token;
       this.day = _helpers_datetime__WEBPACK_IMPORTED_MODULE_1___default.a.getCurrentDay();
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/groups/search', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/tasks/search', {
         headers: {
           Authorization: Authorization
         },
@@ -2286,7 +2285,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         var payload = response.data;
-        _this.groups = payload.data;
+        _this.tasks = payload.data;
         _this.loading = false;
       })["catch"](function (error) {
         var payload = error.response.data;
@@ -2303,7 +2302,7 @@ __webpack_require__.r(__webpack_exports__);
       modalEl.style.backgroundColor = '#fff';
       modalEl.style.padding = '20px';
       var tasks = JSON.parse(event.target.getAttribute('tasks') || event.target.parentNode.getAttribute('tasks'));
-      modalEl.innerHTML += "\n            <legend>Tasks</legend>";
+      modalEl.innerHTML += "\n            <legend>Task Items</legend>";
       tasks.forEach(function (task) {
         modalEl.innerHTML += "\n                <div class=\"mui--divider-top\">\n                    <div>\n                        <strong>\n                            ".concat(task.name, " | ").concat(task.quantity, " | ").concat(task.complete ? 'completed' : 'pending', "\n                        </strong>\n                        <div>\n                            ").concat(task.notes, "\n                        </div>\n                    </div>\n                </div>");
       }); // show modal
@@ -2889,7 +2888,7 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm.type === "assignee"
+        _vm.type === "member"
           ? _c(
               "li",
               [
@@ -2897,7 +2896,7 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "section",
-                    attrs: { to: { name: "assignee.rounds" } }
+                    attrs: { to: { name: "member.rounds" } }
                   },
                   [_vm._v("My Rounds")]
                 )
@@ -2914,7 +2913,7 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "section",
-                    attrs: { to: { name: "account.rounds" } }
+                    attrs: { to: { name: "member.rounds" } }
                   },
                   [_vm._v("Rounds")]
                 )
@@ -3255,9 +3254,7 @@ var render = function() {
                   _vm._v("Account")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "assignee" } }, [
-                  _vm._v("Assignee")
-                ])
+                _c("option", { attrs: { value: "member" } }, [_vm._v("Member")])
               ]
             ),
             _vm._v(" "),
@@ -3342,10 +3339,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/assignee/Rounds.vue?vue&type=template&id=59a101d6&":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/assignee/Rounds.vue?vue&type=template&id=59a101d6& ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/member/Rounds.vue?vue&type=template&id=529bfb2a&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/member/Rounds.vue?vue&type=template&id=529bfb2a& ***!
+  \***********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3368,31 +3365,31 @@ var render = function() {
         _vm._v(" "),
         _c("spinner", { attrs: { loading: _vm.loading } }),
         _vm._v(" "),
-        _vm._l(_vm.groups, function(group) {
+        _vm._l(_vm.tasks, function(task) {
           return _c("div", { staticClass: "group-hold" }, [
             _c(
               "div",
               {
                 staticClass: "mui-panel",
-                attrs: { tasks: JSON.stringify(group.tasks) },
+                attrs: { tasks: JSON.stringify(task.items) },
                 on: { click: _vm.showDetails }
               },
               [
                 _c("div", [
-                  _c("span", { staticClass: "group_name" }, [
-                    _c("b", [_vm._v(" " + _vm._s(group.name) + " ")]),
-                    _vm._v(" • " + _vm._s(group.tasks.length) + " items ")
+                  _c("span", { staticClass: "group-name" }, [
+                    _c("b", [_vm._v(" " + _vm._s(task.name) + " ")]),
+                    _vm._v(" • " + _vm._s(task.items.length) + " items ")
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "time" }, [
-                    _vm._v(_vm._s(group.time))
+                    _vm._v(_vm._s(task.time))
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "mui--divider-top group-address" }, [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(group.address) +
+                      _vm._s(task.address) +
                       "\n                "
                   )
                 ]),
@@ -18710,7 +18707,7 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_Login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/Login */ "./resources/js/views/Login.vue");
-/* harmony import */ var _views_assignee_Rounds__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/assignee/Rounds */ "./resources/js/views/assignee/Rounds.vue");
+/* harmony import */ var _views_member_Rounds__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/member/Rounds */ "./resources/js/views/member/Rounds.vue");
 /* harmony import */ var _views_account_Rounds__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/account/Rounds */ "./resources/js/views/account/Rounds.vue");
 
 
@@ -18724,9 +18721,9 @@ __webpack_require__.r(__webpack_exports__);
   name: 'login',
   component: _views_Login__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
-  path: '/assignee',
-  name: 'assignee.rounds',
-  component: _views_assignee_Rounds__WEBPACK_IMPORTED_MODULE_1__["default"]
+  path: '/member',
+  name: 'member.rounds',
+  component: _views_member_Rounds__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   path: '/account',
   name: 'account.rounds',
@@ -18873,17 +18870,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/assignee/Rounds.vue":
-/*!************************************************!*\
-  !*** ./resources/js/views/assignee/Rounds.vue ***!
-  \************************************************/
+/***/ "./resources/js/views/member/Rounds.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/views/member/Rounds.vue ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Rounds_vue_vue_type_template_id_59a101d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Rounds.vue?vue&type=template&id=59a101d6& */ "./resources/js/views/assignee/Rounds.vue?vue&type=template&id=59a101d6&");
-/* harmony import */ var _Rounds_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Rounds.vue?vue&type=script&lang=js& */ "./resources/js/views/assignee/Rounds.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Rounds_vue_vue_type_template_id_529bfb2a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Rounds.vue?vue&type=template&id=529bfb2a& */ "./resources/js/views/member/Rounds.vue?vue&type=template&id=529bfb2a&");
+/* harmony import */ var _Rounds_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Rounds.vue?vue&type=script&lang=js& */ "./resources/js/views/member/Rounds.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -18894,8 +18891,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Rounds_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Rounds_vue_vue_type_template_id_59a101d6___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Rounds_vue_vue_type_template_id_59a101d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Rounds_vue_vue_type_template_id_529bfb2a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Rounds_vue_vue_type_template_id_529bfb2a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -18905,38 +18902,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/assignee/Rounds.vue"
+component.options.__file = "resources/js/views/member/Rounds.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/assignee/Rounds.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/views/assignee/Rounds.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
+/***/ "./resources/js/views/member/Rounds.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/views/member/Rounds.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Rounds_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Rounds.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/assignee/Rounds.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Rounds_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Rounds.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/member/Rounds.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Rounds_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/assignee/Rounds.vue?vue&type=template&id=59a101d6&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/views/assignee/Rounds.vue?vue&type=template&id=59a101d6& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/views/member/Rounds.vue?vue&type=template&id=529bfb2a&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/views/member/Rounds.vue?vue&type=template&id=529bfb2a& ***!
+  \*****************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Rounds_vue_vue_type_template_id_59a101d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Rounds.vue?vue&type=template&id=59a101d6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/assignee/Rounds.vue?vue&type=template&id=59a101d6&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Rounds_vue_vue_type_template_id_59a101d6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Rounds_vue_vue_type_template_id_529bfb2a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Rounds.vue?vue&type=template&id=529bfb2a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/member/Rounds.vue?vue&type=template&id=529bfb2a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Rounds_vue_vue_type_template_id_529bfb2a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Rounds_vue_vue_type_template_id_59a101d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Rounds_vue_vue_type_template_id_529bfb2a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
