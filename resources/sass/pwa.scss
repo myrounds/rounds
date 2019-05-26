@@ -289,7 +289,8 @@ button {
       ul.day_selector {
         position: absolute;
         background: grey;
-        top: 34px;
+        top: -20px;
+        z-index: -1;
         left: 0;
         width: 100%;
         list-style: none;
@@ -298,7 +299,7 @@ button {
         justify-content: space-between;
         padding: 0;
         margin: 0;
-        display: none;
+        transition: 0.3s;
         /*--*/
         li {
           display: block;
@@ -307,6 +308,10 @@ button {
           margin: 0 auto;
           padding: 10px;
         }
+      }
+
+      .opened {
+        top: 34px!important;
       }
 
     }

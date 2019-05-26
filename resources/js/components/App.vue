@@ -15,7 +15,7 @@
                 <span class='displayDay'>Monday</span>
                 <span class='displayDate'>
                     26/05/2019 
-                    <a id='openWeek'></a>
+                    <a class='openWeek'></a>
                     <ul class='day_selector'>
                         <li>M</li>
                         <li>T</li>
@@ -63,5 +63,11 @@
         }
     });
 
+
+$(document).ready(function() { 
+$('.openWeek').click(function(){
+    $(".day_selector").toggleClass('opened');
+});
+});
 
 </script>

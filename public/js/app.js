@@ -1827,6 +1827,11 @@ $(window).scroll(function () {
     $(".mui-appbar").removeClass('slideUpHd');
   }
 });
+$(document).ready(function () {
+  $('.openWeek').click(function () {
+    $(".day_selector").toggleClass('opened');
+  });
+});
 
 /***/ }),
 
@@ -2778,7 +2783,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("span", { staticClass: "displayDate" }, [
           _vm._v("\n                26/05/2019 \n                "),
-          _c("a", { attrs: { id: "openWeek" } }),
+          _c("a", { staticClass: "openWeek" }),
           _vm._v(" "),
           _c("ul", { staticClass: "day_selector" }, [
             _c("li", [_vm._v("M")]),
