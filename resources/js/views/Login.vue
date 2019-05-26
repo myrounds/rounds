@@ -34,6 +34,7 @@
 
 <script>
     import axios from 'axios';
+    import storage from '../helpers/storage';
     export default {
         data() {
             return {
@@ -45,13 +46,10 @@
             };
         },
         created() {
-            const storedUser = window.localStorage.getItem('user');
-            if (storedUser && typeof storedUser != null) {
-                const user = JSON.parse(storedUser);
-                if (user.type) {
-                    this.type = user.type;
-                    this.login(user);
-                }
+            const user = storage.get('user');
+            if (user && user.type) {
+                this.type = user.type;
+                this.login(user);
             }
         },
         methods: {
@@ -72,14 +70,15 @@
                         this.login(userWithType);
                     })
                     .catch(error => {
-                        console.log(error);
                         const payload = error.response.data;
-                        this.$msg(payload.message);
+                        if (payload.message) {
+                            this.$msg(payload.message);
+                        }
                     });
             },
             login(user) {
                 if (user != null && typeof user === 'object') {
-                    window.localStorage.setItem('user', JSON.stringify(user));
+                    storage.set('user', user);
 
                     const event = new CustomEvent("account-changed", { "detail": user });
                     document.dispatchEvent(event);

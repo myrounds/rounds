@@ -8,14 +8,12 @@
 
             <div v-for="task in tasks" class='task-btn'>
                 <div class="mui-panel" v-bind:tasks="JSON.stringify(task.items)" @click="showDetails">
-                    <div>
-                         <span class="name non-selectable">
-                             <strong> {{ task.name }} </strong> &bull; {{ task.items.length }} items
-                         </span>
-                         <span class="time non-selectable">{{ task.time }}</span>
-                    </div>
-                    <div class="mui--divider-top address non-selectable">
-                        {{ task.address }}
+                    <div class="non-selectable">
+                        <span class="name">
+                            <strong> {{ task.name }} </strong> &bull; {{ task.items.length }} items
+                        </span>
+                        <span class="time">{{ task.time }}</span>
+                        <span class="address">{{ task.address }}</span>
                     </div>
                 </div>
                <!--  <div style="width: 100%; text-align: center; margin-top: -20px; color: #aaa;">v</div> -->
@@ -49,27 +47,26 @@
             fetchData() {
                 this.error = this.groups = [];
                 this.loading = true;
-                const Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('user')).token;
-
                 this.day = DateTime.getCurrentDay();
 
                 axios
                     .get('/api/tasks/search', {
-                        headers: { Authorization },
                         params: {
                             s_day: this.day,
                             e_day: this.day,
                         }
                     })
                     .then(response => {
+                        this.loading = false;
                         const payload = response.data;
                         this.tasks = payload.data;
-                        this.loading = false;
                     })
                     .catch(error => {
-                        const payload = error.response.data;
                         this.loading = false;
-                        this.$msg(payload.message);
+                        const payload = error.response.data;
+                        if (payload.message) {
+                            this.$msg(payload.message);
+                        }
                     });
             },
             showDetails(event) {

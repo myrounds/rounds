@@ -1763,9 +1763,15 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Drawer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Drawer.vue */ "./resources/js/components/Drawer.vue");
-/* harmony import */ var _Header_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.vue */ "./resources/js/components/Header.vue");
-/* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/storage */ "./resources/js/helpers/storage.js");
+/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_helpers_storage__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/api */ "./resources/js/helpers/api.js");
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_helpers_api__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Drawer_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Drawer.vue */ "./resources/js/components/Drawer.vue");
+/* harmony import */ var _Header_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Header.vue */ "./resources/js/components/Header.vue");
+/* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
 //
 //
 //
@@ -1783,14 +1789,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Appdrawer: _Drawer_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Appheader: _Header_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Appfooter: _Footer_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Appdrawer: _Drawer_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Appheader: _Header_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Appfooter: _Footer_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
+  created: function created() {
+    _helpers_api__WEBPACK_IMPORTED_MODULE_2___default.a.init(axios__WEBPACK_IMPORTED_MODULE_0___default.a, _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default.a, this);
   }
 });
 
@@ -1805,43 +1817,44 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/storage */ "./resources/js/helpers/storage.js");
+/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_helpers_storage__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1850,14 +1863,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   },
   created: function created() {
     var context = this;
-    var storedUser = window.localStorage.getItem('user');
+    var user = _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default.a.get('user');
 
-    if (storedUser != null) {
-      var user = JSON.parse(storedUser);
-
-      if (_typeof(user) === 'object' && user.type) {
-        this.type = user.type;
-      }
+    if (user && user.type) {
+      this.type = user.type;
     }
 
     document.addEventListener("account-changed", function (event) {
@@ -1867,7 +1876,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   },
   methods: {
     logout: function logout() {
-      window.localStorage.removeItem('user');
+      _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default.a.clear('user');
       this.type = null;
       this.$router.push({
         name: "login"
@@ -2026,6 +2035,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/storage */ "./resources/js/helpers/storage.js");
+/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_helpers_storage__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
@@ -2067,6 +2078,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2078,15 +2090,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   created: function created() {
-    var storedUser = window.localStorage.getItem('user');
+    var user = _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default.a.get('user');
 
-    if (storedUser && typeof storedUser != null) {
-      var user = JSON.parse(storedUser);
-
-      if (user.type) {
-        this.type = user.type;
-        this.login(user);
-      }
+    if (user && user.type) {
+      this.type = user.type;
+      this.login(user);
     }
   },
   methods: {
@@ -2110,15 +2118,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         _this.login(userWithType);
       })["catch"](function (error) {
-        console.log(error);
         var payload = error.response.data;
 
-        _this.$msg(payload.message);
+        if (payload.message) {
+          _this.$msg(payload.message);
+        }
       });
     },
     login: function login(user) {
       if (user != null && _typeof(user) === 'object') {
-        window.localStorage.setItem('user', JSON.stringify(user));
+        _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default.a.set('user', user);
         var event = new CustomEvent("account-changed", {
           "detail": user
         });
@@ -2248,8 +2257,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2274,25 +2281,23 @@ __webpack_require__.r(__webpack_exports__);
 
       this.error = this.groups = [];
       this.loading = true;
-      var Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('user')).token;
       this.day = _helpers_datetime__WEBPACK_IMPORTED_MODULE_1___default.a.getCurrentDay();
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/tasks/search', {
-        headers: {
-          Authorization: Authorization
-        },
         params: {
           s_day: this.day,
           e_day: this.day
         }
       }).then(function (response) {
+        _this.loading = false;
         var payload = response.data;
         _this.tasks = payload.data;
-        _this.loading = false;
       })["catch"](function (error) {
-        var payload = error.response.data;
         _this.loading = false;
+        var payload = error.response.data;
 
-        _this.$msg(payload.message);
+        if (payload.message) {
+          _this.$msg(payload.message);
+        }
       });
     },
     showDetails: function showDetails(event) {
@@ -3368,32 +3373,24 @@ var render = function() {
                 on: { click: _vm.showDetails }
               },
               [
-                _c("div", [
-                  _c("span", { staticClass: "name non-selectable" }, [
+                _c("div", { staticClass: "non-selectable" }, [
+                  _c("span", { staticClass: "name" }, [
                     _c("strong", [_vm._v(" " + _vm._s(task.name) + " ")]),
                     _vm._v(
                       " • " +
                         _vm._s(task.items.length) +
-                        " items\n                     "
+                        " items\n                    "
                     )
                   ]),
                   _vm._v(" "),
-                  _c("span", { staticClass: "time non-selectable" }, [
+                  _c("span", { staticClass: "time" }, [
                     _vm._v(_vm._s(task.time))
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "address" }, [
+                    _vm._v(_vm._s(task.address))
                   ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "mui--divider-top address non-selectable" },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(task.address) +
-                        "\n                "
-                    )
-                  ]
-                )
+                ])
               ]
             )
           ])
@@ -18636,6 +18633,50 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/helpers/api.js":
+/*!*************************************!*\
+  !*** ./resources/js/helpers/api.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var init = function init(axios, storage, context) {
+  var api = axios.create();
+  var user = storage.get('user');
+
+  if (user) {
+    api.defaults.headers.common['Authorization'] = 'Bearer ' + user.token;
+  }
+
+  axios.interceptors.response.use(null, function (error) {
+    if (!error.response || !error.response.status) {}
+
+    if (error.response) {
+      switch (error.response.status) {
+        case 500:
+          context.$msg('Server error');
+          break;
+
+        case 401:
+          context.$msg('Unauthorized');
+          break;
+
+        case 404:
+          context.$msg('Not found');
+          break;
+      }
+    }
+
+    return Promise.reject(error);
+  });
+};
+
+module.exports = {
+  init: init
+};
+
+/***/ }),
+
 /***/ "./resources/js/helpers/datetime.js":
 /*!******************************************!*\
   !*** ./resources/js/helpers/datetime.js ***!
@@ -18675,6 +18716,45 @@ module.exports = {
   getDaysOfWeek: getDaysOfWeek,
   getCurrentDay: getCurrentDay,
   getCurrentDate: getCurrentDate
+};
+
+/***/ }),
+
+/***/ "./resources/js/helpers/storage.js":
+/*!*****************************************!*\
+  !*** ./resources/js/helpers/storage.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var get = function get(key) {
+  var stored = window.localStorage.getItem(key);
+
+  if (stored && typeof stored === 'string') {
+    var parsed = JSON.parse(stored);
+
+    if (typeof parsed != null && _typeof(parsed) === 'object') {
+      return parsed;
+    }
+  }
+
+  return null;
+};
+
+var set = function set(key, value) {
+  window.localStorage.setItem(key, JSON.stringify(value));
+};
+
+var clear = function clear(key) {
+  window.localStorage.removeItem(key);
+};
+
+module.exports = {
+  get: get,
+  set: set,
+  clear: clear
 };
 
 /***/ }),

@@ -64,7 +64,7 @@ $factory->define(Task::class, function (Faker $faker) {
     return [
         'account_id' => $accountId,
         'member_id' => $faker->randomElement($members),
-        'name' => $faker->randomElement(['pickup', 'delivery']),
+        'name' => 'Go to ' . $faker->company,
         'day' => $faker->dayOfWeek,
         'time' => $faker->time('H:i'),
         'address' => $faker->address,

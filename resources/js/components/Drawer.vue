@@ -34,6 +34,7 @@
 </template>
 
 <script>
+    import storage from '../helpers/storage';
     export default {
         data() {
             return {
@@ -43,12 +44,9 @@
         created() {
             const context = this;
 
-            const storedUser = window.localStorage.getItem('user');
-            if (storedUser != null) {
-                const user = JSON.parse(storedUser);
-                if (typeof user === 'object' && user.type) {
-                    this.type = user.type
-                }
+            const user = storage.get('user');
+            if (user && user.type) {
+                this.type = user.type
             }
 
             document.addEventListener("account-changed", (event) => {
@@ -60,7 +58,7 @@
         },
         methods: {
             logout() {
-                window.localStorage.removeItem('user');
+                storage.clear('user');
                 this.type = null;
                 this.$router.push({name: "login"});
                 this.$msg('Logout successful');
