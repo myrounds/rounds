@@ -1800,6 +1800,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2764,7 +2776,26 @@ var staticRenderFns = [
       _c("div", { attrs: { id: "dateBar" } }, [
         _c("span", { staticClass: "displayDay" }, [_vm._v("Monday")]),
         _vm._v(" "),
-        _c("span", { staticClass: "displayDate" }, [_vm._v("26/05/2019")])
+        _c("span", { staticClass: "displayDate" }, [
+          _vm._v("\n                26/05/2019 \n                "),
+          _c("a", { attrs: { id: "openWeek" } }),
+          _vm._v(" "),
+          _c("ul", { staticClass: "day_selector" }, [
+            _c("li", [_vm._v("M")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("T")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("W")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("T")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("F")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("S")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("S")])
+          ])
+        ])
       ])
     ])
   }

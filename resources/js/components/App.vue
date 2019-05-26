@@ -13,7 +13,19 @@
             </div>
             <div id='dateBar'>
                 <span class='displayDay'>Monday</span>
-                <span class='displayDate'>26/05/2019</span>
+                <span class='displayDate'>
+                    26/05/2019 
+                    <a id='openWeek'></a>
+                    <ul class='day_selector'>
+                        <li>M</li>
+                        <li>T</li>
+                        <li>W</li>
+                        <li>T</li>
+                        <li>F</li>
+                        <li>S</li> 
+                        <li>S</li>                                                
+                    </ul>
+                </span>
             </div>
         </header>
 
