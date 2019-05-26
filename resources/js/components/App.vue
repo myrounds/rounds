@@ -17,7 +17,7 @@
                     26/05/2019 
                     <a class='openWeek'></a>
                     <ul class='day_selector'>
-                        <li>M</li>
+                        <li class='activeDay'>M</li>
                         <li>T</li>
                         <li>W</li>
                         <li>T</li>
@@ -69,5 +69,9 @@ $('.openWeek').click(function(){
     $(".day_selector").toggleClass('opened');
 });
 });
+
+
+
+
 
 </script>

@@ -27,6 +27,9 @@
                 <a class="section" @click="logout">Logout</a>
             </li>
         </ul>
+
+<div id='map'></div>
+
     </div>
 </template>
 
@@ -64,4 +67,26 @@
             }
         }
     }
+
+$(document).ready(function() { 
+
+
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoibGF1bmRyIiwiYSI6ImNqdzBpYXEydTBiZzk0YXBncDlzZjV4Z2wifQ.3oRSPYA0aPENMmqjjE3zQA';
+    var map = new mapboxgl.Map({
+
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v11',
+    zoom: 3 // starting zoom
+    });
+     
+    // Add geolocate control to the map.
+    map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+    enableHighAccuracy: true
+    },
+    trackUserLocation: true
+    }));
+});
+
 </script>

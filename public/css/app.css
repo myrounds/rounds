@@ -10666,7 +10666,7 @@ a.text-dark:focus {
   --primaryColor: #219BB6;
   --primaryDark: #148098;
   --compColor: #FFA26B;
-  --secondaryColor: #474747;
+  --secondaryColor: #224E57;
   --light: #f4f4f4;
   --medium: #C4C4C4;
   --active: #FFE3D7;
@@ -10952,28 +10952,36 @@ button {
 
 #dateBar span.displayDate ul.day_selector {
   position: absolute;
-  background: grey;
+  background: var(--light);
   top: -20px;
   z-index: -1;
   left: 0;
   width: 100%;
   list-style: none;
-  display: flex;
-  align-items: stretch;
-  /* Default */
-  justify-content: space-between;
   padding: 0;
   margin: 0;
   transition: 0.3s;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   /*--*/
 }
 
 #dateBar span.displayDate ul.day_selector li {
-  display: block;
+  display: inline-block;
+  width: 14.28%;
+  float: left;
   text-align: center;
-  flex: 0 1 auto;
   margin: 0 auto;
-  padding: 10px;
+  padding: 10px 0;
+  color: var(--secondaryColor);
+}
+
+#dateBar span.displayDate ul.day_selector li:nth-child(odd) {
+  background-color: white;
+}
+
+#dateBar span.displayDate ul.day_selector .activeDay {
+  font-weight: bold;
+  color: var(--compColor);
 }
 
 #dateBar span.displayDate .opened {
@@ -10989,5 +10997,20 @@ button {
 .slideUpHd {
   height: 0;
   min-height: 0;
+}
+
+#map {
+  width: 100%;
+  height: 200px;
+}
+
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right {
+  display: none;
+}
+
+.mapboxgl-ctrl-group > button {
+  width: 35px;
+  height: 35px;
 }
 
