@@ -2,7 +2,7 @@
     <div id="sidedrawer" class="mui--no-user-select">
         <div id="sidedrawer-brand" class="mui--appbar-line-height">
             <span class="mui--text-title">
-                <img src="http://andrewdidit.com/rnds/img/logo.svg" height="35" />
+                <img src="img/rounds.svg" class='rounds_logo' />
             </span>
         </div>
         <div class="mui-divider"></div>

@@ -1797,10 +1797,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Sidedrawer: _Sidedrawer_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+$(window).scroll(function () {
+  var scroll = $(window).scrollTop();
+
+  if (scroll >= 50) {
+    $(".mui-appbar").addClass('slideUpHd');
+  } else {
+    $(".mui-appbar").removeClass('slideUpHd');
   }
 });
 
@@ -2118,6 +2130,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2144,11 +2158,12 @@ __webpack_require__.r(__webpack_exports__);
         },
         params: {
           s_day: 'monday',
-          e_day: 'monday'
+          e_day: 'friday'
         }
       }).then(function (response) {
         var payload = response.data;
         _this.groups = payload.data;
+        console.log(_this.groups);
         _this.loading = false;
       })["catch"](function (error) {
         var payload = error.response.data;
@@ -2158,7 +2173,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     showDetails: function showDetails(event) {
       var modalEl = document.createElement('div');
-      modalEl.style.width = '80%';
+      modalEl.style.width = '90%';
       modalEl.style.minHeight = '300px';
       modalEl.style.margin = '100px auto';
       modalEl.style.backgroundColor = '#fff';
@@ -2716,33 +2731,40 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("header", { attrs: { id: "header" } }, [
       _c("div", { staticClass: "mui-appbar mui--appbar-line-height" }, [
-        _c("div", { staticClass: "mui-container-fluid" }, [
-          _c(
-            "a",
-            {
-              staticClass:
-                "sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer"
-            },
-            [_vm._v("☰")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer"
-            },
-            [_vm._v("☰")]
-          ),
-          _vm._v(" "),
-          _c(
-            "span",
-            { staticClass: "mui--text-title mui--visible-xs-inline-block" },
-            [_vm._v("\n                    Rounds\n                ")]
-          ),
-          _vm._v(" "),
-          _c("a", { staticClass: "day" }, [_vm._v("Monday")])
-        ])
+        _c(
+          "span",
+          { staticClass: "mui--text-title mui--visible-xs-inline-block" },
+          [
+            _c("img", {
+              staticClass: "rounds_logo",
+              attrs: { src: "img/rounds.svg" }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass:
+              "sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer"
+          },
+          [_c("img", { attrs: { src: "img/human.svg" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass:
+              "sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer"
+          },
+          [_c("img", { attrs: { src: "img/human.svg" } })]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "dateBar" } }, [
+        _c("span", { staticClass: "displayDay" }, [_vm._v("Monday")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "displayDate" }, [_vm._v("26/05/2019")])
       ])
     ])
   }
@@ -2850,10 +2872,8 @@ var staticRenderFns = [
       [
         _c("span", { staticClass: "mui--text-title" }, [
           _c("img", {
-            attrs: {
-              src: "http://andrewdidit.com/rnds/img/logo.svg",
-              height: "35"
-            }
+            staticClass: "rounds_logo",
+            attrs: { src: "img/rounds.svg" }
           })
         ])
       ]
@@ -3100,7 +3120,7 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm._l(_vm.groups, function(group) {
-          return _c("div", [
+          return _c("div", { staticClass: "group_hold" }, [
             _c(
               "div",
               {
@@ -3110,52 +3130,47 @@ var render = function() {
               },
               [
                 _c("div", [
+                  _c("span", { staticClass: "group_name" }, [
+                    _c("b", [_vm._v(" " + _vm._s(group.name) + " ")]),
+                    _vm._v(" • " + _vm._s(group.tasks.length) + " items ")
+                  ]),
+                  _vm._v(" "),
                   _c("span", { staticClass: "time" }, [
                     _vm._v(_vm._s(group.time))
-                  ]),
-                  _vm._v(
-                    " " +
-                      _vm._s(group.name) +
-                      " | " +
-                      _vm._s(group.tasks.length) +
-                      " items\n                "
-                  )
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "mui--divider-top" }, [
+                _c("div", { staticClass: "mui--divider-top group_address" }, [
                   _vm._v(
                     "\n                    " +
                       _vm._s(group.address) +
                       "\n                "
                   )
-                ])
+                ]),
+                _vm._v(" "),
+                _c("div", { attrs: { id: "group_tasks" } })
               ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticStyle: {
-                  width: "100%",
-                  "text-align": "center",
-                  "margin-top": "-20px",
-                  color: "#aaa"
-                }
-              },
-              [_vm._v("v")]
             )
           ])
         }),
         _vm._v(" "),
-        _c("div", { staticClass: "mui-panel" }, [
-          _vm._v("\n            DONE FOR DAY\n        ")
-        ])
+        _vm._m(0)
       ],
       2
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mui-panel" }, [
+      _c("i", { staticClass: "fas fa-check-circle" }),
+      _vm._v(" All Rounded up for Today\n        ")
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -18396,8 +18411,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/Nik/MyApps/Apps/rounds/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/Nik/MyApps/Apps/rounds/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\rounds\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\rounds\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
