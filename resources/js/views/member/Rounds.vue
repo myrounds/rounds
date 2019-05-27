@@ -51,7 +51,7 @@
                         class="mui-btn mui-btn--raised"
                         :lat="selected.lat"
                         :lon="selected.lon"
-                        @click="goToDirections">Directions</button>
+                        @click="directionsClicked">Directions</button>
                 </div>
 
                 <br>
@@ -108,6 +108,8 @@
 <script>
     import axios from 'axios';
     import DateTime from '../../helpers/datetime';
+    import Location from '../../helpers/location';
+    import Storage from '../../helpers/storage';
     import Spinner from '../../components/spinner';
     import Modal from '../../components/modal';
     export default {
@@ -163,11 +165,19 @@
                 this.selected = task;
                 this.showModal = true;
             },
-            goToDirections(event) {
+            directionsClicked(event) {
                 const lat = event.target.getAttribute('lat');
                 const lon = event.target.getAttribute('lon');
-                const userLocation = '-34.0625349,18.4460065'; // TODO: get from localStorage
-                const url = `https://www.google.com/maps/dir/${userLocation}/${lat},${lon}`;
+                const taskLocation = `${lat},${lon}`;
+
+                Location.get(Storage).then(device => {
+                    this.goToDirections(`${device.lat},${device.lon}`, taskLocation);
+                }).catch(error => {
+                    this.$msg(error);
+                });
+            },
+            goToDirections(userLocation, taskLocation) {
+                const url = `https://www.google.com/maps/dir/${userLocation}/${taskLocation}`;
 
                 window.open(url, '_blank');
             },
