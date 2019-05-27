@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "vue-message": "^1.4.3",
-        "vue-router": "^3.0.6"
+        "vue-router": "^3.0.6",
+        "vue2-google-maps": "^0.10.6"
     }
 }

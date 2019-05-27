@@ -6,8 +6,10 @@
             <br>
             <spinner v-bind:loading="loading"></spinner>
 
+
+
             <div v-for="task in tasks" class='task-btn'>
-                <div class="mui-panel" v-bind:tasks="JSON.stringify(task.items)" @click="showDetails">
+                <div class="mui-panel" v-bind:id="task.id" @click="showDetails">
                     <div class="non-selectable">
                         <span class="name">
                             <strong> {{ task.name }} </strong> &bull; {{ task.items.length }} items
@@ -23,6 +25,83 @@
                 <i class="fas fa-check-circle"></i> All Rounded up for Today
             </div>
         </div>
+
+
+
+        <modal v-if="showModal" @close="showModal = false">
+            <h3 slot="header">
+                {{selected.name}}
+            </h3>
+            <div slot="body">
+
+
+                <GmapMap
+                    :center="{ lat: selected.lat, lng: selected.lon }"
+                    :zoom="12"
+                    map-type-id="terrain"
+                    style="width: 100%; height: 300px">
+                    <GmapMarker
+                        :position="{ lat: selected.lat, lng: selected.lon }"
+                        :clickable="true"
+                        :draggable="true" />
+                </GmapMap>
+
+                <div class="directions-btn">
+                    <button
+                        class="mui-btn mui-btn--raised"
+                        :lat="selected.lat"
+                        :lon="selected.lon"
+                        @click="goToDirections">Directions</button>
+                </div>
+
+                <br>
+
+                <div class="mui-checkbox">
+                    <label>
+                        <input type="checkbox" value="" :checked="selected.completed_at">
+                        Task Complete
+                    </label>
+                </div>
+
+                <div>Address: {{selected.address}}</div>
+                <div>Time: {{selected.time}}</div>
+                <div>Day: {{selected.day}}</div>
+                <div>Phone: {{selected.phone}}</div>
+                <div>Email: {{selected.email}}</div>
+                <div>Notes: {{selected.notes}}</div>
+                <button
+                    class="mui-btn mui-btn--small mui-btn--raised"
+                    @click="leaveComment">Add Notes</button>
+
+                <br><br>
+
+                <h5>Items</h5>
+                <div v-for="item in selected.items" class='item'>
+                    <div class="mui--divider-top">
+                        <div>
+                            <strong>{{item.name}} | qnt: {{item.quantity}}</strong>
+
+                            <div class="mui-checkbox">
+                                <label>
+                                    <input type="checkbox" value="" :checked="item.completed_at">
+                                    Item Complete
+                                </label>
+                            </div>
+
+                            <div>Notes: {{item.notes}}</div>
+
+                            <button
+                                class="mui-btn mui-btn--small mui-btn--raised"
+                                @click="leaveComment">Add Notes</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </modal>
+
+
     </div>
 </template>
 
@@ -30,14 +109,20 @@
     import axios from 'axios';
     import DateTime from '../../helpers/datetime';
     import Spinner from '../../components/spinner';
+    import Modal from '../../components/modal';
     export default {
-        components: {Spinner},
+        components: {Spinner, Modal},
         data() {
             return {
                 loading: false,
                 tasks: null,
                 error: null,
-                day: null
+                day: null,
+                showModal: false,
+                markers: {
+
+                },
+                selected: {}
             };
         },
         created() {
@@ -59,44 +144,35 @@
                     .then(response => {
                         this.loading = false;
                         const payload = response.data;
+
                         this.tasks = payload.data;
                     })
                     .catch(error => {
                         this.loading = false;
                         const payload = error.response.data;
+
                         if (payload.message) {
                             this.$msg(payload.message);
                         }
                     });
             },
             showDetails(event) {
-                const tasks = JSON.parse(event.target.getAttribute('tasks') || event.target.parentNode.getAttribute('tasks'));
-                const modalEl = document.createElement('div');
+                const id = event.target.id;
+                const task = this.tasks.find(task => parseInt(task.id) === parseInt(id));
 
-                modalEl.style.width = '90%';
-                modalEl.style.minHeight = '300px';
-                modalEl.style.margin = '100px auto';
-                modalEl.style.backgroundColor = '#fff';
-                modalEl.style.padding = '20px';
-                modalEl.innerHTML += `
-                    <legend>Task Items</legend>
-                    ${tasks.map(task => {
-                        return `
-                        <div class="mui--divider-top">
-                            <div>
-                                <strong>
-                                    ${task.name} | ${task.quantity} | ${task.complete ? 'completed' : 'pending'}
-                                </strong>
-                                <div>
-                                    ${task.notes}
-                                </div>
-                            </div>
-                        </div>`;
-                    })}
-                `;
+                this.selected = task;
+                this.showModal = true;
+            },
+            goToDirections(event) {
+                const lat = event.target.getAttribute('lat');
+                const lon = event.target.getAttribute('lon');
+                const userLocation = '-34.0625349,18.4460065'; // TODO: get from localStorage
+                const url = `https://www.google.com/maps/dir/${userLocation}/${lat},${lon}`;
 
-                // show modal
-                mui.overlay('on', modalEl);
+                window.open(url, '_blank');
+            },
+            leaveComment() {
+                console.log('make comment input/ textarea visible');
             }
         }
     }
