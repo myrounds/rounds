@@ -74,10 +74,12 @@ $(document).ready(function() {
 
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibGF1bmRyIiwiYSI6ImNqdzBpYXEydTBiZzk0YXBncDlzZjV4Z2wifQ.3oRSPYA0aPENMmqjjE3zQA';
+    var user_location = ["174.907639","-36.873264"];
     var map = new mapboxgl.Map({
 
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v11',
+    center: user_location,
     zoom: 3 // starting zoom
     });
      

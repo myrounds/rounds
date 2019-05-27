@@ -1918,10 +1918,12 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 });
 $(document).ready(function () {
   mapboxgl.accessToken = 'pk.eyJ1IjoibGF1bmRyIiwiYSI6ImNqdzBpYXEydTBiZzk0YXBncDlzZjV4Z2wifQ.3oRSPYA0aPENMmqjjE3zQA';
+  var user_location = ["174.907639", "-36.873264"];
   var map = new mapboxgl.Map({
     container: 'map',
     // container id
     style: 'mapbox://styles/mapbox/streets-v11',
+    center: user_location,
     zoom: 3 // starting zoom
 
   }); // Add geolocate control to the map.
@@ -18153,15 +18155,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./resources/js/components/Sidedrawer.vue ***!
   \************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Sidedrawer_vue_vue_type_template_id_a22dbc9a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sidedrawer.vue?vue&type=template&id=a22dbc9a& */ "./resources/js/components/Sidedrawer.vue?vue&type=template&id=a22dbc9a&");
 /* harmony import */ var _Sidedrawer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Sidedrawer.vue?vue&type=script&lang=js& */ "./resources/js/components/Sidedrawer.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Sidedrawer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Sidedrawer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -18191,7 +18192,7 @@ component.options.__file = "resources/js/components/Sidedrawer.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/components/Sidedrawer.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

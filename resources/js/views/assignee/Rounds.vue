@@ -20,7 +20,7 @@
                     </div>
                     <div id='group_tasks'></div>
                 </div>
-               <!--  <div style="width: 100%; text-align: center; margin-top: -20px; color: #aaa;">v</div> -->
+               <!-- <div class='divider'><i class='fas fa-caret-down'></i></div> -->
             </div>
 
             <div class="mui-panel">

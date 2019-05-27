@@ -10872,9 +10872,22 @@ button {
 }
 
 .my-rounds .group_hold {
-  margin: 0 0 10px 0;
-  border-radius: 50px;
+  margin: 0 0 40px 0;
+  border-radius: 5px;
   background: var(--primaryColor);
+  position: relative;
+}
+
+.my-rounds .group_hold:after {
+  font-family: FontAwesome;
+  content: "\F13A";
+  position: absolute;
+  bottom: -43px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 30px;
+  color: var(--primaryColor);
 }
 
 .my-rounds .group_hold:nth-child(odd) {
