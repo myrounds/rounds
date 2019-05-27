@@ -40,7 +40,7 @@
                 this.error = this.users = null;
                 this.loading = true;
                 // axios
-                //     .get('/api/assignees/find/1')
+                //     .get('/api/members/find/1')
                 //     .then(response => {
                 //         console.log(response);
                 //     });

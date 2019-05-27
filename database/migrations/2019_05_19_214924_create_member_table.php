@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssigneesTable extends Migration
+class CreateMemberTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateAssigneesTable extends Migration
      */
     public function up()
     {
-        Schema::create('assignees', function (Blueprint $table) {
+        Schema::create('members', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('account_id');
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');;
-            $table->string('first_name');
-            $table->string('last_name')->nullable();
+            $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('password')->nullable();
@@ -41,6 +40,6 @@ class CreateAssigneesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assignees');
+        Schema::dropIfExists('members');
     }
 }

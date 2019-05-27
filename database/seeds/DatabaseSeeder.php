@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
         ini_set('memory_limit', '-1');
 
         $this->call(AccountTableSeeder::class);
-        $this->call(AssigneeTableSeeder::class);
-        $this->call(GroupTableSeeder::class);
+        $this->call(MemberTableSeeder::class);
         $this->call(TaskTableSeeder::class);
+        $this->call(ItemTableSeeder::class);
     }
 
 }

@@ -46,9 +46,9 @@ return [
             'provider' => 'users'
         ],
 
-        'assignee' => [
+        'member' => [
             'driver' => 'passport',
-            'provider' => 'assignees',
+            'provider' => 'members',
         ],
     ],
 
@@ -74,9 +74,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Account::class,
         ],
-        'assignees' => [
+        'members' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Assignee::class,
+            'model' => App\Models\Member::class,
         ],
 
     ],

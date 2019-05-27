@@ -2,33 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use App\Helpers\Authenticatable;
+use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Group extends Model
+class Member extends Authenticatable
 {
-    use SoftDeletes;
+    use HasMultiAuthApiTokens, Notifiable, SoftDeletes;
 
-    protected $table = 'groups';
+    protected $table = 'members';
 
     protected $fillable = [
         'account_id',
-        'assignee_id',
         'name',
-        'day',
-        'time',
-        'address',
-        'lat',
-        'lon',
         'email',
         'phone',
+        'license_plate',
         'notes',
-        'completed_at',
-        'active',
-        'repeat'
+        'lat',
+        'lon'
     ];
 
     protected $hidden = [
+        'password',
+        'remember_token',
         'deleted_at'
     ];
 
@@ -37,11 +35,6 @@ class Group extends Model
     public function account()
     {
         return $this->belongsTo('App\Models\Account');
-    }
-
-    public function assignee()
-    {
-        return $this->belongsTo('App\Models\Assignee');
     }
 
     public function tasks()

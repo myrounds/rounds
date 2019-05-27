@@ -12,11 +12,20 @@ class Task extends Model
     protected $table = 'tasks';
 
     protected $fillable = [
-        'group_id',
+        'account_id',
+        'member_id',
         'name',
-        'quantity',
+        'day',
+        'time',
+        'address',
+        'lat',
+        'lon',
+        'email',
+        'phone',
         'notes',
-        'completed_at'
+        'completed_at',
+        'active',
+        'repeat'
     ];
 
     protected $hidden = [
@@ -25,8 +34,18 @@ class Task extends Model
 
     protected $casts = [];
 
-    public function group()
+    public function account()
     {
-        return $this->belongsTo('App\Models\Group');
+        return $this->belongsTo('App\Models\Account');
+    }
+
+    public function member()
+    {
+        return $this->belongsTo('App\Models\Member');
+    }
+
+    public function items()
+    {
+        return $this->hasMany('App\Models\Item');
     }
 }

@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\Models\Account;
-use App\Models\Assignee;
-use App\Models\Group;
+use App\Models\Member;
 use App\Models\Task;
+use App\Models\Item;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -34,13 +34,12 @@ $factory->define(Account::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Assignee::class, function (Faker $faker) {
+$factory->define(Member::class, function (Faker $faker) {
     $accounts = Account::all()->pluck('id')->toArray();
 
     return [
         'account_id' => $faker->randomElement($accounts),
-        'first_name' => $faker->firstName,
-        'last_name' => $faker->lastName,
+        'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'phone' => $faker->unique()->phoneNumber,
         'password' => \Illuminate\Support\Facades\Hash::make('1234'),
@@ -52,20 +51,20 @@ $factory->define(Assignee::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Group::class, function (Faker $faker) {
+$factory->define(Task::class, function (Faker $faker) {
     $accounts = Account::all()->pluck('id')->toArray();
     $accountId = $faker->randomElement($accounts);
-    $assignees = [];
-    foreach(Assignee::select('account_id','id')->get()->toArray() as $assignee) {
-        if ($assignee['account_id'] == $accountId) {
-            $assignees[] = $assignee['id'];
+    $members = [];
+    foreach(Member::select('account_id','id')->get()->toArray() as $member) {
+        if ($member['account_id'] == $accountId) {
+            $members[] = $member['id'];
         }
     }
 
     return [
         'account_id' => $accountId,
-        'assignee_id' => $faker->randomElement($assignees),
-        'name' => $faker->randomElement(['pickup', 'delivery']),
+        'member_id' => $faker->randomElement($members),
+        'name' => $faker->randomElement(['Pickup from', 'Deliver to', 'Go to']) . ' ' . $faker->company,
         'day' => $faker->dayOfWeek,
         'time' => $faker->time('H:i'),
         'address' => $faker->address,
@@ -78,11 +77,11 @@ $factory->define(Group::class, function (Faker $faker) {
 });
 
 
-$factory->define(Task::class, function (Faker $faker) {
-    $groups = Group::all()->pluck('id')->toArray();
+$factory->define(Item::class, function (Faker $faker) {
+    $tasks = Task::all()->pluck('id')->toArray();
 
     return [
-        'group_id' => $faker->randomElement($groups),
+        'task_id' => $faker->randomElement($tasks),
         'name' => $faker->randomElement(['t-shirts', 'jackets', 'pants', 'coats', 'bags']),
         'quantity' => $faker->numberBetween(1, 6),
         'notes' => $faker->text,

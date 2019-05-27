@@ -25,9 +25,9 @@ class CreateCategoriesTable extends Migration
             [
                 'name' => 'delivery',
                 'config' => json_encode([
-                    'group' => 'Company',
-                    'task' => 'Pickup',
-                    'assignee' => 'Driver'
+                    'task' => 'Company',
+                    'item' => 'Pickup',
+                    'member' => 'Driver'
                 ])
             ]
         ]);

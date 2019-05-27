@@ -1,11 +1,11 @@
 import Login from "./views/Login";
-import AssigneeRounds from "./views/assignee/Rounds";
+import MemberRounds from "./views/member/Rounds";
 import AccountRounds from './views/account/Rounds';
 
 export default [
     {
         path: '/',
-        name: 'login',
+        name: 'home',
         component: Login,
     },
     {
@@ -14,9 +14,9 @@ export default [
         component: Login,
     },
     {
-        path: '/assignee',
-        name: 'assignee.rounds',
-        component: AssigneeRounds
+        path: '/member',
+        name: 'member.rounds',
+        component: MemberRounds
     },
     {
         path: '/account',
