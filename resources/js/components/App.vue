@@ -18,6 +18,7 @@
 <script>
     import axios from 'axios';
     import storage from '../helpers/storage';
+    import Location from '../helpers/location';
     import Api from '../helpers/api';
     import Appdrawer from './Drawer.vue';
     import Appheader from './Header.vue';
@@ -31,6 +32,7 @@
         },
         created() {
             Api.init(axios, storage, this);
+            Location.watchLocation(storage);
         }
     }
 </script>
