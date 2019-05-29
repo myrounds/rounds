@@ -11,13 +11,23 @@
                     <h4>{{day}}</h4>
                     <div class="day-rows">
                         <div class="day-row" v-for="task in tasksFiltered[day]" :id="task.id" @click="showDetails">
-                            {{task.time.substring(0,5)}}
-                            <br>
-                            {{task.name}}
-                            <div v-if="members">
-                                > {{members.find(m => m.id === task.member_id).name}}
-                            </div>
+                            <div class="non-selectable">
+                                <div>{{task.time.substring(0,5)}}</div>
+                                <div>{{task.name}}</div>
 
+                                <!--// IF user.type === member-->
+                                <!-- - show distance from current location for first item in list-->
+                                <!-- - show distance from previous locations for remaining distances-->
+
+                                <div v-if="members">
+                                    > {{members.find(m => m.id === task.member_id).name}}
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="!tasksFiltered[day] || tasksFiltered[day].length === 0">
+                            <div class="day-row">
+                                No tasks today
+                            </div>
                         </div>
                     </div>
                 </div>
