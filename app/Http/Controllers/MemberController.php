@@ -19,7 +19,8 @@ class MemberController extends Controller
                 break;
             }
         }
-        if ($authed) {
+        if ($authed !== null) {
+            $response = $authed->toArray();
             $response['token'] =  $authed->createToken('Rounds')->accessToken;
             return response()->json(['data' => $response], 200);
         }

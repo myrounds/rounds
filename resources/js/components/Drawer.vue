@@ -1,5 +1,6 @@
 <template>
     <div id="sidedrawer" class="mui--no-user-select">
+
         <div class="brand mui--appbar-line-height">
             <span class="mui--text-title">
                 <img src="../../images/rounds.svg" class='rounds-logo' />
@@ -11,11 +12,7 @@
                 <router-link class="section" :to="{ name: 'login' }">Login</router-link>
             </li>
 
-            <!--<li v-if="type === 'member'">-->
-                <!--<router-link class="section" :to="{ name: 'member.rounds' }">My Rounds</router-link>-->
-            <!--</li>-->
-
-            <li>
+            <li v-if="type != null">
                 <router-link class="section" :to="{ name: 'schedule' }">Schedule</router-link>
                 <ul v-if="type === 'account'">
                     <li class="sub-section" @click="filterMembers">
@@ -25,7 +22,10 @@
                         <a class="non-selectable">{{member.name}}</a>
                     </li>
                 </ul>
-                <router-link class="section" :to="{ name: 'account.members' }">Members</router-link>
+                <router-link
+                    class="section"
+                    v-if="type === 'account'"
+                    :to="{ name: 'account.members' }">Members</router-link>
             </li>
 
             <li v-if="type">
@@ -39,8 +39,8 @@
 </template>
 
 <script>
-    import axios from 'axios';
     import storage from '../helpers/storage';
+    import Events from '../helpers/events';
     export default {
         data() {
             return {
@@ -49,74 +49,29 @@
             };
         },
         created() {
-            const context = this;
-
             const user = storage.get('user');
             if (user && user.type) {
                 this.type = user.type
             }
+            Events.addListener('account-changed', data => { this.type = data.user.type });
 
-            document.addEventListener("account-changed", (event) => {
-                const user = event.detail;
-
-                context.type = user.type;
-            });
-
-            jQuery(($) => {
-                const $sidedrawerEl = $('#sidedrawer');
-
-                const $titleEls = $('a', $sidedrawerEl);
-
-                // $titleEls
-                //     .next()
-                //     .hide();
-
-                // $titleEls.on('click', () => {
-                //     console.log("TEST");
-                //     $(context).next().slideToggle(200);
-                // });
-            });
-
-            if (this.type === 'account') {
-                this.getMembers();
+            const members = storage.get('members');
+            if (members) {
+                this.members = members;
             }
+            Events.addListener('members-changed', data => { this.members = data.members })
         },
         methods: {
             logout() {
                 storage.clear('user');
                 storage.clear('members');
                 this.type = null;
+                this.members = null;
                 this.$router.push({name: "login"});
                 this.$msg('Logout successful');
             },
-            getMembers() {
-                axios
-                    .get('/api/members/search', {
-                        params: {
-                            name: ''
-                        }
-                    })
-                    .then(response => {
-                        this.loading = false;
-                        const payload = response.data;
-                        const members = payload.data;
-
-                        this.members = members;
-                        storage.set('members', members);
-                    })
-                    .catch(error => {
-                        this.loading = false;
-                        const payload = error.response.data;
-
-                        if (payload.message) {
-                            this.$msg(payload.message);
-                        }
-                    });
-            },
             filterMembers(event) {
                 const id = event.target.id;
-
-                document.dispatchEvent(new CustomEvent("member-filter-changed", { "detail": { id } }));
                 this.$router.push(`/schedule/${id}`);
             }
         }
