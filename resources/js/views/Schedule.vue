@@ -9,7 +9,7 @@
 
                 <div class="day-col" v-for="day in days" :style="{ 'width': dayColumnWidth }">
 
-                    <h4>{{day}}</h4>
+                    <h4>{{day}} <span>{{tasksFiltered[day] ? tasksFiltered[day].length : 0}} tasks</span></h4>
 
                     <div class="task-create-btn" v-if="members" @click="showCreateTask">
                         Add Task

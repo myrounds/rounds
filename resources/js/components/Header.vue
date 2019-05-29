@@ -12,7 +12,8 @@
             </a>
         </div>
         <div id='date-bar' @click="showDaySelector" :class="{ 'hidden':dateBarHidden }">
-            <span class='display-day'>{{selectedDay || 'Whole Week'}}</span>
+            <!--<span class='display-day'>{{selectedDay || 'Whole Week'}}</span>-->
+            <span class='display-day'>quick nav</span>
             <span class='display-date'>
                 {{date}}
                 <a class='calander-icon'></a>
