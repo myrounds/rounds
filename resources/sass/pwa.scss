@@ -56,6 +56,11 @@ button {
 
 // LAYOUT
 
+#app,
+.app {
+  height: 100%;
+}
+
 #content-wrapper {
   min-height: 100%;
   overflow-x: hidden;
@@ -64,7 +69,7 @@ button {
   padding-top: 40px;
   /* sticky bottom */
   margin-bottom: -160px;
-  padding-bottom: 160px;
+  //padding-bottom: 160px;
 }
 
 // Header
@@ -430,47 +435,6 @@ button {
   }
 }
 
-// PAGES
-
-// My Rounds
-
-.my-rounds {
-  .task-btn {
-    margin: 0 0 10px 0;
-    border-radius: 50px;
-    background: var(--primaryColor);
-    cursor: pointer;
-  }
-  .task-btn:nth-child(odd) {
-    background: var(--primaryDark);
-  }
-  .mui-panel {
-    background: transparent;
-    margin: 0;
-    box-shadow: none;
-
-    .address {
-      display: none;
-    }
-    .time {
-      color: var(--light);
-      float: right;
-    }
-    .name {
-      font-size: 110%;
-      color: var(--light);
-      text-transform: capitalize;
-    }
-  }
-
-}
-
-
-
-
-
-
-
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -530,6 +494,93 @@ button {
   }
 }
 
+// PAGES
 
+// My Rounds
 
+.my-rounds {
+  .mui-container-fluid {
+    margin-bottom: 180px;
+  }
+  .task-btn {
+    margin: 0 0 10px 0;
+    border-radius: 50px;
+    background: var(--primaryColor);
+    cursor: pointer;
+  }
+  .task-btn:nth-child(odd) {
+    background: var(--primaryDark);
+  }
+  .mui-panel {
+    background: transparent;
+    margin: 0;
+    box-shadow: none;
 
+    .address {
+      display: none;
+    }
+    .time {
+      color: var(--light);
+      float: right;
+    }
+    .name {
+      font-size: 110%;
+      color: var(--light);
+      text-transform: capitalize;
+    }
+  }
+
+}
+
+// Schedule Week
+
+.schedule-week {
+
+  .week-grid {
+    background: var(--light);
+    white-space:nowrap;
+    overflow: scroll;
+    height: 100%;
+
+    .mui-row {
+      margin-left: -10px;
+      margin-right: -10px;
+      margin-bottom: 10px;
+
+      h4 {
+        margin-top: 0.5rem;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  .day-col {
+    display: inline-block;
+    background-color: white;
+    border: thin solid #eee;
+    color: grey;
+    vertical-align: top;
+    padding-bottom: 170px;
+    width: 250px;
+    overflow-x: hidden;
+  }
+
+  .day-rows {
+    height: 100%;
+    height: -moz-available;
+    height: -webkit-fill-available;
+    height: fill-available;
+    cursor: pointer;
+    overflow-y: scroll;
+  }
+
+  .day-row {
+    border-top: thin solid #eee;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .day-row:hover {
+    background-color: var(--light);
+  }
+}

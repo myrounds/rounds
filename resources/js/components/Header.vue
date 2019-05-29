@@ -33,6 +33,7 @@
 <script>
     import DateTime from '../helpers/datetime';
     import Strings from '../helpers/strings';
+    import Storage from '../helpers/storage';
     export default {
         data() {
             return {
@@ -45,11 +46,18 @@
 
             $(window).scroll(() => {
                 const scroll = $(window).scrollTop();
+                const user = Storage.get('user');
 
                 if (scroll >= 50) {
                     $(".mui-appbar").addClass('slide-up-hd');
+                    if (user && user.type === 'account') {
+                        $("#date-bar").hide();
+                    }
                 } else {
                     $(".mui-appbar").removeClass('slide-up-hd');
+                    if (user && user.type === 'account') {
+                        $("#date-bar").show();
+                    }
                 }
             });
         },

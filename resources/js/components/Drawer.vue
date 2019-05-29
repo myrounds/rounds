@@ -20,7 +20,7 @@
                 <router-link class="section" :to="{ name: 'member.rounds' }">My Rounds</router-link>
             </li>
             <li v-if="type === 'account'">
-                <router-link class="section" :to="{ name: 'member.rounds' }">Rounds</router-link>
+                <router-link class="section" :to="{ name: 'account.rounds' }">Schedule</router-link>
             </li>
 
             <li v-if="type">

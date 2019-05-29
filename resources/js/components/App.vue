@@ -1,14 +1,13 @@
 <template>
-    <div>
+    <div class="app">
 
         <appdrawer></appdrawer>
 
         <appheader></appheader>
 
         <div id="content-wrapper">
-            <div class="container">
                 <router-view></router-view>
-            </div>
+
         </div>
 
         <!--<appfooter></appfooter>-->
