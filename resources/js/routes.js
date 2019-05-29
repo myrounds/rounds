@@ -1,6 +1,6 @@
 import Login from "./views/Login";
 import MemberRounds from "./views/member/Rounds";
-import AccountRounds from './views/account/Rounds';
+import AccountRounds from './views/Schedule';
 
 export default [
     {
@@ -14,13 +14,18 @@ export default [
         component: Login,
     },
     {
+        path: '/schedule',
+        name: 'schedule',
+        component: AccountRounds,
+    },
+    {
+        path: '/schedule/:memberId',
+        name: 'schedule',
+        component: AccountRounds,
+    },
+    {
         path: '/member',
         name: 'member.rounds',
         component: MemberRounds
-    },
-    {
-        path: '/account',
-        name: 'account.rounds',
-        component: AccountRounds,
     },
 ]

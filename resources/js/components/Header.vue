@@ -12,18 +12,19 @@
             </a>
         </div>
         <div id='date-bar' @click="showDaySelector">
-            <span class='display-day'>{{day}}</span>
+            <span class='display-day'>{{day || 'Whole Week'}}</span>
             <span class='display-date'>
                 {{date}}
                 <a class='calander-icon'></a>
-                <ul class='day-selector'>
-                    <li v-bind:class="{ 'active-day': day === 'Monday' }">M</li>
-                    <li v-bind:class="{ 'active-day': day === 'Tuesday' }">T</li>
-                    <li v-bind:class="{ 'active-day': day === 'Wednesday' }">W</li>
-                    <li v-bind:class="{ 'active-day': day === 'Thursday' }">T</li>
-                    <li v-bind:class="{ 'active-day': day === 'Friday' }">F</li>
-                    <li v-bind:class="{ 'active-day': day === 'Saturday' }">S</li>
-                    <li v-bind:class="{ 'active-day': day === 'Sunday' }">S</li>
+                <ul class='day-selector' @click="setDay">
+                    <li v-bind:class="{ 'active-day': day === null || '' }">/</li>
+                    <li v-bind:class="{ 'active-day': day === 'monday', 'current-day': currentDay === 'monday' }" id="monday">M</li>
+                    <li v-bind:class="{ 'active-day': day === 'tuesday', 'current-day': currentDay === 'tuesday' }" id="tuesday">T</li>
+                    <li v-bind:class="{ 'active-day': day === 'wednesday', 'current-day': currentDay === 'wednesday' }" id="wednesday">W</li>
+                    <li v-bind:class="{ 'active-day': day === 'thursday', 'current-day': currentDay === 'thursday' }" id="thursday">T</li>
+                    <li v-bind:class="{ 'active-day': day === 'friday', 'current-day': currentDay === 'friday' }" id="friday">F</li>
+                    <li v-bind:class="{ 'active-day': day === 'saturday', 'current-day': currentDay === 'saturday' }" id="saturday">S</li>
+                    <li v-bind:class="{ 'active-day': day === 'sunday', 'current-day': currentDay === 'sunday' }" id="sunday">S</li>
                 </ul>
             </span>
         </div>
@@ -37,12 +38,13 @@
     export default {
         data() {
             return {
-                day: null
+                day: null,
+                currentDay: null
             };
         },
         created() {
             this.date = DateTime.getCurrentDate();
-            this.day = Strings.upperCaseFirstLetter(DateTime.getCurrentDay());
+            this.currentDay = DateTime.getCurrentDay();
 
             $(window).scroll(() => {
                 const scroll = $(window).scrollTop();
@@ -64,6 +66,13 @@
         methods: {
             showDaySelector() {
                 $(".day-selector").toggleClass('opened');
+            },
+            setDay(event) {
+                const day = event.target.id;
+
+                this.day = day === '' ? null : day;
+
+                document.dispatchEvent(new CustomEvent("day-changed", { "detail": { day } }));
             }
         }
     }

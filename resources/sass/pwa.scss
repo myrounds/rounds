@@ -170,7 +170,7 @@ button {
 
         li {
           display: inline-block;
-          width: 14.28%;
+          width: 12.5%;
           float: left;
           text-align: center;
           margin: 0 auto;
@@ -216,6 +216,7 @@ button {
   }
   ul {
     list-style: none;
+    padding-left: 35px;
   }
 
   > ul {
@@ -240,7 +241,23 @@ button {
 
   a.section + ul > li {
     padding: 6px 0px;
+
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
+  li.sub-section {
+    color: var(--primaryColor);
+    padding-left: 5px !important;
+    display: block;
+  }
+  li.sub-section:hover {
+    background-color: #E0E0E0;
+  }
+
+
 
   #map {
     position: absolute;
@@ -417,7 +434,7 @@ button {
 .schedule-week {
 
   .week-grid {
-    background: var(--light);
+    //background: var(--light);
     white-space:nowrap;
     overflow: scroll;
     height: 100%;
@@ -452,6 +469,7 @@ button {
     height: fill-available;
     cursor: pointer;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .day-row {

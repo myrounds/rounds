@@ -84,7 +84,7 @@
                     document.dispatchEvent(event);
 
                     if (this.type === 'account') {
-                        this.$router.push({name: "account.rounds"});
+                        this.$router.push({name: "schedule"});
                         this.$msg('Login successful');
                     }
                     else if (this.type === 'member') {
