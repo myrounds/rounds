@@ -2,11 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import Msg from 'vue-message'
-import VModal from 'vue-js-modal'
 
 Vue.use(VueRouter);
 Vue.use(Msg);
-Vue.use(VModal);
 Vue.use(VueGoogleMaps, {
     load: {
         key: 'AIzaSyDcGBfGg0PP96dCdlWfpRe8wfmCJg1GC_E',
