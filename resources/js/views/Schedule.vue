@@ -1,10 +1,10 @@
 <template>
     <div class="schedule-week">
         <div class="mui--appbar-height"></div>
-
-
-
         <div class="mui-container-fluid week-grid">
+
+            <!--<spinner v-bind:loading="loading"></spinner>-->
+
             <div class="mui-row">
 
                 <div class="day-col" v-for="day in days" :style="{ 'width': dayColumnWidth }">
@@ -21,7 +21,7 @@
                                 <div>{{task.time.substring(0,5)}}</div>
                                 <div>{{task.name}}</div>
 
-                                <!--// IF user.type === member-->
+                                <!--// todo: IF user.type === member-->
                                 <!-- - show distance from current location for first item in list-->
                                 <!-- - show distance from previous locations for remaining distances-->
 
@@ -40,6 +40,7 @@
                 </div>
 
             </div>
+
         </div>
 
 
@@ -192,7 +193,6 @@
     import DateTime from '../helpers/datetime';
     import Storage from '../helpers/storage';
     import Events from '../helpers/events';
-
     import Location from '../helpers/location';
     import Spinner from '../components/spinner';
     import Modal from '../components/modal';
