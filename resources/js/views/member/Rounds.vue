@@ -38,22 +38,22 @@
 
 
                 <GmapMap
-                    :center="{ lat: selected.lat, lng: selected.lon }"
-                    :zoom="12"
-                    map-type-id="terrain"
-                    style="width: 100%; height: 300px">
+                        :center="{ lat: selected.lat, lng: selected.lon }"
+                        :zoom="12"
+                        map-type-id="terrain"
+                        style="width: 100%; height: 300px">
                     <GmapMarker
-                        :position="{ lat: selected.lat, lng: selected.lon }"
-                        :clickable="true"
-                        :draggable="true" />
+                            :position="{ lat: selected.lat, lng: selected.lon }"
+                            :clickable="true"
+                            :draggable="true" />
                 </GmapMap>
 
                 <div class="directions-btn">
                     <button
-                        class="mui-btn mui-btn--raised"
-                        :lat="selected.lat"
-                        :lon="selected.lon"
-                        @click="directionsClicked">Directions</button>
+                            class="mui-btn mui-btn--raised"
+                            :lat="selected.lat"
+                            :lon="selected.lon"
+                            @click="directionsClicked">Directions</button>
                 </div>
 
                 <br>
@@ -72,8 +72,8 @@
                 <div>Email: {{selected.email}}</div>
                 <div>Notes: {{selected.notes}}</div>
                 <button
-                    class="mui-btn mui-btn--small mui-btn--raised"
-                    @click="leaveComment">Add Notes</button>
+                        class="mui-btn mui-btn--small mui-btn--raised"
+                        @click="leaveComment">Add Notes</button>
 
                 <br><br>
 
@@ -93,8 +93,8 @@
                             <div>Notes: {{item.notes}}</div>
 
                             <button
-                                class="mui-btn mui-btn--small mui-btn--raised"
-                                @click="leaveComment">Add Notes</button>
+                                    class="mui-btn mui-btn--small mui-btn--raised"
+                                    @click="leaveComment">Add Notes</button>
                         </div>
                     </div>
                 </div>
@@ -124,9 +124,7 @@
                 error: null,
                 day: null,
                 showModal: false,
-                markers: {
-
-                },
+                markers: {},
                 selected: {}
             };
         },

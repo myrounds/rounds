@@ -1,13 +1,16 @@
 <template>
     <div class="schedule-week">
         <div class="mui--appbar-height"></div>
+
+
+
         <div class="mui-container-fluid week-grid">
             <div class="mui-row">
 
-                <div class="day-col" v-for="day in days">
+                <div class="day-col" v-for="day in days" :style="{ 'width': dayColumnWidth }">
                     <h4>{{day}}</h4>
                     <div class="day-rows">
-                        <div class="day-row" v-for="task in tasksFiltered[day]">
+                        <div class="day-row" v-for="task in tasksFiltered[day]" :id="task.id" @click="showDetails">
                             {{task.time.substring(0,5)}}
                             <br>
                             {{task.name}}
@@ -21,6 +24,98 @@
 
             </div>
         </div>
+
+
+
+        <modal v-if="showModal && selected" @close="showModal = false">
+            <h3 slot="header">
+                {{selected.name}}
+            </h3>
+            <div slot="body">
+
+
+                <GmapMap
+                    :center="{ lat: selected.lat, lng: selected.lon }"
+                    :zoom="12"
+                    map-type-id="terrain"
+                    style="width: 100%; height: 300px">
+                    <GmapMarker
+                        :position="{ lat: selected.lat, lng: selected.lon }"
+                        :clickable="true"
+                        :draggable="true" />
+                </GmapMap>
+
+                <div class="directions-btn">
+                    <button
+                        class="mui-btn mui-btn--raised"
+                        :lat="selected.lat"
+                        :lon="selected.lon"
+                        @click="directionsClicked">Directions</button>
+                </div>
+
+                <br>
+
+                <div class="mui-checkbox">
+                    <label>
+                        <input type="checkbox" value="" :checked="selected.completed_at">
+                        Task Complete
+                    </label>
+                </div>
+
+                <div>Address: {{selected.address}}</div>
+                <div>Time: {{selected.time}}</div>
+                <div>Day: {{selected.day}}</div>
+                <div>Phone: {{selected.phone}}</div>
+                <div>Email: {{selected.email}}</div>
+                <div>Notes: {{selected.notes}}</div>
+                <button
+                    class="mui-btn mui-btn--small mui-btn--raised"
+                    @click="leaveComment">Add Notes</button>
+
+                <br><br>
+
+                <div v-if="members">
+                    <h5>Assignee</h5>
+                    <div v-if="selectedMember">
+                        {{selectedMember.name}}
+                    </div>
+                    <div v-if="!selectedMember">
+                        Unassigned
+                    </div>
+                    <button
+                        class="mui-btn mui-btn--small mui-btn--raised"
+                        @click="assignMember">Assign Member</button>
+                </div>
+
+                <br><br>
+
+                <h5>Items</h5>
+                <div v-for="item in selected.items" class='item'>
+                    <div class="mui--divider-top">
+                        <div>
+                            <strong>{{item.name}} | qnt: {{item.quantity}}</strong>
+
+                            <div class="mui-checkbox">
+                                <label>
+                                    <input type="checkbox" value="" :checked="item.completed_at">
+                                    Item Complete
+                                </label>
+                            </div>
+
+                            <div>Notes: {{item.notes}}</div>
+
+                            <button
+                                class="mui-btn mui-btn--small mui-btn--raised"
+                                @click="leaveComment">Add Notes</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </modal>
+
+
+
     </div>
 </template>
 
@@ -29,14 +124,26 @@
     import DateTime from '../helpers/datetime';
     import Storage from '../helpers/storage';
     import Events from '../helpers/events';
+
+    import Location from '../helpers/location';
+    import Spinner from '../components/spinner';
+    import Modal from '../components/modal';
     export default {
+        components: {Spinner, Modal},
         data() {
             return {
                 loading: false,
                 days: [],
+                dayColumnWidth: '',
                 tasksAll: [],
                 tasksFiltered: {},
                 members: {},
+
+                showModal: false,
+                markers: {},
+                selected: {},
+                selectedMember: {},
+
                 error: null
             };
         },
@@ -54,11 +161,6 @@
             Events.addListener("filters-changed", data => this.setFilters(data));
         },
         methods: {
-            setFilters(data) {
-                const day = data.day;
-
-                this.days = day ? [day] : DateTime.getDaysOfWeek();
-            },
             fetchData() {
                 this.members = Storage.get('members');
                 this.error = this.users = null;
@@ -88,6 +190,13 @@
                         }
                     });
             },
+
+            setFilters(data) {
+                const day = data.day;
+
+                this.days = day ? [day] : DateTime.getDaysOfWeek();
+                this.dayColumnWidth = this.days.length === 1 ? '100%' : '';
+            },
             filterTasks() {
                 let tasks = this.tasksAll.slice(0);
                 if (this.memberId) {
@@ -98,7 +207,40 @@
                 }, {});
 
                 this.tasksFiltered = tasksByDay;
+            },
+
+            showDetails(event) {
+                const id = event.target.id;
+                const task = this.tasksAll.find(task => parseInt(task.id) === parseInt(id));
+                const members = Storage.get('members');
+
+                this.selected = task;
+                this.selectedMember = members ? members.find(member => member.id === task.member_id) : null;
+                this.showModal = true;
+            },
+            directionsClicked(event) {
+                const lat = event.target.getAttribute('lat');
+                const lon = event.target.getAttribute('lon');
+                const taskLocation = `${lat},${lon}`;
+
+                Location.get(Storage).then(device => {
+                    this.goToDirections(`${device.lat},${device.lon}`, taskLocation);
+                }).catch(error => {
+                    this.$msg(error);
+                });
+            },
+            goToDirections(userLocation, taskLocation) {
+                const url = `https://www.google.com/maps/dir/${userLocation}/${taskLocation}`;
+
+                window.open(url, '_blank');
+            },
+            leaveComment() {
+                console.log('make comment input/ textarea visible');
+            },
+            assignMember() {
+                console.log('assign member to task');
             }
+
         }
     }
 </script>

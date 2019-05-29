@@ -47,7 +47,6 @@
         created() {
             this.date = DateTime.getCurrentDate();
             this.currentDay = DateTime.getCurrentDay();
-            this.selectedDay = this.currentDay;
 
             $(window).scroll(() => {
                 const scroll = $(window).scrollTop();
