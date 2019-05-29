@@ -8,7 +8,13 @@
             <div class="mui-row">
 
                 <div class="day-col" v-for="day in days" :style="{ 'width': dayColumnWidth }">
+
                     <h4>{{day}}</h4>
+
+                    <div class="task-create-btn" v-if="members" @click="showCreateTask">
+                        Add Task
+                    </div>
+
                     <div class="day-rows">
                         <div class="day-row" v-for="task in tasksFiltered[day]" :id="task.id" @click="showDetails">
                             <div class="non-selectable">
@@ -20,7 +26,7 @@
                                 <!-- - show distance from previous locations for remaining distances-->
 
                                 <div v-if="members">
-                                    > {{members.find(m => m.id === task.member_id).name}}
+                                    Assigned: {{members.find(m => m.id === task.member_id).name}}
                                 </div>
                             </div>
                         </div>
@@ -30,6 +36,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -126,6 +133,57 @@
 
 
 
+
+        <modal v-if="creatingTask" @close="creatingTask = false">
+            <h3 slot="header">
+                Add Task
+            </h3>
+            <div slot="body">
+
+                TASK CREATE FORM GOES HERE
+
+                <!-- text input -->
+                <div class="mui-textfield mui-textfield--float-label">
+                    <input type="text">
+                    <label>Text Field</label>
+                </div>
+
+                <!-- textarea -->
+                <div class="mui-textfield">
+                    <textarea placeholder="Textarea"></textarea>
+                </div>
+
+                <!-- select -->
+                <div class="mui-select">
+                    <select>
+                        <option value="option_1">Option 1</option>
+                        <option value="option_2">Option 2</option>
+                    </select>
+                    <label>Type</label>
+                </div>
+
+                <!-- checkbox -->
+                <div class="mui-checkbox">
+                    <label>
+                        <input type="checkbox" value="">
+                        checkbox
+                    </label>
+                </div>
+
+                <!-- button -->
+                <button class="mui-btn mui-btn--raised">Save</button>
+
+                <!--
+                FOR MORE SUPPORTED FORM ELEMENTS, PLEASE SEE:
+                - https://www.muicss.com/docs/v1/css-js/forms
+                - https://www.muicss.com/docs/v1/css-js/buttons
+                -->
+
+            </div>
+        </modal>
+
+
+
     </div>
 </template>
 
@@ -153,6 +211,8 @@
                 markers: {},
                 selected: {},
                 selectedMember: {},
+
+                creatingTask: false,
 
                 error: null
             };
@@ -249,6 +309,11 @@
             },
             assignMember() {
                 console.log('assign member to task');
+            },
+
+
+            showCreateTask() {
+                this.creatingTask = true;
             }
 
         }

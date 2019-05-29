@@ -13,8 +13,10 @@
             </li>
 
             <li v-if="type != null">
-                <router-link class="section" :to="{ name: 'schedule' }">Schedule</router-link>
-                <ul v-if="type === 'account'">
+                <div @click="toggleScheduleMembers">
+                    <router-link class="section" :to="{ name: 'schedule' }">Schedule</router-link>
+                </div>
+                <ul v-if="type === 'account'" :class="{ 'hidden': !showScheduleMembers }">
                     <li class="sub-section" @click="filterMembers">
                         <a>All Members</a>
                     </li>
@@ -25,7 +27,7 @@
                 <router-link
                     class="section"
                     v-if="type === 'account'"
-                    :to="{ name: 'account.members' }">Members</router-link>
+                    :to="{ name: 'members' }">Members</router-link>
             </li>
 
             <li v-if="type">
@@ -45,7 +47,8 @@
         data() {
             return {
                 type: null,
-                members: []
+                members: [],
+                showScheduleMembers: false
             };
         },
         created() {
@@ -73,6 +76,10 @@
             filterMembers(event) {
                 const id = event.target.id;
                 this.$router.push(`/schedule/${id}`);
+            },
+
+            toggleScheduleMembers() {
+                this.showScheduleMembers = !this.showScheduleMembers;
             }
         }
     }

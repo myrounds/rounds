@@ -248,15 +248,15 @@ button {
 
   a.section + ul > li {
     padding: 6px 0px;
-
-    max-width: 140px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   li.sub-section {
     color: var(--primaryColor);
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 6px 0;
     padding-left: 5px !important;
     display: block;
   }
@@ -439,7 +439,6 @@ button {
 // Schedule Week
 
 .schedule-week {
-
   .week-grid {
     white-space:nowrap;
     overflow: scroll;
@@ -458,6 +457,7 @@ button {
   }
 
   .day-col {
+    position: relative;
     display: inline-block;
     background-color: white;
     border: thin solid #eee;
@@ -486,5 +486,13 @@ button {
 
   .day-row:hover {
     background-color: var(--light);
+  }
+
+  .task-create-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
   }
 }
