@@ -1,5 +1,7 @@
 <template>
+    <div class="container">
     <div class="my-rounds">
+
         <div class="mui--appbar-height"></div>
         <div class="mui-container-fluid">
 
@@ -102,6 +104,7 @@
         </modal>
 
 
+    </div>
     </div>
 </template>
 
