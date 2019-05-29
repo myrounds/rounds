@@ -6,7 +6,6 @@ const getCurrentDay = () => {
     const date = new Date();
     const dayIndex = date.getDay() - 1;
 
-    console.log();
     return getDaysOfWeek()[dayIndex >= 0 ? dayIndex : 6];
 };
 

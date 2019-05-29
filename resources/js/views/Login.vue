@@ -83,7 +83,6 @@
                 if (user != null && typeof user === 'object') {
                     storage.set('user', user);
                     Api.init(axios, storage, this);
-                    console.log('2', user);
                     Events.dispatch('account-changed', { user });
 
                     if (this.type === 'account') {
