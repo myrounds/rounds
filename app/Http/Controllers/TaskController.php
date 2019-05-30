@@ -123,6 +123,8 @@ class TaskController extends Controller
         $sTime = $request->get('s_time');
         $eTime = $request->get('e_time');
 
+        $userType = $user->getType();
+
         $sIndex = array_search($sDay, $daysOfWeek);
         $eIndex = array_search($eDay, $daysOfWeek);
         if ($sIndex === false) {
@@ -134,7 +136,7 @@ class TaskController extends Controller
         $days = array_slice($daysOfWeek, $sIndex, $eIndex - $sIndex + 1);
 
         $groups = Task::with("items")
-            ->where($user->getType().'_id', '=', $user->id)
+            ->where($userType.'_id', '=', $user->id)
             ->whereIn('day', $days);
 
         if ($sTime && $eTime) {

@@ -1,6 +1,6 @@
 <template>
     <header id="header">
-        <div class="mui-appbar mui--appbar-line-height">
+        <div class="mui-appbar mui--appbar-line-height" :class="{ 'slide-up-hd': slideUpHeader }">
             <span class="mui--text-title mui--visible-xs-inline-block">
                 <img src='../../images/rounds.svg' class='rounds-logo'>
             </span>
@@ -11,19 +11,19 @@
                 <img src='../../images/human.svg'>
             </a>
         </div>
-        <div id='date-bar' @click="showDaySelector">
-            <span class='display-day'>{{day}}</span>
+        <div id='date-bar' @click="showDaySelector" :class="{ 'hidden':dateBarHidden }">
+            <!--<span class='display-day'>{{selectedDay || 'Whole Week'}}</span>-->
+            <span class='display-day'>quick nav</span>
             <span class='display-date'>
                 {{date}}
                 <a class='calander-icon'></a>
-                <ul class='day-selector'>
-                    <li v-bind:class="{ 'active-day': day === 'Monday' }">M</li>
-                    <li v-bind:class="{ 'active-day': day === 'Tuesday' }">T</li>
-                    <li v-bind:class="{ 'active-day': day === 'Wednesday' }">W</li>
-                    <li v-bind:class="{ 'active-day': day === 'Thursday' }">T</li>
-                    <li v-bind:class="{ 'active-day': day === 'Friday' }">F</li>
-                    <li v-bind:class="{ 'active-day': day === 'Saturday' }">S</li>
-                    <li v-bind:class="{ 'active-day': day === 'Sunday' }">S</li>
+                <ul class='day-selector' @click="setDay" :class="{ 'opened': daySelectorOpened }">
+                    <li v-bind:class="{ 'active-day': selectedDay === null || '' }">/</li>
+                    <li v-for="btn in days"
+                        :id="btn"
+                        v-bind:class="{ 'active-day': selectedDay === btn, 'current-day': currentDay === btn }">
+                        {{btn[0].toUpperCase()}}
+                    </li>
                 </ul>
             </span>
         </div>
@@ -32,38 +32,50 @@
 
 <script>
     import DateTime from '../helpers/datetime';
-    import Strings from '../helpers/strings';
+    import Events from '../helpers/events';
     import Storage from '../helpers/storage';
     export default {
         data() {
             return {
-                day: null
+                days: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
+                selectedDay: null,
+                currentDay: null,
+                slideUpHeader: false,
+                dateBarHidden: false,
+                daySelectorOpened: false
             };
         },
         created() {
             this.date = DateTime.getCurrentDate();
-            this.day = Strings.upperCaseFirstLetter(DateTime.getCurrentDay());
+            this.currentDay = DateTime.getCurrentDay();
 
             $(window).scroll(() => {
                 const scroll = $(window).scrollTop();
                 const user = Storage.get('user');
 
                 if (scroll >= 50) {
-                    $(".mui-appbar").addClass('slide-up-hd');
+                    this.slideUpHeader = true;
                     if (user && user.type === 'account') {
-                        $("#date-bar").hide();
+                        this.dateBarHidden = true;
                     }
                 } else {
-                    $(".mui-appbar").removeClass('slide-up-hd');
+                    this.slideUpHeader = false;
                     if (user && user.type === 'account') {
-                        $("#date-bar").show();
+                        this.dateBarHidden = false;
                     }
                 }
             });
         },
         methods: {
             showDaySelector() {
-                $(".day-selector").toggleClass('opened');
+                this.daySelectorOpened = !this.daySelectorOpened;
+            },
+            setDay(event) {
+                const day = event.target.id;
+
+                this.selectedDay = day === '' ? null : day;
+
+                Events.dispatch('filters-changed', { day: this.selectedDay });
             }
         }
     }

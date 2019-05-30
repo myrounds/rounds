@@ -59,15 +59,15 @@
             $('.js-show-sidedrawer').on('click', showSidedrawer);
             $('.js-hide-sidedrawer').on('click', hideSidedrawer);
 
-            const $titleEls = $('a', $sidedrawerEl);
-
-            $titleEls
-                .next()
-                .hide();
-
-            $titleEls.on('click', () => {
-                $(this).next().slideToggle(200);
-            });
+            // const $titleEls = $('a', $sidedrawerEl);
+            //
+            // $titleEls
+            //     .next()
+            //     .hide();
+            //
+            // $titleEls.on('click', () => {
+            //     $(this).next().slideToggle(200);
+            // });
         });
     </script>
 

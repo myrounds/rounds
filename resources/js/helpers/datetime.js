@@ -1,12 +1,12 @@
 const getDaysOfWeek = () => {
-    return ["sunday","monday","tuesday","wednesday ","thursday","friday","saturday"];
+    return ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
 };
 
 const getCurrentDay = () => {
     const date = new Date();
-    const dayIndex = date.getDay();
+    const dayIndex = date.getDay() - 1;
 
-    return getDaysOfWeek()[dayIndex];
+    return getDaysOfWeek()[dayIndex >= 0 ? dayIndex : 6];
 };
 
 const getCurrentDate = () => {

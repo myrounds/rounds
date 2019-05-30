@@ -25,6 +25,32 @@ const init = (axios, storage, context) => {
     });
 };
 
+const updateMembers = (axios, storage) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .get('/api/members/search', {
+                params: {
+                    name: ''
+                }
+            })
+            .then(response => {
+                this.loading = false;
+                const payload = response.data;
+                const members = payload.data;
+
+                storage.set('members', members);
+                resolve(members);
+            })
+            .catch(error => {
+                this.loading = false;
+                const payload = error.response.data;
+
+                reject(payload);
+            });
+    });
+};
+
 module.exports = {
-    init
+    init,
+    updateMembers
 };

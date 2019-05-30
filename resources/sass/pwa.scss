@@ -36,6 +36,10 @@ button {
   font-size: 16px !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .non-selectable {
   pointer-events: none;
 }
@@ -47,6 +51,11 @@ button {
 
 .container {
   padding:0;
+}
+
+.mui-btn {
+  background: var(--primaryColor);
+  color: white;
 }
 
 .rounds-logo {
@@ -290,7 +299,7 @@ button {
 
         li {
           display: inline-block;
-          width: 14.28%;
+          width: 12.5%;
           float: left;
           text-align: center;
           margin: 0 auto;
@@ -303,6 +312,9 @@ button {
         .active-day {
           font-weight: bold;
           color: var(--compColor);
+        }
+        .current-day {
+          font-weight: bold;
         }
       }
 
@@ -336,6 +348,7 @@ button {
   }
   ul {
     list-style: none;
+    padding-left: 35px;
   }
 
   > ul {
@@ -361,6 +374,22 @@ button {
   a.section + ul > li {
     padding: 6px 0px;
   }
+
+  li.sub-section {
+    color: var(--primaryColor);
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 6px 0;
+    padding-left: 5px !important;
+    display: block;
+  }
+  li.sub-section:hover {
+    background-color: #E0E0E0;
+  }
+
+
 
   #map {
     position: absolute;
@@ -535,9 +564,7 @@ button {
 // Schedule Week
 
 .schedule-week {
-
   .week-grid {
-    background: var(--light);
     white-space:nowrap;
     overflow: scroll;
     height: 100%;
@@ -555,6 +582,7 @@ button {
   }
 
   .day-col {
+    position: relative;
     display: inline-block;
     background-color: white;
     border: thin solid #eee;
@@ -563,6 +591,10 @@ button {
     padding-bottom: 170px;
     width: 250px;
     overflow-x: hidden;
+
+    h4 span {
+      font-size: 10px;
+    }
   }
 
   .day-rows {
@@ -572,6 +604,7 @@ button {
     height: fill-available;
     cursor: pointer;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .day-row {
@@ -582,5 +615,34 @@ button {
 
   .day-row:hover {
     background-color: var(--light);
+  }
+
+  .task-create-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+}
+
+.members {
+  .mui-panel {
+    margin-bottom: 200px;
+    overflow: scroll;
+  }
+  .row {
+    display: table-row;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .row.header {
+    font-weight: bold;
+    cursor: default;
+  }
+  .col {
+    display: table-cell;
   }
 }

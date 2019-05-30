@@ -35,6 +35,8 @@
 <script>
     import axios from 'axios';
     import storage from '../helpers/storage';
+    import Api from '../helpers/api';
+    import Events from '../helpers/events';
     export default {
         data() {
             return {
@@ -56,6 +58,7 @@
             attempt() {
                 this.error = null;
                 this.loading = true;
+
                 axios
                     .post(`/api/${this.type}s/login`, {
                         category_id: 1,
@@ -79,16 +82,24 @@
             login(user) {
                 if (user != null && typeof user === 'object') {
                     storage.set('user', user);
-
-                    const event = new CustomEvent("account-changed", { "detail": user });
-                    document.dispatchEvent(event);
+                    Api.init(axios, storage, this);
+                    Events.dispatch('account-changed', { user });
 
                     if (this.type === 'account') {
-                        this.$router.push({name: "account.rounds"});
-                        this.$msg('Login successful');
+                        Api.updateMembers(axios, storage)
+                            .then(members => {
+                                Events.dispatch('members-changed', { members });
+                                this.$router.push({name: "schedule"});
+                                this.$msg('Login successful');
+                            })
+                            .catch(error => {
+                                if (error.message) {
+                                    this.$msg(error.message);
+                                }
+                            });
                     }
                     else if (this.type === 'member') {
-                        this.$router.push({name: "member.rounds"});
+                        this.$router.push({name: "schedule"});
                         this.$msg('Login successful');
                     } else {
                         this.$msg('Could not log in');
