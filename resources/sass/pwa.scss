@@ -53,6 +53,11 @@ button {
   padding:0;
 }
 
+.mui-btn {
+  background: var(--primaryColor);
+  color: white;
+}
+
 .rounds-logo {
   height: 40px;
   margin: 10px 0 10px 15px;
@@ -498,5 +503,26 @@ button {
     right: 0;
     padding: 10px;
     cursor: pointer;
+  }
+}
+
+.members {
+  .mui-panel {
+    margin-bottom: 200px;
+    overflow: scroll;
+  }
+  .row {
+    display: table-row;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .row.header {
+    font-weight: bold;
+    cursor: default;
+  }
+  .col {
+    display: table-cell;
   }
 }
