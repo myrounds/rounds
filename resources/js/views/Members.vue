@@ -55,6 +55,10 @@
 
                 <button class="mui-btn mui-btn--raised">Save</button>
 
+                <hr>
+
+                <button class="mui-btn mui-btn--raised">Set Password</button>
+
             </div>
         </modal>
 
