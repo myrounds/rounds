@@ -2,8 +2,12 @@
     <header id="header">
         <div class="mui-appbar mui--appbar-line-height" :class="{ 'slide-up-hd': slideUpHeader }">
             <span class="sidedrawer-toggle js-show-sidedrawer"></span>
+            <span class="sidedrawer-toggle js-hide-sidedrawer"></span>
             <img src='../../images/icon.svg' alt='' class='logo'>
-            <span class="appbar-search"></span>
+            <span class="appbar-search">
+                <i class='toggleSearch fas fa-search'></i>
+                <input type='search' name='' id='search_input' placeholder='Search Rounds' class=''>
+            </span>
 
         </div>
 
@@ -77,4 +81,6 @@
             }
         }
     }
+
+
 </script>

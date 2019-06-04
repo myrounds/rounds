@@ -30,7 +30,6 @@
             const $bodyEl = $('body'),
                 $sidedrawerEl = $('#sidedrawer');
 
-
             const showSidedrawer = () => {
                 // show overlay
                 const options = {
@@ -68,6 +67,16 @@
             // $titleEls.on('click', () => {
             //     $(this).next().slideToggle(200);
             // });
+
+        // search bar toggle
+        $( document ).ready(function() {
+            $('.toggleSearch').click(function(){
+                $('#search_input').toggleClass('searchIn');
+                $('.toggleSearch').toggleClass('fa-search');
+                $('.toggleSearch').toggleClass('fa-times');
+            });
+        });
+
         });
     </script>
 

@@ -2004,6 +2004,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -4688,12 +4692,14 @@ var render = function() {
       [
         _c("span", { staticClass: "sidedrawer-toggle js-show-sidedrawer" }),
         _vm._v(" "),
+        _c("span", { staticClass: "sidedrawer-toggle js-hide-sidedrawer" }),
+        _vm._v(" "),
         _c("img", {
           staticClass: "logo",
           attrs: { src: __webpack_require__(/*! ../../images/icon.svg */ "./resources/images/icon.svg"), alt: "" }
         }),
         _vm._v(" "),
-        _c("span", { staticClass: "appbar-search" })
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
@@ -4752,7 +4758,25 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "appbar-search" }, [
+      _c("i", { staticClass: "toggleSearch fas fa-search" }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: {
+          type: "search",
+          name: "",
+          id: "search_input",
+          placeholder: "Search Rounds"
+        }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
