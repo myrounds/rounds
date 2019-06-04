@@ -10695,6 +10695,10 @@ button {
   font-size: 16px !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .non-selectable {
   pointer-events: none;
 }
@@ -10708,9 +10712,19 @@ button {
   padding: 0;
 }
 
+.mui-btn {
+  background: var(--primaryColor);
+  color: white;
+}
+
 .rounds-logo {
   height: 40px;
-  margin: 10px 0 10px 15px;
+  margin: 5px 0 5px 15px;
+}
+
+#app,
+.app {
+  height: 100%;
 }
 
 #content-wrapper {
@@ -10721,7 +10735,6 @@ button {
   padding-top: 40px;
   /* sticky bottom */
   margin-bottom: -160px;
-  padding-bottom: 160px;
 }
 
 #header {
@@ -10741,25 +10754,45 @@ button {
 }
 
 #header .mui-appbar {
-  background: var(--light);
+  background: var(--primaryColor);
   transition: 0.3s;
   overflow: hidden;
   height: 50px;
+  position: relative;
 }
 
-#header .sidedrawer-toggle {
+#header .mui-appbar .logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 45px;
+}
+
+#header .sidedrawer-toggle:after,
+#header .appbar-search:after {
   cursor: pointer;
-  float: right;
+  float: left;
+  color: var(--light);
+  font-family: FontAwesome;
+  content: "\F0C9";
+  font-size: 20px;
+  font-weight: 100;
+  margin: 8px;
+  padding: 10px;
+  line-height: 20px;
 }
 
-#header .sidedrawer-toggle :hover {
+#header .sidedrawer-toggle:after :hover,
+#header .appbar-search:after :hover {
   color: #fff;
   text-decoration: none;
 }
 
-#header .sidedrawer-toggle img {
-  height: 40px;
-  margin: 5px 15px 5px 0;
+#header .appbar-search:after {
+  float: right;
+  content: "\F002";
 }
 
 #header .slide-up-hd {
@@ -10789,6 +10822,10 @@ button {
 /**
  * Side drawer CSS
  */
+
+.brand {
+  background-color: var(--primaryDark);
+}
 
 #sidedrawer ul {
   list-style: none;
@@ -10871,7 +10908,7 @@ button {
 
 .rounds_logo {
   height: 40px;
-  margin: 10px 0 10px 15px;
+  margin: 5px 0 5px 15px;
 }
 
 #date-bar {
@@ -10888,9 +10925,10 @@ button {
   width: calc(100% - 155px);
   text-align: left;
   background-color: white;
-  color: var(--primaryColor);
+  color: var(--medium);
   font-size: 150%;
   padding-left: 15px;
+  text-transform: uppercase;
 }
 
 #date-bar span.display-date {
@@ -10936,7 +10974,7 @@ button {
 
 #date-bar span.display-date ul.day-selector li {
   display: inline-block;
-  width: 14.28%;
+  width: 12.5%;
   float: left;
   text-align: center;
   margin: 0 auto;
@@ -10953,6 +10991,10 @@ button {
   color: var(--compColor);
 }
 
+#date-bar span.display-date ul.day-selector .current-day {
+  font-weight: bold;
+}
+
 #date-bar span.display-date .opened {
   top: 34px !important;
 }
@@ -10961,24 +11003,25 @@ button {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 200px;
-  left: -200px;
+  width: 280px;
+  left: -280px;
   overflow: auto;
   z-index: 2;
-  background-color: #fff;
+  background-color: var(--light);
   transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
   transition: transform 0.2s, -webkit-transform 0.2s;
-  border-right: 1px var(--light) solid;
+  border-right: 1px var(--primaryColor) solid;
 }
 
 #sidedrawer.active {
-  -webkit-transform: translate(200px);
-          transform: translate(200px);
+  -webkit-transform: translate(280px);
+          transform: translate(280px);
 }
 
 #sidedrawer ul {
   list-style: none;
+  padding-left: 35px;
 }
 
 #sidedrawer > ul {
@@ -11003,6 +11046,21 @@ button {
 
 #sidedrawer a.section + ul > li {
   padding: 6px 0px;
+}
+
+#sidedrawer li.sub-section {
+  color: var(--primaryColor);
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 6px 0;
+  padding-left: 5px !important;
+  display: block;
+}
+
+#sidedrawer li.sub-section:hover {
+  background-color: #E0E0E0;
 }
 
 #sidedrawer #map {
@@ -11049,16 +11107,16 @@ button {
   }
 
   #sidedrawer {
-    -webkit-transform: translate(200px);
-            transform: translate(200px);
+    -webkit-transform: translate(280px);
+            transform: translate(280px);
   }
 
   #content-wrapper {
-    margin-left: 200px;
+    margin-left: 280px;
   }
 
   #footer {
-    margin-left: 200px;
+    margin-left: 280px;
   }
 
   body.hide-sidedrawer #header {
@@ -11077,6 +11135,70 @@ button {
   body.hide-sidedrawer #footer {
     margin-left: 0;
   }
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-mask .modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-mask .modal-wrapper .modal-container {
+  width: 95%;
+  height: 95%;
+  overflow: scroll;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-mask .modal-wrapper .modal-container .modal-header h3,
+.modal-mask .modal-wrapper .modal-container h5 {
+  margin: 0;
+  color: var(--primaryColor);
+}
+
+.modal-mask .modal-wrapper .modal-container .modal-body {
+  margin: 0;
+}
+
+.modal-mask .modal-wrapper .modal-container .modal-default-button {
+  position: fixed;
+  right: 4%;
+  top: 3%;
+  background-color: var(--primaryColor);
+}
+
+.modal-mask .modal-wrapper .modal-container .modal-enter {
+  opacity: 0;
+}
+
+.modal-mask .modal-wrapper .modal-container .modal-leave-active {
+  opacity: 0;
+}
+
+.modal-mask .modal-wrapper .modal-container .modal-enter .modal-container,
+.modal-mask .modal-wrapper .modal-container .modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.my-rounds .mui-container-fluid {
+  margin-bottom: 180px;
 }
 
 .my-rounds .task-btn {
@@ -11109,5 +11231,88 @@ button {
   font-size: 110%;
   color: var(--light);
   text-transform: capitalize;
+}
+
+.schedule-week .week-grid {
+  white-space: nowrap;
+  overflow: scroll;
+  height: 100%;
+}
+
+.schedule-week .week-grid .mui-row {
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-bottom: 10px;
+}
+
+.schedule-week .week-grid .mui-row h4 {
+  margin-top: 0.5rem;
+  padding-left: 10px;
+}
+
+.schedule-week .day-col {
+  position: relative;
+  display: inline-block;
+  background-color: white;
+  border: thin solid #eee;
+  color: grey;
+  vertical-align: top;
+  padding-bottom: 170px;
+  width: 250px;
+  overflow-x: hidden;
+}
+
+.schedule-week .day-col h4 span {
+  font-size: 10px;
+}
+
+.schedule-week .day-rows {
+  height: 100%;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
+  cursor: pointer;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.schedule-week .day-row {
+  border-top: thin solid #eee;
+  padding: 10px;
+  width: 100%;
+}
+
+.schedule-week .day-row:hover {
+  background-color: var(--light);
+}
+
+.schedule-week .task-create-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.members .mui-panel {
+  margin-bottom: 200px;
+  overflow: scroll;
+}
+
+.members .row {
+  display: table-row;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.members .row.header {
+  font-weight: bold;
+  cursor: default;
+}
+
+.members .col {
+  display: table-cell;
 }
 

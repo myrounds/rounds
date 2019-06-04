@@ -60,7 +60,7 @@ button {
 
 .rounds-logo {
   height: 40px;
-  margin: 10px 0 10px 15px;
+  margin: 5px 0 5px 15px;
 }
 
 // LAYOUT
@@ -99,25 +99,47 @@ button {
   }
 
   .mui-appbar {
-    background: var(--light);
+    background: var(--primaryColor);
     transition: 0.3s;
     overflow: hidden;
     height: 50px;
+    position: relative;
+
+    .logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      height: 45px;
+    }
   }
-  .sidedrawer-toggle {
+  .sidedrawer-toggle:after,
+  .appbar-search:after  {
     cursor: pointer;
-    float: right;
+    float: left;
+    color: var(--light);
+    font-family: FontAwesome;
+    content: "\F0C9";
+    font-size: 20px;
+    font-weight: 100;
+    margin: 8px;
+    padding: 10px;
+    line-height: 20px;
 
     :hover {
       color: #fff;
       text-decoration: none;
     }
 
-    img {
-      height: 40px;
-      margin: 5px 15px 5px 0;
-    }
   }
+
+.appbar-search:after {
+  float: right;
+  content: "\f002";
+}
+
+
+
   .slide-up-hd {
     height: 0;
     min-height: 0;
@@ -149,8 +171,8 @@ button {
 /**
  * Side drawer CSS
  */
-#sidedrawer-brand {
-
+.brand {
+  background-color: var(--primaryDark);
 }
 
 #sidedrawer ul {
@@ -236,9 +258,8 @@ button {
 
 .rounds_logo {
   height: 40px;
-  margin: 10px 0 10px 15px;
+  margin: 5px 0 5px 15px;
 }
-
 
 
   #date-bar {
@@ -255,9 +276,10 @@ button {
       width: calc(100% - 155px);
       text-align: left;
       background-color: white;
-      color: var(--primaryColor);
+      color: var(--medium);
       font-size: 150%;
       padding-left: 15px;
+      text-transform: uppercase;
     }
     span.display-date {
       display: inline-flex;
@@ -332,16 +354,16 @@ button {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 200px;
-  left: -200px;
+  width: 280px;
+  left: -280px;
   overflow: auto;
   z-index: 2;
-  background-color: #fff;
+  background-color: var(--light);
   transition: transform 0.2s;
-  border-right: 1px var(--light) solid;
+  border-right: 1px var(--primaryColor) solid;
 
   &.active {
-    transform: translate(200px);
+    transform: translate(280px);
   }
   .brand {
 
@@ -436,15 +458,15 @@ button {
   }
 
   #sidedrawer {
-    transform: translate(200px);
+    transform: translate(280px);
   }
 
   #content-wrapper {
-    margin-left: 200px;
+    margin-left: 280px;
   }
 
   #footer {
-    margin-left: 200px;
+    margin-left: 280px;
   }
 
   body.hide-sidedrawer #header {

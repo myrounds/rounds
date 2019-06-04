@@ -1,19 +1,17 @@
 <template>
     <header id="header">
         <div class="mui-appbar mui--appbar-line-height" :class="{ 'slide-up-hd': slideUpHeader }">
-            <span class="mui--text-title mui--visible-xs-inline-block">
-                <img src='../../images/rounds.svg' class='rounds-logo'>
-            </span>
-            <a class="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer">
-                <img src='../../images/human.svg'>
-            </a>
-            <a class="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer">
-                <img src='../../images/human.svg'>
-            </a>
+            <span class="sidedrawer-toggle js-show-sidedrawer"></span>
+            <img src='../../images/icon.svg' alt='' class='logo'>
+            <span class="appbar-search"></span>
+
         </div>
+
+
+
         <div id='date-bar' @click="showDaySelector" :class="{ 'hidden':dateBarHidden }">
             <!--<span class='display-day'>{{selectedDay || 'Whole Week'}}</span>-->
-            <span class='display-day'>quick nav</span>
+            <span class='display-day'>change day</span>
             <span class='display-date'>
                 {{date}}
                 <a class='calander-icon'></a>
