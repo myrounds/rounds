@@ -5,8 +5,13 @@
             <span class="mui--text-title">
                 <img src="../../images/rounds.svg" class='rounds-logo' />
             </span>
+            <img src="../../images/human.svg" class='user-profile' />
         </div>
         <div class="mui-divider"></div>
+        <div class='sidedrawer-username'>
+            <span>Hi, <b>Andrew</b></span>
+            <i class='fas fa-toggle-on' id='user_status' data-status='active' title='active'></i>
+        </div>
         <ul>
             <li v-if="!type">
                 <router-link class="section" :to="{ name: 'login' }">Login</router-link>
@@ -14,8 +19,10 @@
 
             <li v-if="type != null">
                 <div @click="toggleScheduleMembers">
-                    <router-link class="section" :to="{ name: 'schedule' }">Schedule</router-link>
+                    <router-link class="section" :to="{ name: 'schedule' }"> <img src='../../images/rnds.svg'>Rounds / Schedule</router-link>
                 </div>
+
+
                 <ul v-if="type === 'account'" :class="{ 'hidden': !showScheduleMembers }">
                     <li class="sub-section" @click="filterMembers">
                         <a>All Members</a>
@@ -31,11 +38,11 @@
             </li>
 
             <li v-if="type">
-                <a class="section" @click="logout">Logout</a>
+                <a class="section" @click="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </li>
         </ul>
 
-        <!--<div id='map'><b>Locate Yourself</b></div>-->
+        <div id='map_locate'><b>Locate Yourself</b><i class="fas fa-map-marker-alt"></i></div>
 
     </div>
 </template>

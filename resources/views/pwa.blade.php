@@ -30,6 +30,7 @@
             const $bodyEl = $('body'),
                 $sidedrawerEl = $('#sidedrawer');
 
+
             const showSidedrawer = () => {
                 // show overlay
                 const options = {
@@ -74,6 +75,10 @@
                 $('#search_input').toggleClass('searchIn');
                 $('.toggleSearch').toggleClass('fa-search');
                 $('.toggleSearch').toggleClass('fa-times');
+            });
+            $('#user_status').click(function(){
+                $('#user_status').toggleClass('fa-toggle-on');
+                $('#user_status').toggleClass('fa-toggle-off');
             });
         });
 

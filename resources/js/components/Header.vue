@@ -20,7 +20,7 @@
                 {{date}}
                 <a class='calander-icon'></a>
                 <ul class='day-selector' @click="setDay" :class="{ 'opened': daySelectorOpened }">
-                    <li v-bind:class="{ 'active-day': selectedDay === null || '' }">/</li>
+                    <li v-bind:class="{ 'active-day': selectedDay === null || '' }"><i class="fas fa-calendar-alt"></i></li>
                     <li v-for="btn in days"
                         :id="btn"
                         v-bind:class="{ 'active-day': selectedDay === btn, 'current-day': currentDay === btn }">

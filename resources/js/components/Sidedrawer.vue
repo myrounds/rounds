@@ -6,14 +6,18 @@
             </span>
         </div>
         <div class="mui-divider"></div>
+        <div class='sidedrawer-user'>
+            Hi, Username
+            
+        </div>
         <ul>
             <li v-if="!type">
                 <router-link class="section" :to="{ name: 'login' }">Login</router-link>
-                <ul>
-                <li><a href="#">Item 1</a></li>
-                <li><a href="#">Item 2</a></li>
-                <li><a href="#">Item 3</a></li>
-                </ul>
+                <!--<ul>-->
+                <!--<li><a href="#">Item 1</a></li>-->
+                <!--<li><a href="#">Item 2</a></li>-->
+                <!--<li><a href="#">Item 3</a></li>-->
+                <!--</ul>-->
             </li>
 
             <li v-if="type === 'assignee'">
@@ -30,8 +34,6 @@
 
 
 <div id='map'><b>Locate Yourself</b></div>
-
-
 
     </div>
 </template>
@@ -71,27 +73,27 @@
         }
     }
 
-// $(document).ready(function() { 
+$(document).ready(function() { 
 
 
 
-//     mapboxgl.accessToken = 'pk.eyJ1IjoibGF1bmRyIiwiYSI6ImNqdzBpYXEydTBiZzk0YXBncDlzZjV4Z2wifQ.3oRSPYA0aPENMmqjjE3zQA';
-//     var user_location = ["174.907639","-36.873264"];
-//     var map = new mapboxgl.Map({
+    mapboxgl.accessToken = 'pk.eyJ1IjoibGF1bmRyIiwiYSI6ImNqdzBpYXEydTBiZzk0YXBncDlzZjV4Z2wifQ.3oRSPYA0aPENMmqjjE3zQA';
+    var user_location = ["174.907639","-36.873264"];
+    var map = new mapboxgl.Map({
 
-//     container: 'map', // container id
-//     style: 'mapbox://styles/mapbox/streets-v11',
-//     center: user_location,
-//     zoom: 3 // starting zoom
-//     });
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: user_location,
+    zoom: 3 // starting zoom
+    });
      
-//     // Add geolocate control to the map.
-//     map.addControl(new mapboxgl.GeolocateControl({
-//     positionOptions: {
-//     enableHighAccuracy: true
-//     },
-//     trackUserLocation: true
-//     }));
-// });
+    // Add geolocate control to the map.
+    map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+    enableHighAccuracy: true
+    },
+    trackUserLocation: true
+    }));
+});
 
 </script>

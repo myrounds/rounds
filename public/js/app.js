@@ -1866,6 +1866,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4515,6 +4522,8 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "mui-divider" }),
       _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
       _c("ul", [
         !_vm.type
           ? _c(
@@ -4544,7 +4553,12 @@ var render = function() {
                         staticClass: "section",
                         attrs: { to: { name: "schedule" } }
                       },
-                      [_vm._v("Schedule")]
+                      [
+                        _c("img", {
+                          attrs: { src: __webpack_require__(/*! ../../images/rnds.svg */ "./resources/images/rnds.svg") }
+                        }),
+                        _vm._v("Rounds / Schedule")
+                      ]
                     )
                   ],
                   1
@@ -4602,11 +4616,14 @@ var render = function() {
         _vm.type
           ? _c("li", [
               _c("a", { staticClass: "section", on: { click: _vm.logout } }, [
-                _vm._v("Logout")
+                _c("i", { staticClass: "fas fa-sign-out-alt" }),
+                _vm._v(" Logout")
               ])
             ])
           : _vm._e()
-      ])
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
     ]
   )
 }
@@ -4621,7 +4638,34 @@ var staticRenderFns = [
           staticClass: "rounds-logo",
           attrs: { src: __webpack_require__(/*! ../../images/rounds.svg */ "./resources/images/rounds.svg") }
         })
-      ])
+      ]),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "user-profile",
+        attrs: { src: __webpack_require__(/*! ../../images/human.svg */ "./resources/images/human.svg") }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sidedrawer-username" }, [
+      _c("span", [_vm._v("Hi, "), _c("b", [_vm._v("Andrew")])]),
+      _vm._v(" "),
+      _c("i", {
+        staticClass: "fas fa-toggle-on",
+        attrs: { id: "user_status", "data-status": "active", title: "active" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "map_locate" } }, [
+      _c("b", [_vm._v("Locate Yourself")]),
+      _c("i", { staticClass: "fas fa-map-marker-alt" })
     ])
   }
 ]
@@ -4728,7 +4772,7 @@ var render = function() {
               _c(
                 "li",
                 { class: { "active-day": _vm.selectedDay === null || "" } },
-                [_vm._v("/")]
+                [_c("i", { staticClass: "fas fa-calendar-alt" })]
               ),
               _vm._v(" "),
               _vm._l(_vm.days, function(btn) {
@@ -23213,6 +23257,17 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./resources/images/human.svg":
+/*!************************************!*\
+  !*** ./resources/images/human.svg ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/human.svg?9801133dbe3738d62cce3e2dad671f67";
+
+/***/ }),
+
 /***/ "./resources/images/icon.svg":
 /*!***********************************!*\
   !*** ./resources/images/icon.svg ***!
@@ -23232,6 +23287,17 @@ module.exports = "/images/icon.svg?60ae6c991d1f6b212013c09a6c4a2c31";
 /***/ (function(module, exports) {
 
 module.exports = "/images/loading.svg?6282ddeb0abe92c95d0a2ef8eead9955";
+
+/***/ }),
+
+/***/ "./resources/images/rnds.svg":
+/*!***********************************!*\
+  !*** ./resources/images/rnds.svg ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/rnds.svg?115b2110ba9fbdc3ff8b242178d0a248";
 
 /***/ }),
 

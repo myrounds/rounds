@@ -17,6 +17,7 @@ body {
   background-color: var(--light);
   background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23dddddd' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
   background-attachment: fixed;
+  color: var(--secondaryColor);
 }
 
 html,
@@ -61,7 +62,16 @@ button {
 .rounds-logo {
   height: 30px;
   margin: 10px 0 10px 15px;
+  padding: 0;
 }
+.user-profile {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  height: 40px;
+}
+
 
 // LAYOUT
 
@@ -75,7 +85,7 @@ button {
   overflow-x: hidden;
   margin-left: 0px;
   transition: margin-left 0.2s;
-  padding-top: 40px;
+  padding-top: 45px;
   /* sticky bottom */
   margin-bottom: -160px;
   //padding-bottom: 160px;
@@ -215,15 +225,16 @@ i.toggleSearch {
 }
 
 #sidedrawer > ul > li:first-child {
-  padding-top: 15px;
+  /*padding-top: 15px;*/
 }
 
 #sidedrawer a.section {
   display: block;
-  padding: 15px 22px;
+  padding: 30px 22px;
   cursor: pointer;
-  color: black;
+  color: var(--primaryColor);
   text-decoration: none;
+  font-weight: 700;
 }
 
 #sidedrawer a.section:hover {
@@ -294,6 +305,7 @@ i.toggleSearch {
 
 
 
+
   #date-bar {
 
     position: relative;
@@ -361,7 +373,8 @@ i.toggleSearch {
           text-align: center;
           margin: 0 auto;
           padding: 10px 0;
-          color: var(--secondaryColor);
+          color: var(--primaryColor);
+          font-weight: 700;
         }
         li:nth-child(odd) {
           background-color: white;
@@ -371,7 +384,9 @@ i.toggleSearch {
           color: var(--compColor);
         }
         .current-day {
-          font-weight: bold;
+          /*font-weight: bold;*/
+          color: var(--light);
+          background-color: var(--primaryDark);
         }
       }
 
@@ -390,17 +405,17 @@ i.toggleSearch {
   top: 0;
   bottom: 0;
   width: 280px;
-  left: -290px;
+  left: -280px;
   overflow: auto;
   z-index: 2;
-  background-color: var(--light);
+  background-color: white;
   transition: transform 0.2s;
 
   &.active {
     transform: translate(280px);
   }
   .brand {
-
+    position: relative;
   }
   ul {
     list-style: none;
@@ -412,15 +427,28 @@ i.toggleSearch {
   }
 
   > ul > li:first-child {
-    padding-top: 15px;
+    /*padding-top: 15px;*/
   }
 
   a.section {
     display: block;
-    padding: 15px 22px;
+    padding: 30px 22px;
     cursor: pointer;
-    color: black;
+    color: var(--primaryColor);
     text-decoration: none;
+    border-bottom: 1px solid var(--light);
+    font-weight: 700;
+
+img {
+  height: 20px;
+  margin-right: 10px;
+}
+i {
+  font-size: 20px;
+  color: var(--compColor);
+  margin-right: 8px;
+}
+
   }
 
   a.section:hover {
@@ -447,12 +475,12 @@ i.toggleSearch {
 
 
 
-  #map {
+  #map_locate {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 200px;
+    /*height: 200px;*/
 
     b {
       padding: 15px;
@@ -460,7 +488,18 @@ i.toggleSearch {
       color: var(--light);
       background-color: var(--primaryColor);
     }
+
+  i {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 20px;
+    padding: 10px;
   }
+
+  }
+
   .mapboxgl-ctrl-bottom-left,
   .mapboxgl-ctrl-bottom-right {
     display: none;
@@ -469,6 +508,32 @@ i.toggleSearch {
     width: 30px;
     height: 30px;
   }
+
+.sidedrawer-username {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  background-color: var(--light);
+  line-height: 32px;
+  color: #999;
+
+  span {
+    padding: 1.5em;
+  }
+
+  #user_status {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 10px;
+    font-size: 20px;
+    color: var(--compColor);
+  }
+}
+
+
+
 }
 
 // Footer
