@@ -9,7 +9,7 @@
 
                 <div class="day-col" v-for="day in days" :style="{ 'width': dayColumnWidth }">
 
-                    <h4>{{day}} <span>{{tasksFiltered[day] ? tasksFiltered[day].length : 0}} tasks</span></h4>
+                    <h4>{{day}} <span>{{tasksFiltered[day] ? tasksFiltered[day].length : 0}} Rounds</span></h4>
 
                     <div class="task-create-btn" v-if="members" @click="showCreateTask">
                         Add Task
@@ -18,9 +18,9 @@
                     <div class="day-rows">
                         <div class="day-row" v-for="task in tasksFiltered[day]" :id="task.id" @click="showDetails">
                             <div class="non-selectable">
-                                <div>{{task.time.substring(0,5)}}</div>
-                                <div>{{task.name}}</div>
-
+                                
+                                <div class='round_title'>{{task.name}}</div>
+                                <div class='round_timeAdd'><b>{{task.time.substring(0,5)}}</b> {{task.address}}</div>
                                 <!--// todo: IF user.type === member-->
                                 <!-- - show distance from current location for first item in list-->
                                 <!-- - show distance from previous locations for remaining distances-->
@@ -31,8 +31,8 @@
                             </div>
                         </div>
                         <div v-if="!tasksFiltered[day] || tasksFiltered[day].length === 0">
-                            <div class="day-row">
-                                No tasks today
+                            <div class="day-row roundedUp">
+                                All rounded up for today
                             </div>
                         </div>
                     </div>

@@ -5346,7 +5346,7 @@ var render = function() {
                         _vm.tasksFiltered[day]
                           ? _vm.tasksFiltered[day].length
                           : 0
-                      ) + " tasks"
+                      ) + " Rounds"
                     )
                   ])
                 ]),
@@ -5380,11 +5380,16 @@ var render = function() {
                         },
                         [
                           _c("div", { staticClass: "non-selectable" }, [
-                            _c("div", [
-                              _vm._v(_vm._s(task.time.substring(0, 5)))
+                            _c("div", { staticClass: "round_title" }, [
+                              _vm._v(_vm._s(task.name))
                             ]),
                             _vm._v(" "),
-                            _c("div", [_vm._v(_vm._s(task.name))]),
+                            _c("div", { staticClass: "round_timeAdd" }, [
+                              _c("b", [
+                                _vm._v(_vm._s(task.time.substring(0, 5)))
+                              ]),
+                              _vm._v(" " + _vm._s(task.address))
+                            ]),
                             _vm._v(" "),
                             _vm.members
                               ? _c("div", [
@@ -5407,9 +5412,9 @@ var render = function() {
                     !_vm.tasksFiltered[day] ||
                     _vm.tasksFiltered[day].length === 0
                       ? _c("div", [
-                          _c("div", { staticClass: "day-row" }, [
+                          _c("div", { staticClass: "day-row roundedUp" }, [
                             _vm._v(
-                              "\n                            No tasks today\n                        "
+                              "\n                            All rounded up for today\n                        "
                             )
                           ])
                         ])
