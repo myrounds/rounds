@@ -11375,18 +11375,25 @@ button {
 
 .schedule-week .week-grid .mui-row h4 {
   margin-top: 0.5rem;
-  padding-left: 10px;
   color: var(--primaryColor);
   display: block;
   overflow: hidden;
   flex-wrap: wrap;
   align-items: center;
   text-transform: capitalize;
+  border-bottom: 2px dashed #e2e3de;
+  padding-bottom: 5px;
+  padding-left: 5px;
 }
 
 .schedule-week .week-grid .mui-row h4 span {
   float: right;
-  margin-top: 10px;
+  margin-top: 5px;
+  background-color: var(--primaryColor);
+  color: var(--light);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: 700;
 }
 
 .schedule-week .week-grid:after {
@@ -11403,7 +11410,7 @@ button {
   display: inline-block;
   /*background-color: white;*/
   /*border: thin solid #eee;*/
-  margin: 0 10px 0 0;
+  margin: 0 30px 0 0;
   color: var(--light);
   vertical-align: top;
   padding-bottom: 170px;
