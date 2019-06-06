@@ -80,6 +80,14 @@
                 $('#user_status').toggleClass('fa-toggle-on');
                 $('#user_status').toggleClass('fa-toggle-off');
             });
+            $('.logo').click(function(){
+                $('.logo').addClass('wobble');
+
+                setTimeout(function () { 
+                    $('.logo').removeClass('wobble');
+                }, 500);                
+            });
+
         });
 
         });
