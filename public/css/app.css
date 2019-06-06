@@ -10691,6 +10691,25 @@ button {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: none;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: none;
+  background-color: #e2e3de;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
 .vue-Message-Detail {
   font-family: "Nunito", sans-serif !important;
   font-size: 16px !important;
@@ -11370,6 +11389,15 @@ button {
   margin-top: 10px;
 }
 
+.schedule-week .week-grid:after {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(to right, transparent, var(--light));
+  height: 100vh;
+  width: 20px;
+}
+
 .schedule-week .day-col {
   position: relative;
   display: inline-block;
@@ -11383,12 +11411,18 @@ button {
   overflow-x: hidden;
 }
 
+@media (min-width: 768px) {
+  .schedule-week .day-col {
+    width: calc(14.285% - 10px);
+  }
+}
+
 .schedule-week .day-col h4 span {
   font-size: 12px;
 }
 
 .schedule-week .day-col:last-child {
-  margin-right: 40px;
+  /*margin-right: 40px;*/
 }
 
 .schedule-week .day-rows {
@@ -11447,7 +11481,7 @@ button {
 }
 
 .schedule-week .day-row:hover {
-  background-color: var(--light);
+  opacity: 0.9;
 }
 
 .schedule-week .task-create-btn {

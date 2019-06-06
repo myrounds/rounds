@@ -30,6 +30,28 @@ button {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
+
+::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: none;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: none;
+    background-color: #e2e3de;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+
+
 // GENERAL
 
 .vue-Message-Detail {
@@ -730,8 +752,17 @@ i {
         }
       }
     }
-  }
 
+
+  }
+.week-grid:after {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-image: linear-gradient(to right, transparent , var(--light));
+      height: 100vh;
+      width: 20px;
+    }
   .day-col {
     position: relative;
     display: inline-block;
@@ -742,6 +773,9 @@ i {
     vertical-align: top;
     padding-bottom: 170px;
     width: 90%;
+    @media (min-width: 768px) {
+      width: calc(14.285% - 10px);
+    }
     overflow-x: hidden;
 
     h4 span {
@@ -749,7 +783,7 @@ i {
     }
   }
   .day-col:last-child {
-    margin-right: 40px;
+    /*margin-right: 40px;*/
   }
 
 
@@ -805,7 +839,7 @@ i {
     background-color: var(--primaryDark);
   }
   .day-row:hover {
-    background-color: var(--light);
+    opacity: 0.9;
   }
 
   .task-create-btn {
