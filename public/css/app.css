@@ -10681,6 +10681,35 @@ body {
   color: var(--secondaryColor);
 }
 
+html ::-webkit-scrollbar,
+body ::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 5px;
+  -webkit-box-shadow: none;
+  background-color: transparent;
+}
+
+@media (max-width: 768px) {
+  html ::-webkit-scrollbar,
+  body ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+html ::-webkit-scrollbar-thumb,
+body ::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: none;
+  background-color: var(--primaryDark);
+}
+
+html ::-webkit-scrollbar-track,
+body ::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
 html,
 body,
 input,
@@ -10691,23 +10720,8 @@ button {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
-::-webkit-scrollbar {
-  width: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: none;
-  background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  -webkit-box-shadow: none;
-  background-color: var(--compColor);
-}
-
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: none;
-  border-radius: 5px;
-  background-color: transparent;
+h4 {
+  font-size: 1.3em;
 }
 
 /* ----------------------------------------------
@@ -10889,8 +10903,12 @@ button {
 }
 
 #header .appbar-search {
-  float: right;
   max-width: 60%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 5px;
 }
 
 #header .appbar-search i.toggleSearch {
@@ -10911,7 +10929,7 @@ button {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  right: -150px;
+  right: -180px;
   opacity: 0;
   transition: 0.5s;
 }
@@ -11301,8 +11319,16 @@ button {
   text-decoration: underline;
 }
 
-.js-hide-sidedrawer {
+.js-hide-sidedrawer,
+.js-show-sidedrawer {
   display: none;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  max-width: 70px;
+  left: 0;
 }
 
 #mui-overlay {
@@ -11316,6 +11342,10 @@ button {
 
   .js-hide-sidedrawer {
     display: block !important;
+  }
+
+  #sidedrawer #map_locate {
+    display: none;
   }
 
   #header {
@@ -11540,6 +11570,7 @@ button {
   cursor: pointer;
   overflow-y: scroll;
   overflow-x: hidden;
+  padding: 0 5px 0 0;
 }
 
 .schedule-week .day-row {
