@@ -32,7 +32,15 @@
                         </div>
                         <div v-if="!tasksFiltered[day] || tasksFiltered[day].length === 0">
                             <div class="day-row roundedUp">
-                                All rounded up for today
+                                <p>
+                                    <b>Nice, You're all Rounded Up.</b>
+                                    Here are some things to occupy your time, you could score yourself nice discounts!*
+                                </p>
+                                <ul>
+                                    <li>Recommend Rounds to a Friend or Company?</li>
+                                    <!-- <li>Write a Story on Facebook using the word Round 25 times?</li> -->
+                                    <!-- <li>Play RoundSnake and Challenge other Users to a High Score?</li> -->
+                                </ul>
                             </div>
                         </div>
                     </div>

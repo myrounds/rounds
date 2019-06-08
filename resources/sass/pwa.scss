@@ -965,7 +965,42 @@ i {
  }
  .roundedUp {
   background-color: rgba(255,255,255,0.5);
-  color: var(--primaryColor);
+  color: var(--secondaryColor);
+  overflow: hidden;
+  white-space: initial;
+
+  p {
+    overflow: hidden;
+    display: block;
+
+    b {
+      display: block;
+    }
+  }
+
+    ul {
+      list-style: none;
+      overflow: hidden;
+      position: relative;
+      padding: 0;
+      margin:10px 0 0 0;
+
+      li {
+        display: block;
+        overflow: hidden;
+        color: var(--light);
+        padding:15px;
+        padding-left: 85px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        background-color: var(--primaryColor);
+      }
+      li:nth-child(even) {
+        background-color: var(--primaryDark);
+      }
+
+    }
+
  }
 }
 

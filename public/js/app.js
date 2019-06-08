@@ -2674,6 +2674,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5415,13 +5423,7 @@ var render = function() {
                     _vm._v(" "),
                     !_vm.tasksFiltered[day] ||
                     _vm.tasksFiltered[day].length === 0
-                      ? _c("div", [
-                          _c("div", { staticClass: "day-row roundedUp" }, [
-                            _vm._v(
-                              "\n                            All rounded up for today\n                        "
-                            )
-                          ])
-                        ])
+                      ? _c("div", [_vm._m(0, true)])
                       : _vm._e()
                   ],
                   2
@@ -5685,7 +5687,23 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "day-row roundedUp" }, [
+      _c("p", [
+        _c("b", [_vm._v("Nice, You're all Rounded Up.")]),
+        _vm._v(
+          "\n                                Here are some things to occupy your time, you could score yourself nice discounts!*\n                            "
+        )
+      ]),
+      _vm._v(" "),
+      _c("ul", [_c("li", [_vm._v("Recommend Rounds to a Friend or Company?")])])
+    ])
+  }
+]
 render._withStripped = true
 
 
