@@ -11463,7 +11463,7 @@ button {
 
 .schedule-week .week-grid .mui-row h4 {
   margin-top: 0.5rem;
-  color: var(--primaryColor);
+  color: var(--secondaryColor);
   display: block;
   overflow: hidden;
   flex-wrap: wrap;
@@ -11472,22 +11472,32 @@ button {
   border-bottom: 2px dashed #e2e3de;
   padding-bottom: 5px;
   padding-left: 5px;
+  font-weight: 700;
+}
+
+.schedule-week .week-grid .mui-row h4 .fa-book-open {
+  color: var(--primaryColor);
 }
 
 .schedule-week .week-grid .mui-row h4 span {
   float: right;
   margin-top: 5px;
-  background-color: var(--primaryColor);
-  color: var(--light);
-  padding: 5px 10px;
-  border-radius: 15px;
+  margin-right: 5px;
   font-weight: 700;
+  color: var(--secondaryColor);
+}
+
+.schedule-week .week-grid .mui-row h4 span b {
+  background-color: var(--primaryColor);
+  padding: 2px 5px;
+  border-radius: 25px;
+  color: var(--light);
 }
 
 .schedule-week .week-grid:after {
   position: fixed;
   top: 0;
-  right: 0;
+  right: -5px;
   background-image: linear-gradient(to right, transparent, var(--light));
   height: 100vh;
   width: 20px;
@@ -11498,7 +11508,7 @@ button {
   display: inline-block;
   /*background-color: white;*/
   /*border: thin solid #eee;*/
-  margin: 0 30px 0 0;
+  margin: 0 5px;
   color: var(--light);
   vertical-align: top;
   padding-bottom: 170px;
@@ -11534,7 +11544,7 @@ button {
   border-top: thin solid #eee;
   padding: 10px 15px;
   margin-bottom: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 100%;
   background-color: var(--primaryColor);
   position: relative;

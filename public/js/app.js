@@ -5339,15 +5339,19 @@ var render = function() {
               { staticClass: "day-col", style: { width: _vm.dayColumnWidth } },
               [
                 _c("h4", [
-                  _vm._v(_vm._s(day) + " "),
+                  _c("i", { staticClass: "fas fa-book-open" }),
+                  _vm._v(" " + _vm._s(day) + " "),
                   _c("span", [
-                    _vm._v(
-                      _vm._s(
-                        _vm.tasksFiltered[day]
-                          ? _vm.tasksFiltered[day].length
-                          : 0
-                      ) + " Rounds"
-                    )
+                    _c("b", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.tasksFiltered[day]
+                            ? _vm.tasksFiltered[day].length
+                            : 0
+                        )
+                      )
+                    ]),
+                    _vm._v(" Rounds")
                   ])
                 ]),
                 _vm._v(" "),
