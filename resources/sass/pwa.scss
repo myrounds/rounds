@@ -332,23 +332,35 @@ h4 {
   background-color: var(--primaryDark);
 }
 
-#sidedrawer ul {
+#sidedrawer ul,
+ul#members_ul {
   list-style: none;
+  padding: 0!important;
+  margin: 0!important;
 }
 
 #sidedrawer > ul {
   padding-left: 0px;
 }
 
-#sidedrawer > ul > li:first-child {
-  /*padding-top: 15px;*/
+
+
+ul#members_ul li {
+  background-color: #f4f4f4;
+  display: block;
+  widows: 100%;
+  overflow: hidden;
 }
+ul#members_ul li:nth-child(even) {
+  background-color: #FFF;
+}
+
 
 #sidedrawer a.section {
   display: block;
   padding: 30px 22px;
   cursor: pointer;
-  color: var(--primaryColor);
+  
   text-decoration: none;
   font-weight: 700;
 }
@@ -555,15 +567,15 @@ h4 {
     border-bottom: 1px solid var(--light);
     font-weight: 700;
 
-img {
-  height: 20px;
-  margin-right: 10px;
-}
-i {
-  font-size: 20px;
-  color: var(--compColor);
-  margin-right: 8px;
-}
+      img {
+        height: 20px;
+        float: right;
+      }
+      i {
+        font-size: 20px;
+        color: var(--compColor);
+        float: right;
+      }
 
   }
 
@@ -576,20 +588,36 @@ i {
   }
 
   li.sub-section {
-    color: var(--primaryColor);
-    max-width: 140px;
+    color: var(--secondaryColor);
+    /*max-width: 140px;*/
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 6px 0;
-    padding-left: 5px !important;
+    padding: 8px;
     display: block;
+    position: relative;
   }
   li.sub-section:hover {
     background-color: #E0E0E0;
   }
+  .active_filter_round {
+    background-color: var(--primaryColor);
+    color: #FFF!important;
 
-
+    :after {
+      font-family:FontAwesome;
+      content:"\f0da";
+      color: #FFF;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 10px;
+      font-size: 16px;
+    }
+  }
+   .active_filter_round:hover {
+      background-color: var(--primaryDark)!important;
+   }
 
   #map_locate {
     position: absolute;
@@ -940,7 +968,7 @@ i {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: calc(100% - 60px);   
+        width: calc(100% - 0px);   
 
         b:before {
             font-family:FontAwesome;
@@ -959,7 +987,13 @@ i {
         font-size: 110%;
         font-weight: 700;
       }
+    .round_user {
+      font-size: 80%;
 
+      i {
+        color:var(--compColor);
+      }
+    }
 
   }
   .day-row:nth-child(even) {
@@ -1054,5 +1088,16 @@ i {
   }
   .col {
     display: table-cell;
+  }
+  .add_assignee {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    font-size: 25px;
+    padding:15px;
+    border:0;
+    background-color: var(--primaryColor);
+    border-top-left-radius: 15px;
+    color: var(--light);
   }
 }

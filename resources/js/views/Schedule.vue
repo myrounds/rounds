@@ -25,8 +25,8 @@
                                 <!-- - show distance from current location for first item in list-->
                                 <!-- - show distance from previous locations for remaining distances-->
 
-                                <div v-if="members">
-                                    <b>Assigned to:</b> {{members.find(m => m.id === task.member_id).name}}
+                                <div v-if="members" class='round_user'>
+                                    <i class='fas fa-user'></i> {{members.find(m => m.id === task.member_id).name}}
                                 </div>
                             </div>
                         </div>

@@ -3,7 +3,7 @@
         <div class="mui--appbar-height"></div>
         <div class="mui-container-fluid">
 
-            <button class="mui-btn mui-btn--primary mui-btn--fab" style="position: fixed; bottom: 30px; right: 30px" @click="createMember">+</button>
+            <button class="add_assignee" @click="createMember"><i class="fas fa-user-plus"></i></button>
 
             <div class="mui-panel">
                 <div class="row header">

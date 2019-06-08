@@ -4557,10 +4557,8 @@ var render = function() {
                         attrs: { to: { name: "schedule" } }
                       },
                       [
-                        _c("img", {
-                          attrs: { src: __webpack_require__(/*! ../../images/rnds.svg */ "./resources/images/rnds.svg") }
-                        }),
-                        _vm._v("Rounds / Schedule")
+                        _c("i", { staticClass: "fas fa-dot-circle" }),
+                        _vm._v("Filter Rounds")
                       ]
                     )
                   ],
@@ -4570,12 +4568,15 @@ var render = function() {
                 _vm.type === "account"
                   ? _c(
                       "ul",
-                      { class: { hidden: !_vm.showScheduleMembers } },
+                      {
+                        class: { hidden: !_vm.showScheduleMembers },
+                        attrs: { id: "members_ul" }
+                      },
                       [
                         _c(
                           "li",
                           {
-                            staticClass: "sub-section",
+                            staticClass: "sub-section active_filter_round",
                             on: { click: _vm.filterMembers }
                           },
                           [_c("a", [_vm._v("All Members")])]
@@ -4608,7 +4609,10 @@ var render = function() {
                         staticClass: "section",
                         attrs: { to: { name: "members" } }
                       },
-                      [_vm._v("Members")]
+                      [
+                        _c("i", { staticClass: "fas fa-users" }),
+                        _vm._v("Manage Assignees")
+                      ]
                     )
                   : _vm._e()
               ],
@@ -5152,12 +5156,8 @@ var render = function() {
       _c("div", { staticClass: "mui-container-fluid" }, [
         _c(
           "button",
-          {
-            staticClass: "mui-btn mui-btn--primary mui-btn--fab",
-            staticStyle: { position: "fixed", bottom: "30px", right: "30px" },
-            on: { click: _vm.createMember }
-          },
-          [_vm._v("+")]
+          { staticClass: "add_assignee", on: { click: _vm.createMember } },
+          [_c("i", { staticClass: "fas fa-user-plus" })]
         ),
         _vm._v(" "),
         _c(
@@ -5394,8 +5394,8 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _vm.members
-                              ? _c("div", [
-                                  _c("b", [_vm._v("Assigned to:")]),
+                              ? _c("div", { staticClass: "round_user" }, [
+                                  _c("i", { staticClass: "fas fa-user" }),
                                   _vm._v(
                                     " " +
                                       _vm._s(
@@ -23302,17 +23302,6 @@ module.exports = "/images/icon.svg?60ae6c991d1f6b212013c09a6c4a2c31";
 /***/ (function(module, exports) {
 
 module.exports = "/images/loading.svg?6282ddeb0abe92c95d0a2ef8eead9955";
-
-/***/ }),
-
-/***/ "./resources/images/rnds.svg":
-/*!***********************************!*\
-  !*** ./resources/images/rnds.svg ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/rnds.svg?115b2110ba9fbdc3ff8b242178d0a248";
 
 /***/ }),
 

@@ -10989,23 +10989,32 @@ h4 {
   background-color: var(--primaryDark);
 }
 
-#sidedrawer ul {
+#sidedrawer ul,
+ul#members_ul {
   list-style: none;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 #sidedrawer > ul {
   padding-left: 0px;
 }
 
-#sidedrawer > ul > li:first-child {
-  /*padding-top: 15px;*/
+ul#members_ul li {
+  background-color: #f4f4f4;
+  display: block;
+  widows: 100%;
+  overflow: hidden;
+}
+
+ul#members_ul li:nth-child(even) {
+  background-color: #FFF;
 }
 
 #sidedrawer a.section {
   display: block;
   padding: 30px 22px;
   cursor: pointer;
-  color: var(--primaryColor);
   text-decoration: none;
   font-weight: 700;
 }
@@ -11215,13 +11224,13 @@ h4 {
 
 #sidedrawer a.section img {
   height: 20px;
-  margin-right: 10px;
+  float: right;
 }
 
 #sidedrawer a.section i {
   font-size: 20px;
   color: var(--compColor);
-  margin-right: 8px;
+  float: right;
 }
 
 #sidedrawer a.section:hover {
@@ -11233,18 +11242,39 @@ h4 {
 }
 
 #sidedrawer li.sub-section {
-  color: var(--primaryColor);
-  max-width: 140px;
+  color: var(--secondaryColor);
+  /*max-width: 140px;*/
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 6px 0;
-  padding-left: 5px !important;
+  padding: 8px;
   display: block;
+  position: relative;
 }
 
 #sidedrawer li.sub-section:hover {
   background-color: #E0E0E0;
+}
+
+#sidedrawer .active_filter_round {
+  background-color: var(--primaryColor);
+  color: #FFF !important;
+}
+
+#sidedrawer .active_filter_round :after {
+  font-family: FontAwesome;
+  content: "\F0DA";
+  color: #FFF;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 10px;
+  font-size: 16px;
+}
+
+#sidedrawer .active_filter_round:hover {
+  background-color: var(--primaryDark) !important;
 }
 
 #sidedrawer #map_locate {
@@ -11590,7 +11620,7 @@ h4 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: calc(100% - 60px);
+  width: calc(100% - 0px);
 }
 
 .schedule-week .day-row .round_timeAdd b:before,
@@ -11612,6 +11642,14 @@ h4 {
 .schedule-week .day-row .round_title {
   font-size: 110%;
   font-weight: 700;
+}
+
+.schedule-week .day-row .round_user {
+  font-size: 80%;
+}
+
+.schedule-week .day-row .round_user i {
+  color: var(--compColor);
 }
 
 .schedule-week .day-row:nth-child(even) {
@@ -11711,5 +11749,17 @@ h4 {
 
 .members .col {
   display: table-cell;
+}
+
+.members .add_assignee {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  font-size: 25px;
+  padding: 15px;
+  border: 0;
+  background-color: var(--primaryColor);
+  border-top-left-radius: 15px;
+  color: var(--light);
 }
 

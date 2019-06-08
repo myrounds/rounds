@@ -19,12 +19,12 @@
 
             <li v-if="type != null">
                 <div @click="toggleScheduleMembers">
-                    <router-link class="section" :to="{ name: 'schedule' }"> <img src='../../images/rnds.svg'>Rounds / Schedule</router-link>
+                    <router-link class="section" :to="{ name: 'schedule' }"> <i class="fas fa-dot-circle"></i>Filter Rounds</router-link>
                 </div>
 
 
-                <ul v-if="type === 'account'" :class="{ 'hidden': !showScheduleMembers }">
-                    <li class="sub-section" @click="filterMembers">
+                <ul v-if="type === 'account'" :class="{ 'hidden': !showScheduleMembers }" id='members_ul'>
+                    <li class="sub-section active_filter_round" @click="filterMembers">
                         <a>All Members</a>
                     </li>
                     <li v-for="member in members" class="sub-section" @click="filterMembers" :id="member.id">
@@ -34,7 +34,7 @@
                 <router-link
                     class="section"
                     v-if="type === 'account'"
-                    :to="{ name: 'members' }">Members</router-link>
+                    :to="{ name: 'members' }"><i class="fas fa-users"></i>Manage Assignees</router-link>
             </li>
 
             <li v-if="type">
