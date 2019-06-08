@@ -37,7 +37,7 @@
                                     Here are some things to occupy your time, you could score yourself nice discounts!*
                                 </p>
                                 <ul>
-                                    <li>Recommend Rounds to a Friend or Company?</li>
+                                    <!-- <li>Recommend Rounds to a Friend or Company?</li> -->
                                     <!-- <li>Write a Story on Facebook using the word Round 25 times?</li> -->
                                     <!-- <li>Play RoundSnake and Challenge other Users to a High Score?</li> -->
                                 </ul>

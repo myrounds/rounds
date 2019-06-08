@@ -5700,7 +5700,7 @@ var staticRenderFns = [
         )
       ]),
       _vm._v(" "),
-      _c("ul", [_c("li", [_vm._v("Recommend Rounds to a Friend or Company?")])])
+      _c("ul")
     ])
   }
 ]
