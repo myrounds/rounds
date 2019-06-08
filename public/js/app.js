@@ -2677,11 +2677,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -4659,7 +4654,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "sidedrawer-username" }, [
-      _c("span", [_vm._v("Hi, "), _c("b", [_vm._v("Andrew")])]),
+      _c("span", [_vm._v("Hi, "), _c("b", [_vm._v("Human")])]),
       _vm._v(" "),
       _c("i", {
         staticClass: "fas fa-toggle-on",
@@ -5358,8 +5353,7 @@ var render = function() {
                             : 0
                         )
                       )
-                    ]),
-                    _vm._v(" Rounds")
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -5370,11 +5364,7 @@ var render = function() {
                         staticClass: "task-create-btn",
                         on: { click: _vm.showCreateTask }
                       },
-                      [
-                        _vm._v(
-                          "\n                    Add Task\n                "
-                        )
-                      ]
+                      [_c("i", { staticClass: "fas fa-plus-circle" })]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -5405,8 +5395,9 @@ var render = function() {
                             _vm._v(" "),
                             _vm.members
                               ? _c("div", [
+                                  _c("b", [_vm._v("Assigned to:")]),
                                   _vm._v(
-                                    "\n                                Assigned: " +
+                                    " " +
                                       _vm._s(
                                         _vm.members.find(function(m) {
                                           return m.id === task.member_id
@@ -5694,13 +5685,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "day-row roundedUp" }, [
       _c("p", [
-        _c("b", [_vm._v("Nice, You're all Rounded Up.")]),
         _vm._v(
-          "\n                                Here are some things to occupy your time, you could score yourself nice discounts!*\n                            "
+          "\n                                All Rounded Up\n                            "
         )
-      ]),
-      _vm._v(" "),
-      _c("ul")
+      ])
     ])
   }
 ]

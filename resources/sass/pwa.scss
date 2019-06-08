@@ -41,7 +41,7 @@ button {
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
     -webkit-box-shadow: none;
-    background-color: #e2e3de;
+    background-color: var(--compColor);
 }
 
 ::-webkit-scrollbar-track {
@@ -828,6 +828,7 @@ i {
         padding-bottom: 5px;
         padding-left: 5px;
         font-weight: 700;
+        position: relative;
 
         .fa-book-open {
           color:var(--primaryColor);
@@ -836,16 +837,19 @@ i {
         span {
           float: right;
           margin-top: 5px;
-          margin-right: 5px;
+          margin-right: 10px;
           font-weight: 700;
           color: var(--secondaryColor);
 
           b {
             background-color: var(--primaryColor);
             padding:2px 5px;
+            width:25px;
             border-radius: 25px;
             color:var(--light);
           }
+
+
         }
       }
     }
@@ -860,28 +864,28 @@ i {
       height: 100vh;
       width: 20px;
     }
-  .day-col {
-    position: relative;
-    display: inline-block;
-    /*background-color: white;*/
-    /*border: thin solid #eee;*/
-    margin: 0 5px;
-    color: var(--light);
-    vertical-align: top;
-    padding-bottom: 170px;
-    width: 90%;
-    @media (min-width: 768px) {
-      width: calc(14.285% - 10px);
-    }
-    overflow-x: hidden;
+    .day-col {
+      position: relative;
+      display: inline-block;
+      /*background-color: white;*/
+      /*border: thin solid #eee;*/
+      margin: 0 5px;
+      color: var(--light);
+      vertical-align: top;
+      padding-bottom: 170px;
+      width: 90%;
+      @media (min-width: 768px) {
+        width: calc(14.285% - 10px);
+      }
+      overflow-x: hidden;
 
-    h4 span {
-      font-size: 12px;
+      h4 span {
+        font-size: 14px;
+      }
     }
-  }
-  .day-col:last-child {
-    /*margin-right: 40px;*/
-  }
+    .day-col:last-child {
+      /*margin-right: 40px;*/
+    }
 
 
   .day-rows {
@@ -942,9 +946,11 @@ i {
   .task-create-btn {
     position: absolute;
     top: 0;
-    right: 0;
-    padding: 10px;
+    right: 40px;
+    padding: 3px 0 0 0;
+    font-size: 24px;
     cursor: pointer;
+    color: var(--compColor);
   }
 
   .day-row:after {

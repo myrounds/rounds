@@ -10701,7 +10701,7 @@ button {
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
   -webkit-box-shadow: none;
-  background-color: #e2e3de;
+  background-color: var(--compColor);
 }
 
 ::-webkit-scrollbar-track {
@@ -11473,6 +11473,7 @@ button {
   padding-bottom: 5px;
   padding-left: 5px;
   font-weight: 700;
+  position: relative;
 }
 
 .schedule-week .week-grid .mui-row h4 .fa-book-open {
@@ -11482,7 +11483,7 @@ button {
 .schedule-week .week-grid .mui-row h4 span {
   float: right;
   margin-top: 5px;
-  margin-right: 5px;
+  margin-right: 10px;
   font-weight: 700;
   color: var(--secondaryColor);
 }
@@ -11490,6 +11491,7 @@ button {
 .schedule-week .week-grid .mui-row h4 span b {
   background-color: var(--primaryColor);
   padding: 2px 5px;
+  width: 25px;
   border-radius: 25px;
   color: var(--light);
 }
@@ -11523,7 +11525,7 @@ button {
 }
 
 .schedule-week .day-col h4 span {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .schedule-week .day-col:last-child {
@@ -11592,9 +11594,11 @@ button {
 .schedule-week .task-create-btn {
   position: absolute;
   top: 0;
-  right: 0;
-  padding: 10px;
+  right: 40px;
+  padding: 3px 0 0 0;
+  font-size: 24px;
   cursor: pointer;
+  color: var(--compColor);
 }
 
 .schedule-week .day-row:after {

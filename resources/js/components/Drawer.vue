@@ -9,7 +9,7 @@
         </div>
         <div class="mui-divider"></div>
         <div class='sidedrawer-username'>
-            <span>Hi, <b>Andrew</b></span>
+            <span>Hi, <b>Human</b></span>
             <i class='fas fa-toggle-on' id='user_status' data-status='active' title='active'></i>
         </div>
         <ul>

@@ -9,10 +9,10 @@
 
                 <div class="day-col" v-for="day in days" :style="{ 'width': dayColumnWidth }">
 
-                    <h4><i class="fas fa-book-open"></i> {{day}} <span><b>{{tasksFiltered[day] ? tasksFiltered[day].length : 0}}</b> Rounds</span></h4>
+                    <h4><i class="fas fa-book-open"></i> {{day}} <span><b>{{tasksFiltered[day] ? tasksFiltered[day].length : 0}}</b></span></h4>
 
                     <div class="task-create-btn" v-if="members" @click="showCreateTask">
-                        Add Task
+                        <i class="fas fa-plus-circle"></i>
                     </div>
 
                     <div class="day-rows">
@@ -26,21 +26,16 @@
                                 <!-- - show distance from previous locations for remaining distances-->
 
                                 <div v-if="members">
-                                    Assigned: {{members.find(m => m.id === task.member_id).name}}
+                                    <b>Assigned to:</b> {{members.find(m => m.id === task.member_id).name}}
                                 </div>
                             </div>
                         </div>
                         <div v-if="!tasksFiltered[day] || tasksFiltered[day].length === 0">
                             <div class="day-row roundedUp">
                                 <p>
-                                    <b>Nice, You're all Rounded Up.</b>
-                                    Here are some things to occupy your time, you could score yourself nice discounts!*
+                                    All Rounded Up
                                 </p>
-                                <ul>
-                                    <!-- <li>Recommend Rounds to a Friend or Company?</li> -->
-                                    <!-- <li>Write a Story on Facebook using the word Round 25 times?</li> -->
-                                    <!-- <li>Play RoundSnake and Challenge other Users to a High Score?</li> -->
-                                </ul>
+
                             </div>
                         </div>
                     </div>
