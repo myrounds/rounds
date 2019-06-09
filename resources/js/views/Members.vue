@@ -6,17 +6,19 @@
             <button class="add_assignee" @click="createMember"><i class="fas fa-user-plus"></i></button>
 
             <div class="mui-panel">
-                <div class="row header">
+                <div class="row  member_row header">
                     <div class="col">Name</div>
                     <div class="col">Email</div>
                     <div class="col">Phone</div>
                     <div class="col">License Plate</div>
+                    <div class="col">Status</div>
                 </div>
-                <div class="row" v-for="member in members" @click="selectMember">
+                <div class="row member_row" v-for="member in members" @click="selectMember">
                     <div class="col" :id="member.id">{{member.name}}</div>
                     <div class="col" :id="member.id">{{member.email}}</div>
                     <div class="col" :id="member.id">{{member.phone}}</div>
                     <div class="col" :id="member.id">{{member.license_plate}}</div>
+                    <div class="col" :id="member.id">Active</div>
                 </div>
             </div>
 

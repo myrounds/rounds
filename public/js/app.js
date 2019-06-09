@@ -2425,6 +2425,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4621,7 +4623,7 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.type
-          ? _c("li", [
+          ? _c("li", { staticClass: "logout" }, [
               _c("a", { staticClass: "section", on: { click: _vm.logout } }, [
                 _c("i", { staticClass: "fas fa-sign-out-alt" }),
                 _vm._v(" Logout")
@@ -5169,7 +5171,10 @@ var render = function() {
             _vm._l(_vm.members, function(member) {
               return _c(
                 "div",
-                { staticClass: "row", on: { click: _vm.selectMember } },
+                {
+                  staticClass: "row member_row",
+                  on: { click: _vm.selectMember }
+                },
                 [
                   _c("div", { staticClass: "col", attrs: { id: member.id } }, [
                     _vm._v(_vm._s(member.name))
@@ -5185,6 +5190,10 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col", attrs: { id: member.id } }, [
                     _vm._v(_vm._s(member.license_plate))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col", attrs: { id: member.id } }, [
+                    _vm._v("Active")
                   ])
                 ]
               )
@@ -5294,14 +5303,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row header" }, [
+    return _c("div", { staticClass: "row  member_row header" }, [
       _c("div", { staticClass: "col" }, [_vm._v("Name")]),
       _vm._v(" "),
       _c("div", { staticClass: "col" }, [_vm._v("Email")]),
       _vm._v(" "),
       _c("div", { staticClass: "col" }, [_vm._v("Phone")]),
       _vm._v(" "),
-      _c("div", { staticClass: "col" }, [_vm._v("License Plate")])
+      _c("div", { staticClass: "col" }, [_vm._v("License Plate")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [_vm._v("Status")])
     ])
   }
 ]
@@ -5342,6 +5353,13 @@ var render = function() {
               { staticClass: "day-col", style: { width: _vm.dayColumnWidth } },
               [
                 _c("h4", [
+                  _vm.members
+                    ? _c("i", {
+                        staticClass: "fas fa-plus-circle task-create-btn",
+                        on: { click: _vm.showCreateTask }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c("i", { staticClass: "fas fa-book-open" }),
                   _vm._v(" " + _vm._s(day) + " "),
                   _c("span", [
@@ -5356,17 +5374,6 @@ var render = function() {
                     ])
                   ])
                 ]),
-                _vm._v(" "),
-                _vm.members
-                  ? _c(
-                      "div",
-                      {
-                        staticClass: "task-create-btn",
-                        on: { click: _vm.showCreateTask }
-                      },
-                      [_c("i", { staticClass: "fas fa-plus-circle" })]
-                    )
-                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "div",

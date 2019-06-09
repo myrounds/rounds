@@ -9,12 +9,12 @@
 
                 <div class="day-col" v-for="day in days" :style="{ 'width': dayColumnWidth }">
 
-                    <h4><i class="fas fa-book-open"></i> {{day}} <span><b>{{tasksFiltered[day] ? tasksFiltered[day].length : 0}}</b></span></h4>
+                    <h4>
+                        <i class="fas fa-plus-circle task-create-btn" v-if="members" @click="showCreateTask"></i>
+                        <i class="fas fa-book-open"></i> {{day}} <span><b>{{tasksFiltered[day] ? tasksFiltered[day].length : 0}}</b></span>
+                        
 
-                    <div class="task-create-btn" v-if="members" @click="showCreateTask">
-                        <i class="fas fa-plus-circle"></i>
-                    </div>
-
+                    </h4>
                     <div class="day-rows">
                         <div class="day-row" v-for="task in tasksFiltered[day]" :id="task.id" @click="showDetails">
                             <div class="non-selectable">

@@ -37,7 +37,7 @@
                     :to="{ name: 'members' }"><i class="fas fa-users"></i>Manage Assignees</router-link>
             </li>
 
-            <li v-if="type">
+            <li v-if="type" class='logout'>
                 <a class="section" @click="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </li>
         </ul>

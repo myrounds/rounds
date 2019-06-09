@@ -10684,7 +10684,7 @@ body {
 html ::-webkit-scrollbar,
 body ::-webkit-scrollbar {
   width: 8px;
-  border-radius: 5px;
+  border-radius: 0px;
   -webkit-box-shadow: none;
   background-color: transparent;
 }
@@ -10698,7 +10698,7 @@ body ::-webkit-scrollbar {
 
 html ::-webkit-scrollbar-thumb,
 body ::-webkit-scrollbar-thumb {
-  border-radius: 5px;
+  border-radius: 0px;
   -webkit-box-shadow: none;
   background-color: var(--primaryDark);
 }
@@ -10706,7 +10706,7 @@ body ::-webkit-scrollbar-thumb {
 html ::-webkit-scrollbar-track,
 body ::-webkit-scrollbar-track {
   -webkit-box-shadow: none;
-  border-radius: 5px;
+  border-radius: 0px;
   background-color: transparent;
 }
 
@@ -11250,6 +11250,7 @@ ul#members_ul li:nth-child(even) {
   padding: 8px;
   display: block;
   position: relative;
+  cursor: pointer;
 }
 
 #sidedrawer li.sub-section:hover {
@@ -11359,6 +11360,12 @@ ul#members_ul li:nth-child(even) {
           transform: translateY(-50%);
   max-width: 70px;
   left: 0;
+}
+
+@media (max-width: 768px) {
+  .js-show-sidedrawer {
+    display: block !important;
+  }
 }
 
 #mui-overlay {
@@ -11540,20 +11547,29 @@ ul#members_ul li:nth-child(even) {
   color: var(--primaryColor);
 }
 
-.schedule-week .week-grid .mui-row h4 span {
+.schedule-week .week-grid .mui-row h4 span,
+.schedule-week .week-grid .mui-row h4 .task-create-btn {
   float: right;
   margin-top: 5px;
-  margin-right: 10px;
+  margin-right: 5px;
   font-weight: 700;
   color: var(--secondaryColor);
 }
 
-.schedule-week .week-grid .mui-row h4 span b {
+.schedule-week .week-grid .mui-row h4 span b,
+.schedule-week .week-grid .mui-row h4 .task-create-btn b {
   background-color: var(--primaryColor);
   padding: 2px 5px;
   width: 25px;
   border-radius: 25px;
   color: var(--light);
+}
+
+.schedule-week .week-grid .mui-row h4 .task-create-btn {
+  font-size: 23px;
+  margin-top: 0;
+  cursor: pointer;
+  color: var(--compColor);
 }
 
 .schedule-week .week-grid:after {
@@ -11660,16 +11676,6 @@ ul#members_ul li:nth-child(even) {
   opacity: 0.9;
 }
 
-.schedule-week .task-create-btn {
-  position: absolute;
-  top: 0;
-  right: 40px;
-  padding: 3px 0 0 0;
-  font-size: 24px;
-  cursor: pointer;
-  color: var(--compColor);
-}
-
 .schedule-week .day-row:after {
   font-family: FontAwesome;
   content: "\F0D7";
@@ -11761,5 +11767,28 @@ ul#members_ul li:nth-child(even) {
   background-color: var(--primaryColor);
   border-top-left-radius: 15px;
   color: var(--light);
+}
+
+.members .member_row {
+  padding: 5px;
+  background-color: var(--light);
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+
+.members .member_row:nth-child(even) {
+  background-color: white;
+}
+
+.members .member_row:hover {
+  border: thin solid var(--primaryColor);
+  font-weight: 700;
+}
+
+.logout {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
