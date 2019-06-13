@@ -11528,6 +11528,12 @@ ul#members_ul li:nth-child(even) {
   margin-bottom: 10px;
 }
 
+@media (min-width: 768px) {
+  .schedule-week .week-grid .mui-row {
+    position: absolute;
+  }
+}
+
 .schedule-week .week-grid .mui-row h4 {
   margin-top: 0.5rem;
   color: var(--secondaryColor);
@@ -11572,21 +11578,13 @@ ul#members_ul li:nth-child(even) {
   color: var(--compColor);
 }
 
-.schedule-week .week-grid:after {
-  position: fixed;
-  top: 0;
-  right: -5px;
-  background-image: linear-gradient(to right, transparent, var(--light));
-  height: 100vh;
-  width: 20px;
-}
-
 .schedule-week .day-col {
   position: relative;
   display: inline-block;
   /*background-color: white;*/
   /*border: thin solid #eee;*/
   margin: 0 5px;
+  background-color: transparent;
   color: var(--light);
   vertical-align: top;
   padding-bottom: 170px;
@@ -11596,7 +11594,7 @@ ul#members_ul li:nth-child(even) {
 
 @media (min-width: 768px) {
   .schedule-week .day-col {
-    width: calc(14.285% - 10px);
+    width: calc(20% - 10px);
   }
 }
 

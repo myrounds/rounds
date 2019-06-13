@@ -873,6 +873,10 @@ ul#members_ul li:nth-child(even) {
       margin-left: -10px;
       margin-right: -10px;
       margin-bottom: 10px;
+      @media (min-width: 768px) {
+        position: absolute;
+      }      
+      
 
       h4 {
         margin-top: 0.5rem;
@@ -921,26 +925,20 @@ ul#members_ul li:nth-child(even) {
 
 
   }
-.week-grid:after {
-      position: fixed;
-      top: 0;
-      right: -5px;
-      background-image: linear-gradient(to right, transparent , var(--light));
-      height: 100vh;
-      width: 20px;
-    }
+
     .day-col {
       position: relative;
       display: inline-block;
       /*background-color: white;*/
       /*border: thin solid #eee;*/
       margin: 0 5px;
+      background-color: transparent;
       color: var(--light);
       vertical-align: top;
       padding-bottom: 170px;
       width: 90%;
       @media (min-width: 768px) {
-        width: calc(14.285% - 10px);
+        width: calc(20% - 10px);
       }
       overflow-x: hidden;
 
