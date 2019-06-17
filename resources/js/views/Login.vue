@@ -5,26 +5,32 @@
 
             <br>
 
-            <div class="mui-panel">
+            <div class="mui-panel welcome_form">
                 <form class="mui-form">
-                    <legend>Login</legend>
+                    <!-- <legend>Login</legend> -->
                     <div class="mui-textfield mui-textfield--float-label">
-                        <input type="email" v-model="email">
-                        <label>Email</label>
+                        <input type="email" v-model="email" placeholder='Email'>
+                        <!-- <label>Email</label> -->
                     </div>
                     <div class="mui-textfield mui-textfield--float-label">
-                        <input type="password" v-model="password">
-                        <label>Password</label>
+                        <input type="password" v-model="password" placeholder='Password'>
+                        <!-- <label>Password</label> -->
                     </div>
-                    <div class="mui-select">
+<!--                     <div class="mui-select">
                         <select v-model="type">
                             <option value="account">Account</option>
                             <option value="member">Member</option>
                         </select>
                         <label>Type</label>
+                    </div> -->
+                    <button type="button" class="mui-btn login_btn" v-on:click="attempt">Log In</button>
+                    <div>
+                        <button type="button" class="mui-btn social_btn facebook">Log in with Facebook</button>
+                        <button type="button" class="mui-btn social_btn google">Log in with Google</button>
                     </div>
-                    <button type="button" class="mui-btn mui-btn--raised" v-on:click="attempt">Login</button>
-                    <button type="button" class="mui-btn mui-btn--raised" v-on:click="register">Sing Up</button>
+                    <div class='forgot_password'>Forgot Password?</div>
+                    <div class='divider'><span></span><b>OR</b></div>
+                    <button type="button" class="mui-btn reg_btn" v-on:click="register">Register a Rounds Account</button>
                 </form>
             </div>
 

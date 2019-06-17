@@ -2254,6 +2254,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5001,10 +5007,8 @@ var render = function() {
     _c("div", { staticClass: "mui-container-fluid" }, [
       _c("br"),
       _vm._v(" "),
-      _c("div", { staticClass: "mui-panel" }, [
+      _c("div", { staticClass: "mui-panel welcome_form" }, [
         _c("form", { staticClass: "mui-form" }, [
-          _c("legend", [_vm._v("Login")]),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "mui-textfield mui-textfield--float-label" },
@@ -5018,7 +5022,7 @@ var render = function() {
                     expression: "email"
                   }
                 ],
-                attrs: { type: "email" },
+                attrs: { type: "email", placeholder: "Email" },
                 domProps: { value: _vm.email },
                 on: {
                   input: function($event) {
@@ -5028,9 +5032,7 @@ var render = function() {
                     _vm.email = $event.target.value
                   }
                 }
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Email")])
+              })
             ]
           ),
           _vm._v(" "),
@@ -5047,7 +5049,7 @@ var render = function() {
                     expression: "password"
                   }
                 ],
-                attrs: { type: "password" },
+                attrs: { type: "password", placeholder: "Password" },
                 domProps: { value: _vm.password },
                 on: {
                   input: function($event) {
@@ -5057,77 +5059,74 @@ var render = function() {
                     _vm.password = $event.target.value
                   }
                 }
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Password")])
+              })
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "mui-select" }, [
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.type,
-                    expression: "type"
-                  }
-                ],
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.type = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "account" } }, [
-                  _vm._v("Account")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "member" } }, [_vm._v("Member")])
-              ]
-            ),
-            _vm._v(" "),
-            _c("label", [_vm._v("Type")])
-          ]),
-          _vm._v(" "),
           _c(
             "button",
             {
-              staticClass: "mui-btn mui-btn--raised",
+              staticClass: "mui-btn login_btn",
               attrs: { type: "button" },
               on: { click: _vm.attempt }
             },
-            [_vm._v("Login")]
+            [_vm._v("Log In")]
           ),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "forgot_password" }, [
+            _vm._v("Forgot Password?")
+          ]),
+          _vm._v(" "),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "button",
             {
-              staticClass: "mui-btn mui-btn--raised",
+              staticClass: "mui-btn reg_btn",
               attrs: { type: "button" },
               on: { click: _vm.register }
             },
-            [_vm._v("Sing Up")]
+            [_vm._v("Register a Rounds Account")]
           )
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "button",
+        {
+          staticClass: "mui-btn social_btn facebook",
+          attrs: { type: "button" }
+        },
+        [_vm._v("Log in with Facebook")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "mui-btn social_btn google", attrs: { type: "button" } },
+        [_vm._v("Log in with Google")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "divider" }, [
+      _c("span"),
+      _c("b", [_vm._v("OR")])
+    ])
+  }
+]
 render._withStripped = true
 
 

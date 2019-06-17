@@ -13,6 +13,7 @@
     <link rel="icon" type="image/svg" sizes="250x250" href="img/icon.png">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo:400,500,700,900">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
