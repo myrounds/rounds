@@ -5091,6 +5091,10 @@ var render = function() {
             [_vm._v("Register a Rounds Account")]
           )
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { attrs: { align: "center" } }, [
+        _vm._v("2019 - Rounds / MyRounds")
       ])
     ])
   ])

@@ -33,7 +33,7 @@
                     <button type="button" class="mui-btn reg_btn" v-on:click="register">Register a Rounds Account</button>
                 </form>
             </div>
-
+            <div align='center'>2019 - Rounds / MyRounds</div>
         </div>
     </div>
 </template>
