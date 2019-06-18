@@ -1,13 +1,12 @@
 <template>
     <div>
         <div class="mui--appbar-height"></div>
-        <div class="mui-container-fluid">
-
-            <br>
+        <div class='login_banner'><img src='../../images/login-icon.svg' class='loginlogo'></div>
+        <div class="mui-container-fluid login_screen">
 
             <div class="mui-panel welcome_form">
                 <form class="mui-form">
-                    <!-- <legend>Login</legend> -->
+                    
                     <div class="mui-textfield mui-textfield--float-label">
                         <input type="email" v-model="email" placeholder='Email'>
                         <!-- <label>Email</label> -->
@@ -16,13 +15,12 @@
                         <input type="password" v-model="password" placeholder='Password'>
                         <!-- <label>Password</label> -->
                     </div>
-<!--                     <div class="mui-select">
+                    <div class="mui-select">
                         <select v-model="type">
-                            <option value="account">Account</option>
+                            <option value="account">Account Holder</option>
                             <option value="member">Member</option>
                         </select>
-                        <label>Type</label>
-                    </div> -->
+                    </div>
                     <button type="button" class="mui-btn login_btn" v-on:click="attempt">Log In</button>
                     <div>
                         <button type="button" class="mui-btn social_btn facebook">Log in with Facebook</button>
@@ -33,7 +31,7 @@
                     <button type="button" class="mui-btn reg_btn" v-on:click="register">Register a Rounds Account</button>
                 </form>
             </div>
-            <div align='center'>2019 - Rounds / MyRounds</div>
+            
         </div>
     </div>
 </template>

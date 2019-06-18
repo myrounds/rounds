@@ -2258,8 +2258,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -5004,9 +5002,9 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "mui--appbar-height" }),
     _vm._v(" "),
-    _c("div", { staticClass: "mui-container-fluid" }, [
-      _c("br"),
-      _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "mui-container-fluid login_screen" }, [
       _c("div", { staticClass: "mui-panel welcome_form" }, [
         _c("form", { staticClass: "mui-form" }, [
           _c(
@@ -5063,6 +5061,44 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
+          _c("div", { staticClass: "mui-select" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.type,
+                    expression: "type"
+                  }
+                ],
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.type = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "account" } }, [
+                  _vm._v("Account Holder")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "member" } }, [_vm._v("Member")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -5073,13 +5109,13 @@ var render = function() {
             [_vm._v("Log In")]
           ),
           _vm._v(" "),
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "forgot_password" }, [
             _vm._v("Forgot Password?")
           ]),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c(
             "button",
@@ -5091,15 +5127,22 @@ var render = function() {
             [_vm._v("Register a Rounds Account")]
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { attrs: { align: "center" } }, [
-        _vm._v("2019 - Rounds / MyRounds")
       ])
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "login_banner" }, [
+      _c("img", {
+        staticClass: "loginlogo",
+        attrs: { src: __webpack_require__(/*! ../../images/login-icon.svg */ "./resources/images/login-icon.svg") }
+      })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -23312,6 +23355,17 @@ module.exports = "/images/icon.svg?60ae6c991d1f6b212013c09a6c4a2c31";
 /***/ (function(module, exports) {
 
 module.exports = "/images/loading.svg?6282ddeb0abe92c95d0a2ef8eead9955";
+
+/***/ }),
+
+/***/ "./resources/images/login-icon.svg":
+/*!*****************************************!*\
+  !*** ./resources/images/login-icon.svg ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/login-icon.svg?f94e6f0e478b0086767b13739430a3c0";
 
 /***/ }),
 
