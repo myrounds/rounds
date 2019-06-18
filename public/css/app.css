@@ -11824,7 +11824,7 @@ ul#members_ul li:nth-child(even) {
   }
 
   button.reg_btn {
-    background-color: var(--primaryDark);
+    background-color: var(--compColor);
   }
 
   .facebook {
@@ -11934,6 +11934,7 @@ ul#members_ul li:nth-child(even) {
   background-color: var(--primaryColor);
   padding: 10px;
   background-image: url(/images/login-bg.svg?3d2e69ddbc0eca19679ab0797479ede5);
+  border-bottom: 2px #FFF dotted;
 }
 
 .login_banner img {
@@ -11945,5 +11946,20 @@ ul#members_ul li:nth-child(even) {
           transform: translate(-50%, -50%);
   cursor: pointer;
   z-index: 10;
+}
+
+@media (max-width: 330px) {
+  .login_screen {
+    top: 80px;
+    height: calc(100vh - 80px);
+  }
+
+  .login_banner {
+    height: 80px;
+  }
+
+  .login_banner img {
+    width: 55px;
+  }
 }
 
