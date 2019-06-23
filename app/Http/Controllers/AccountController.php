@@ -12,11 +12,13 @@ class AccountController extends Controller
 {
     public function login()
     {
-        $external = Socialite::driver(request('provider'))->userFromToken(request('token'));
-        if ($external) {
-            $email = $external->email;
-        } else {
-            $email = request('email');
+        $provider = request('provider');
+        $email = request('email');
+        if ($provider) {
+            $external = Socialite::driver($provider)->userFromToken(request('token'));
+            if ($external) {
+                $email = $external->email;
+            }
         }
 
         $users = Account::where('category_id', request('category_id'))

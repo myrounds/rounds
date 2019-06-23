@@ -59,7 +59,6 @@
 
                 const query = this.$route.query;
                 if (typeof query === 'object' && query.provider && query.token) {
-                    console.log("ATTEMPT LOGIN");
                     axios
                         .post(`/api/${this.type}s/login`, {
                             category_id: 1,

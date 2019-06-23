@@ -75,6 +75,7 @@
             logout() {
                 storage.clear('user');
                 storage.clear('members');
+                Events.dispatch('account-changed', null);
                 this.type = null;
                 this.members = null;
                 this.$router.push({name: "login"});

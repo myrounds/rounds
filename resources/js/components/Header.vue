@@ -1,7 +1,7 @@
 <template>
     <header id="header">
 
-        <div class="logged-out">
+        <div class="logged-out" :class="{ 'hidden': isLoggedIn }">
             <img src="../../images/login-icon.svg">
         </div>
 
@@ -47,12 +47,17 @@
                 currentDay: null,
                 slideUpHeader: false,
                 dateBarHidden: false,
-                daySelectorOpened: false
+                daySelectorOpened: false,
+                isLoggedIn: false
             };
         },
         created() {
             this.date = DateTime.getCurrentDate();
             this.currentDay = DateTime.getCurrentDay();
+
+            Events.addListener('account-changed', this.onAccountChanged);
+
+
 
             $(window).scroll(() => {
                 const scroll = $(window).scrollTop();
@@ -72,6 +77,10 @@
             });
         },
         methods: {
+            onAccountChanged() {
+                const user = Storage.get('user');
+                this.isLoggedIn = user && user.id;
+            },
             showDaySelector() {
                 this.daySelectorOpened = !this.daySelectorOpened;
             },

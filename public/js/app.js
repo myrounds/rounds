@@ -1909,6 +1909,7 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default.a.clear('user');
       _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default.a.clear('members');
+      _helpers_events__WEBPACK_IMPORTED_MODULE_1___default.a.dispatch('account-changed', null);
       this.type = null;
       this.members = null;
       this.$router.push({
@@ -2029,7 +2030,8 @@ __webpack_require__.r(__webpack_exports__);
       currentDay: null,
       slideUpHeader: false,
       dateBarHidden: false,
-      daySelectorOpened: false
+      daySelectorOpened: false,
+      isLoggedIn: false
     };
   },
   created: function created() {
@@ -2037,6 +2039,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.date = _helpers_datetime__WEBPACK_IMPORTED_MODULE_0___default.a.getCurrentDate();
     this.currentDay = _helpers_datetime__WEBPACK_IMPORTED_MODULE_0___default.a.getCurrentDay();
+    _helpers_events__WEBPACK_IMPORTED_MODULE_1___default.a.addListener('account-changed', this.onAccountChanged);
     $(window).scroll(function () {
       var scroll = $(window).scrollTop();
       var user = _helpers_storage__WEBPACK_IMPORTED_MODULE_2___default.a.get('user');
@@ -2057,6 +2060,10 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    onAccountChanged: function onAccountChanged() {
+      var user = _helpers_storage__WEBPACK_IMPORTED_MODULE_2___default.a.get('user');
+      this.isLoggedIn = user && user.id;
+    },
     showDaySelector: function showDaySelector() {
       this.daySelectorOpened = !this.daySelectorOpened;
     },
@@ -2292,7 +2299,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       var query = this.$route.query;
 
       if (_typeof(query) === 'object' && query.provider && query.token) {
-        console.log("ATTEMPT LOGIN");
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/".concat(this.type, "s/login"), {
           category_id: 1,
           email: this.email,
@@ -4886,7 +4892,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("header", { attrs: { id: "header" } }, [
-    _vm._m(0),
+    _c(
+      "div",
+      { staticClass: "logged-out", class: { hidden: _vm.isLoggedIn } },
+      [_c("img", { attrs: { src: __webpack_require__(/*! ../../images/login-icon.svg */ "./resources/images/login-icon.svg") } })]
+    ),
     _vm._v(" "),
     _c(
       "div",
@@ -4904,7 +4914,7 @@ var render = function() {
           attrs: { src: __webpack_require__(/*! ../../images/icon.svg */ "./resources/images/icon.svg"), alt: "" }
         }),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
@@ -4964,14 +4974,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "logged-out" }, [
-      _c("img", { attrs: { src: __webpack_require__(/*! ../../images/login-icon.svg */ "./resources/images/login-icon.svg") } })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
