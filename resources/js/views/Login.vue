@@ -8,12 +8,12 @@
                 <form class="mui-form">
                     
                     <div class="mui-textfield mui-textfield--float-label">
-                        <input type="email" v-model="email" placeholder='Email'>
-                        <!-- <label>Email</label> -->
+                        <input type="email" v-model="email">
+                         <label>Email</label>
                     </div>
                     <div class="mui-textfield mui-textfield--float-label">
-                        <input type="password" v-model="password" placeholder='Password'>
-                        <!-- <label>Password</label> -->
+                        <input type="password" v-model="password">
+                         <label>Password</label>
                     </div>
                     <div class="mui-select">
                         <select v-model="type">
@@ -23,8 +23,10 @@
                     </div>
                     <button type="button" class="mui-btn login_btn" v-on:click="attempt">Log In</button>
                     <div>
-                        <button type="button" class="mui-btn social_btn facebook">Log in with Facebook</button>
-                        <button type="button" class="mui-btn social_btn google">Log in with Google</button>
+                        <button type="button" class="mui-btn social_btn facebook" v-on:click="facebookLogin">
+                            Log in with Facebook
+                        </button>
+                        <button type="button" class="mui-btn social_btn google" v-on:click="googleLogin">Log in with Google</button>
                     </div>
                     <div class='forgot_password'>Forgot Password?</div>
                     <div class='divider'><span></span><b>OR</b></div>
@@ -56,6 +58,33 @@
             if (user && user.type) {
                 this.type = user.type;
                 this.login(user);
+            } else {
+
+                const query = this.$route.query;
+                if (typeof query === 'object' && query.provider && query.token) {
+                    console.log("ATTEMPT LOGIN");
+                    axios
+                        .post(`/api/${this.type}s/login`, {
+                            category_id: 1,
+                            email: this.email,
+                            provider: query.provider,
+                            token: query.token,
+                            type: this.type
+                        })
+                        .then(response => {
+                            const payload = response.data;
+                            const user = payload.data;
+                            const userWithType = {...{type: this.type},...user};
+                            this.login(userWithType);
+                        })
+                        .catch(error => {
+                            const payload = error.response.data;
+                            if (payload.message) {
+                                this.$msg(payload.message);
+                            }
+                        });
+                }
+
             }
         },
         methods: {
@@ -110,8 +139,14 @@
                     }
                 }
             },
+            facebookLogin() {
+                window.location = '/login/external/facebook';
+            },
+            googleLogin() {
+                window.location = '/login/external/google';
+            },
             register() {
-
+                this.$router.push({name: "register"});
             }
         }
     }

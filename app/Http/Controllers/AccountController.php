@@ -6,17 +6,25 @@ use Illuminate\Http\Request;
 use App\Models\Account;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use Socialite;
 
 class AccountController extends Controller
 {
     public function login()
     {
+        $external = Socialite::driver(request('provider'))->userFromToken(request('token'));
+        if ($external) {
+            $email = $external->email;
+        } else {
+            $email = request('email');
+        }
+
         $users = Account::where('category_id', request('category_id'))
-            ->where('email', request('email'))
+            ->where('email', $email)
             ->get();
         $authed = null;
         foreach ($users as $user) {
-            if (password_verify(request('password'), $user->password)) {
+            if ($external || password_verify(request('password'), $user->password)) {
                 $authed = $user;
                 break;
             }
@@ -86,7 +94,7 @@ class AccountController extends Controller
             'repeat_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 401);
+            return response()->json(['errors' => $validator->errors()], 400);
         }
 
         // check for existing account

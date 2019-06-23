@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('login/external/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/external/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('{any}/', function() {
     return view('pwa');
 })->where('any', '^(?!api).*$');

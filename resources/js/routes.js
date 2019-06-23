@@ -1,4 +1,5 @@
 import Login from "./views/Login";
+import Register from "./views/Register";
 import Schedule from './views/Schedule';
 import Members from "./views/Members";
 
@@ -14,6 +15,11 @@ export default [
         path: '/login',
         name: 'login',
         component: Login,
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register,
     },
     {
         path: '/schedule',

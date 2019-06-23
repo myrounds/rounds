@@ -195,7 +195,7 @@ class MemberController extends Controller
             return response()->json(['data' => $result], 200);
         }
         else {
-            return response()->json(['message' => 'Search error'], 401);
+            return response()->json(['data' => []], 200);
         }
     }
 }
