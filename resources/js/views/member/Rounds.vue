@@ -113,8 +113,8 @@
     import DateTime from '../../helpers/datetime';
     import Location from '../../helpers/location';
     import Storage from '../../helpers/storage';
-    import Spinner from '../../components/spinner';
-    import Modal from '../../components/modal';
+    import Spinner from '../../components/Spinner.vue';
+    import Modal from '../../components/Modal.vue';
     export default {
         components: {Spinner, Modal},
         data() {

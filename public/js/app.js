@@ -2015,6 +2015,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2110,14 +2113,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Spinner.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      day: null
-    };
-  },
-  created: function created() {},
-  methods: {}
+  props: ['loading']
 });
 
 /***/ }),
@@ -2163,15 +2180,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      day: null
-    };
-  },
-  created: function created() {},
-  methods: {}
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -2220,9 +2229,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-//
-//
-//
 //
 //
 //
@@ -2520,9 +2526,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
 //
 //
 //
@@ -2978,8 +2981,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_location__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_helpers_location__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers/storage */ "./resources/js/helpers/storage.js");
 /* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_helpers_storage__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/spinner */ "./resources/js/components/spinner.vue");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/modal */ "./resources/js/components/modal.vue");
+/* harmony import */ var _components_Spinner_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Spinner.vue */ "./resources/js/components/Spinner.vue");
+/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
 //
 //
 //
@@ -3098,8 +3101,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Spinner: _components_spinner__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Modal: _components_modal__WEBPACK_IMPORTED_MODULE_5__["default"]
+    Spinner: _components_Spinner_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Modal: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -4883,6 +4886,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("header", { attrs: { id: "header" } }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c(
       "div",
       {
@@ -4899,7 +4904,7 @@ var render = function() {
           attrs: { src: __webpack_require__(/*! ../../images/icon.svg */ "./resources/images/icon.svg"), alt: "" }
         }),
         _vm._v(" "),
-        _vm._m(0)
+        _vm._m(1)
       ]
     ),
     _vm._v(" "),
@@ -4963,13 +4968,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "logged-out" }, [
+      _c("img", { attrs: { src: __webpack_require__(/*! ../../images/login-icon.svg */ "./resources/images/login-icon.svg") } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("span", { staticClass: "appbar-search" }, [
       _c("i", { staticClass: "toggleSearch fas fa-search" }),
       _vm._v(" "),
       _c("input", {
         attrs: {
           type: "search",
-          name: "",
           id: "search_input",
           placeholder: "Search Rounds"
         }
@@ -5032,6 +5044,36 @@ var render = function() {
       ])
     ])
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.loading
+    ? _c("div", { staticClass: "spinner" }, [
+        _c("img", {
+          attrs: { src: __webpack_require__(/*! ../../images/loading.svg */ "./resources/images/loading.svg"), width: "40" }
+        })
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -5145,175 +5187,152 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "mui--appbar-height" }),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "mui-container-fluid login_screen" }, [
-      _c("div", { staticClass: "mui-panel welcome_form" }, [
-        _c("form", { staticClass: "mui-form" }, [
-          _c(
-            "div",
-            { staticClass: "mui-textfield mui-textfield--float-label" },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.email,
-                    expression: "email"
-                  }
-                ],
-                attrs: { type: "email" },
-                domProps: { value: _vm.email },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.email = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Email")])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "mui-textfield mui-textfield--float-label" },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.password,
-                    expression: "password"
-                  }
-                ],
-                attrs: { type: "password" },
-                domProps: { value: _vm.password },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.password = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Password")])
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "mui-select" }, [
-            _c(
-              "select",
+    _c("div", { staticClass: "mui-container-fluid logged-out-page" }, [
+      _c("form", { staticClass: "mui-form" }, [
+        _c("div", { staticClass: "mui-textfield mui-textfield--float-label" }, [
+          _c("input", {
+            directives: [
               {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.type,
-                    expression: "type"
-                  }
-                ],
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.type = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            attrs: { type: "email" },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              },
-              [
-                _c("option", { attrs: { value: "account" } }, [
-                  _vm._v("Account Holder")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "member" } }, [_vm._v("Member")])
-              ]
-            )
-          ]),
+                _vm.email = $event.target.value
+              }
+            }
+          }),
           _vm._v(" "),
+          _c("label", [_vm._v("Email")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mui-textfield mui-textfield--float-label" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.password,
+                expression: "password"
+              }
+            ],
+            attrs: { type: "password" },
+            domProps: { value: _vm.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.password = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Password")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mui-select" }, [
           _c(
-            "button",
+            "select",
             {
-              staticClass: "mui-btn login_btn",
-              attrs: { type: "button" },
-              on: { click: _vm.attempt }
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.type,
+                  expression: "type"
+                }
+              ],
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.type = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
             },
-            [_vm._v("Log In")]
-          ),
-          _vm._v(" "),
-          _c("div", [
-            _c(
-              "button",
-              {
-                staticClass: "mui-btn social_btn facebook",
-                attrs: { type: "button" },
-                on: { click: _vm.facebookLogin }
-              },
-              [
-                _vm._v(
-                  "\n                        Log in with Facebook\n                    "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "mui-btn social_btn google",
-                attrs: { type: "button" },
-                on: { click: _vm.googleLogin }
-              },
-              [_vm._v("Log in with Google")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "forgot_password" }, [
-            _vm._v("Forgot Password?")
-          ]),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "mui-btn reg_btn",
-              attrs: { type: "button" },
-              on: { click: _vm.register }
-            },
-            [_vm._v("Register a Rounds Account")]
+            [
+              _c("option", { attrs: { value: "account" } }, [
+                _vm._v("Account Holder")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "member" } }, [_vm._v("Member")])
+            ]
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "mui-btn login-btn",
+            attrs: { type: "button" },
+            on: { click: _vm.attempt }
+          },
+          [_vm._v("Log In")]
+        ),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "button",
+            {
+              staticClass: "mui-btn social-btn facebook",
+              attrs: { type: "button" },
+              on: { click: _vm.facebookLogin }
+            },
+            [
+              _vm._v(
+                "\n                        Log in with Facebook\n                    "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "mui-btn social-btn google",
+              attrs: { type: "button" },
+              on: { click: _vm.googleLogin }
+            },
+            [_vm._v("Log in with Google")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "forgot_password" }, [
+          _vm._v("Forgot Password?")
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "mui-btn register-btn",
+            attrs: { type: "button" },
+            on: { click: _vm.register }
+          },
+          [_vm._v("Register a Rounds Account")]
+        )
       ])
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "login_banner" }, [
-      _c("img", {
-        staticClass: "loginlogo",
-        attrs: { src: __webpack_require__(/*! ../../images/login-icon.svg */ "./resources/images/login-icon.svg") }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -5536,163 +5555,147 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "mui--appbar-height" }),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "mui-container-fluid login_screen" }, [
-      _c("div", { staticClass: "mui-panel welcome_form" }, [
-        _c("form", { staticClass: "mui-form" }, [
-          _c("div", { staticClass: "mui-textfield" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.name,
-                  expression: "name"
-                }
-              ],
-              attrs: { type: "text" },
-              domProps: { value: _vm.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.name = $event.target.value
-                }
+    _c("div", { staticClass: "mui-container-fluid logged-out-page" }, [
+      _c("form", { staticClass: "mui-form" }, [
+        _c("div", { staticClass: "mui-textfield" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
               }
-            }),
-            _vm._v(" "),
-            _c("label", [_vm._v("Name")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "mui-textfield" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.email,
-                  expression: "email"
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              ],
-              attrs: { type: "email" },
-              domProps: { value: _vm.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.email = $event.target.value
-                }
+                _vm.name = $event.target.value
               }
-            }),
-            _vm._v(" "),
-            _c("label", [_vm._v("Email")])
-          ]),
+            }
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "mui-textfield" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.phone,
-                  expression: "phone"
-                }
-              ],
-              attrs: { type: "number" },
-              domProps: { value: _vm.phone },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.phone = $event.target.value
-                }
+          _c("label", [_vm._v("Name")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mui-textfield" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
               }
-            }),
-            _vm._v(" "),
-            _c("label", [_vm._v("Phone")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "mui-textfield" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.password,
-                  expression: "password"
+            ],
+            attrs: { type: "email" },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              ],
-              attrs: { type: "password" },
-              domProps: { value: _vm.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.password = $event.target.value
-                }
+                _vm.email = $event.target.value
               }
-            }),
-            _vm._v(" "),
-            _c("label", [_vm._v("Password")])
-          ]),
+            }
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "mui-textfield" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.repeat_password,
-                  expression: "repeat_password"
-                }
-              ],
-              attrs: { type: "password" },
-              domProps: { value: _vm.repeat_password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.repeat_password = $event.target.value
-                }
+          _c("label", [_vm._v("Email")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mui-textfield" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.phone,
+                expression: "phone"
               }
-            }),
-            _vm._v(" "),
-            _c("label", [_vm._v("Repeat Password")])
-          ]),
+            ],
+            attrs: { type: "number" },
+            domProps: { value: _vm.phone },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.phone = $event.target.value
+              }
+            }
+          }),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "mui-btn login_btn",
-              attrs: { type: "button" },
-              on: { click: _vm.register }
-            },
-            [_vm._v("\n                    Register\n                ")]
-          )
-        ])
+          _c("label", [_vm._v("Phone")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mui-textfield" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.password,
+                expression: "password"
+              }
+            ],
+            attrs: { type: "password" },
+            domProps: { value: _vm.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.password = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Password")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mui-textfield" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.repeat_password,
+                expression: "repeat_password"
+              }
+            ],
+            attrs: { type: "password" },
+            domProps: { value: _vm.repeat_password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.repeat_password = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Repeat Password")])
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "mui-btn login_btn",
+            attrs: { type: "button" },
+            on: { click: _vm.register }
+          },
+          [_vm._v("\n                Register\n            ")]
+        )
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "login_banner" }, [
-      _c("img", {
-        staticClass: "loginlogo",
-        attrs: { src: __webpack_require__(/*! ../../images/login-icon.svg */ "./resources/images/login-icon.svg") }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -24097,6 +24100,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_template_id_53ab54d2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_template_id_53ab54d2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Spinner.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Spinner.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Spinner_vue_vue_type_template_id_7ae326fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Spinner.vue?vue&type=template&id=7ae326fe& */ "./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&");
+/* harmony import */ var _Spinner_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Spinner.vue?vue&type=script&lang=js& */ "./resources/js/components/Spinner.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Spinner_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Spinner_vue_vue_type_template_id_7ae326fe___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Spinner_vue_vue_type_template_id_7ae326fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Spinner.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Spinner.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Spinner.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Spinner.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Spinner.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_template_id_7ae326fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Spinner.vue?vue&type=template&id=7ae326fe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Spinner.vue?vue&type=template&id=7ae326fe&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_template_id_7ae326fe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Spinner_vue_vue_type_template_id_7ae326fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

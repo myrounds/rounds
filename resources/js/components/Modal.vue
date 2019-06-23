@@ -31,15 +31,5 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                day: null
-            };
-        },
-        created() {
-        },
-        methods: {
-        }
-    }
+    export default {}
 </script>

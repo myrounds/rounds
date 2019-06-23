@@ -1,17 +1,19 @@
 <template>
     <header id="header">
+
+        <div class="logged-out">
+            <img src="../../images/login-icon.svg">
+        </div>
+
         <div class="mui-appbar mui--appbar-line-height" :class="{ 'slide-up-hd': slideUpHeader }">
             <span class="sidedrawer-toggle js-show-sidedrawer"></span>
             <span class="sidedrawer-toggle js-hide-sidedrawer"></span>
             <img src='../../images/icon.svg' alt='' class='logo'>
             <span class="appbar-search">
                 <i class='toggleSearch fas fa-search'></i>
-                <input type='search' name='' id='search_input' placeholder='Search Rounds' class=''>
+                <input type='search' id='search_input' placeholder='Search Rounds'>
             </span>
-
         </div>
-
-
 
         <div id='date-bar' @click="showDaySelector" :class="{ 'hidden':dateBarHidden }">
             <!--<span class='display-day'>{{selectedDay || 'Whole Week'}}</span>-->
@@ -29,6 +31,7 @@
                 </ul>
             </span>
         </div>
+
     </header>
 </template>
 

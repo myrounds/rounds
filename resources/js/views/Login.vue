@@ -1,10 +1,8 @@
 <template>
     <div>
         <div class="mui--appbar-height"></div>
-        <div class='login_banner'><img src='../../images/login-icon.svg' class='loginlogo'></div>
-        <div class="mui-container-fluid login_screen">
+        <div class="mui-container-fluid logged-out-page">
 
-            <div class="mui-panel welcome_form">
                 <form class="mui-form">
                     
                     <div class="mui-textfield mui-textfield--float-label">
@@ -21,20 +19,19 @@
                             <option value="member">Member</option>
                         </select>
                     </div>
-                    <button type="button" class="mui-btn login_btn" v-on:click="attempt">Log In</button>
+                    <button type="button" class="mui-btn login-btn" v-on:click="attempt">Log In</button>
                     <div>
-                        <button type="button" class="mui-btn social_btn facebook" v-on:click="facebookLogin">
+                        <button type="button" class="mui-btn social-btn facebook" v-on:click="facebookLogin">
                             Log in with Facebook
                         </button>
-                        <button type="button" class="mui-btn social_btn google" v-on:click="googleLogin">Log in with Google</button>
+                        <button type="button" class="mui-btn social-btn google" v-on:click="googleLogin">Log in with Google</button>
                     </div>
                     <div class='forgot_password'>Forgot Password?</div>
                     <div class='divider'><span></span><b>OR</b></div>
-                    <button type="button" class="mui-btn reg_btn" v-on:click="register">Register a Rounds Account</button>
+                    <button type="button" class="mui-btn register-btn" v-on:click="register">Register a Rounds Account</button>
                 </form>
             </div>
-            
-        </div>
+
     </div>
 </template>
 
