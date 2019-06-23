@@ -64,7 +64,7 @@
                         const payload = response.data;
                         const user = payload.data;
 
-                        this.$router.push({name: "login"});
+                        this.$router.push({name: "login.account"});
                         this.$msg("Account created successfully");
                     })
                     .catch(error => {

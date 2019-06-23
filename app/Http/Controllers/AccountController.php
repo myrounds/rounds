@@ -14,6 +14,7 @@ class AccountController extends Controller
     {
         $provider = request('provider');
         $email = request('email');
+        $external = null;
         if ($provider) {
             $external = Socialite::driver($provider)->userFromToken(request('token'));
             if ($external) {

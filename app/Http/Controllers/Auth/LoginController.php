@@ -13,8 +13,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider($provider)
+    public function redirectToProvider($provider, $type)
     {
+        session(['user-type' => $type]);
+
         return Socialite::driver($provider)->redirect();
     }
 
@@ -26,12 +28,13 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
+        $type = session('user-type');
 
         if ($user) {
             $params = 'provider=' . $provider . '&token=' . $user->token;
         } else {
             $params = 'external-login-error';
         }
-        return redirect('login?' . $params);
+        return redirect('login/' . $type . '?' . $params);
     }
 }

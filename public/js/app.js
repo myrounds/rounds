@@ -1910,11 +1910,11 @@ __webpack_require__.r(__webpack_exports__);
       _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default.a.clear('user');
       _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default.a.clear('members');
       _helpers_events__WEBPACK_IMPORTED_MODULE_1___default.a.dispatch('account-changed', null);
+      this.$router.push({
+        name: "login.".concat(this.type)
+      });
       this.type = null;
       this.members = null;
-      this.$router.push({
-        name: "login"
-      });
       this.$msg('Logout successful');
     },
     filterMembers: function filterMembers(event) {
@@ -2273,6 +2273,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2288,14 +2292,21 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     };
   },
   created: function created() {
-    var _this = this;
-
+    this.type = this.$route.name.replace('login.', '');
     var user = _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default.a.get('user');
 
     if (user && user.type) {
-      this.type = user.type;
       this.login(user);
     } else {
+      this.attemptExternal();
+    }
+  },
+  methods: {
+    attemptExternal: function attemptExternal() {
+      var _this = this;
+
+      this.error = null;
+      this.loading = true;
       var query = this.$route.query;
 
       if (_typeof(query) === 'object' && query.provider && query.token) {
@@ -2321,10 +2332,9 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             _this.$msg(payload.message);
           }
         });
+        window.history.replaceState({}, document.title, window.location.href.split("?")[0]);
       }
-    }
-  },
-  methods: {
+    },
     attempt: function attempt() {
       var _this2 = this;
 
@@ -2389,10 +2399,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       }
     },
     facebookLogin: function facebookLogin() {
-      window.location = '/login/external/facebook';
+      window.location = "/login/external/facebook/".concat(this.type);
     },
     googleLogin: function googleLogin() {
-      window.location = '/login/external/google';
+      window.location = "/login/external/google/".concat(this.type);
     },
     register: function register() {
       this.$router.push({
@@ -2598,7 +2608,7 @@ __webpack_require__.r(__webpack_exports__);
         var user = payload.data;
 
         _this.$router.push({
-          name: "login"
+          name: "login.account"
         });
 
         _this.$msg("Account created successfully");
@@ -5241,44 +5251,6 @@ var render = function() {
           _c("label", [_vm._v("Password")])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "mui-select" }, [
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.type,
-                  expression: "type"
-                }
-              ],
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.type = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", { attrs: { value: "account" } }, [
-                _vm._v("Account Holder")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "member" } }, [_vm._v("Member")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
         _c(
           "button",
           {
@@ -5311,7 +5283,11 @@ var render = function() {
               attrs: { type: "button" },
               on: { click: _vm.googleLogin }
             },
-            [_vm._v("Log in with Google")]
+            [
+              _vm._v(
+                "\n                        Log in with Google\n                    "
+              )
+            ]
           )
         ]),
         _vm._v(" "),
@@ -5319,17 +5295,25 @@ var render = function() {
           _vm._v("Forgot Password?")
         ]),
         _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "mui-btn register-btn",
-            attrs: { type: "button" },
-            on: { click: _vm.register }
-          },
-          [_vm._v("Register a Rounds Account")]
-        )
+        _vm.type === "account"
+          ? _c("div", [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "mui-btn register-btn",
+                  attrs: { type: "button" },
+                  on: { click: _vm.register }
+                },
+                [
+                  _vm._v(
+                    "\n                        Register a Rounds Account\n                    "
+                  )
+                ]
+              )
+            ])
+          : _vm._e()
       ])
     ])
   ])
@@ -24595,11 +24579,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
-  name: 'home',
+  name: 'login.account',
   component: _views_Login__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   path: '/login',
-  name: 'login',
+  name: 'login.account',
+  component: _views_Login__WEBPACK_IMPORTED_MODULE_0__["default"]
+}, {
+  path: '/login/account',
+  name: 'login.account',
+  component: _views_Login__WEBPACK_IMPORTED_MODULE_0__["default"]
+}, {
+  path: '/login/member',
+  name: 'login.member',
   component: _views_Login__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   path: '/register',

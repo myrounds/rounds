@@ -8,12 +8,22 @@ import MemberRounds from "./views/member/Rounds";
 export default [
     {
         path: '/',
-        name: 'home',
+        name: 'login.account',
         component: Login,
     },
     {
         path: '/login',
-        name: 'login',
+        name: 'login.account',
+        component: Login,
+    },
+    {
+        path: '/login/account',
+        name: 'login.account',
+        component: Login,
+    },
+    {
+        path: '/login/member',
+        name: 'login.member',
         component: Login,
     },
     {

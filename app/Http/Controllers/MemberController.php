@@ -6,15 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use Socialite;
 
 class MemberController extends Controller
 {
     public function login()
     {
-        $users = Member::where('email', request('email'))->get();
+        $provider = request('provider');
+        $email = request('email');
+        $external = null;
+        if ($provider) {
+            $external = Socialite::driver($provider)->userFromToken(request('token'));
+            if ($external) {
+                $email = $external->email;
+            }
+        }
+
+
+        $users = Member::where('email', $email)->get();
         $authed = null;
         foreach ($users as $user) {
-            if (password_verify(request('password'), $user->password)) {
+            if ($external || password_verify(request('password'), $user->password)) {
                 $authed = $user;
                 break;
             }

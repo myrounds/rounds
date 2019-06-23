@@ -13,22 +13,26 @@
                         <input type="password" v-model="password">
                          <label>Password</label>
                     </div>
-                    <div class="mui-select">
-                        <select v-model="type">
-                            <option value="account">Account Holder</option>
-                            <option value="member">Member</option>
-                        </select>
-                    </div>
                     <button type="button" class="mui-btn login-btn" v-on:click="attempt">Log In</button>
                     <div>
                         <button type="button" class="mui-btn social-btn facebook" v-on:click="facebookLogin">
                             Log in with Facebook
                         </button>
-                        <button type="button" class="mui-btn social-btn google" v-on:click="googleLogin">Log in with Google</button>
+                        <button type="button" class="mui-btn social-btn google" v-on:click="googleLogin">
+                            Log in with Google
+                        </button>
                     </div>
                     <div class='forgot_password'>Forgot Password?</div>
-                    <div class='divider'><span></span><b>OR</b></div>
-                    <button type="button" class="mui-btn register-btn" v-on:click="register">Register a Rounds Account</button>
+
+                    <div v-if="type === 'account'">
+                        <div class='divider'>
+                            <span></span><b>OR</b>
+                        </div>
+                        <button type="button" class="mui-btn register-btn" v-on:click="register">
+                            Register a Rounds Account
+                        </button>
+                    </div>
+
                 </form>
             </div>
 
@@ -51,11 +55,19 @@
             };
         },
         created() {
+            this.type = this.$route.name.replace('login.', '');
             const user = storage.get('user');
+
             if (user && user.type) {
-                this.type = user.type;
                 this.login(user);
             } else {
+                this.attemptExternal();
+            }
+        },
+        methods: {
+            attemptExternal() {
+                this.error = null;
+                this.loading = true;
 
                 const query = this.$route.query;
                 if (typeof query === 'object' && query.provider && query.token) {
@@ -79,11 +91,9 @@
                                 this.$msg(payload.message);
                             }
                         });
+                    window.history.replaceState({}, document.title, window.location.href.split("?")[0]);
                 }
-
-            }
-        },
-        methods: {
+            },
             attempt() {
                 this.error = null;
                 this.loading = true;
@@ -136,10 +146,10 @@
                 }
             },
             facebookLogin() {
-                window.location = '/login/external/facebook';
+                window.location = `/login/external/facebook/${this.type}`;
             },
             googleLogin() {
-                window.location = '/login/external/google';
+                window.location = `/login/external/google/${this.type}`;
             },
             register() {
                 this.$router.push({name: "register"});
