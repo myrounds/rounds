@@ -9,7 +9,7 @@
         </div>
         <div class="mui-divider"></div>
         <div class='sidedrawer-username'>
-            <span>Hi, <b>Human</b></span>
+            <span>Hi, <b>{{name || ''}}</b></span>
             <i class='fas fa-toggle-on' id='user_status' data-status='active' title='active'></i>
         </div>
         <ul>
@@ -53,6 +53,7 @@
     export default {
         data() {
             return {
+                name: '',
                 type: null,
                 members: [],
                 showScheduleMembers: false
@@ -61,9 +62,15 @@
         created() {
             const user = storage.get('user');
             if (user && user.type) {
-                this.type = user.type
+                this.name = user.name;
+                this.type = user.type;
             }
-            Events.addListener('account-changed', data => { this.type = data.user.type });
+            Events.addListener('account-changed', data => {
+                if (data) {
+                    this.name = data.user.name;
+                    this.type = data.user.type
+                }
+            });
 
             const members = storage.get('members');
             if (members) {

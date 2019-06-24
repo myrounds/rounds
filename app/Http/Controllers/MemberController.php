@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use Socialite;
 
@@ -96,11 +97,11 @@ class MemberController extends Controller
             'notes' => '',
             'lat' => 'numeric',
             'lon' => 'numeric',
-            'password' => 'required',
-            'repeat_password' => 'required|same:password',
+            'password' => '',
+            'repeat_password' => '',
         ]);
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 401);
+            return response()->json(['errors' => $validator->errors()], 400);
         }
 
         // check for existing member
@@ -123,6 +124,9 @@ class MemberController extends Controller
             $userData['account_id'] = $user['account_id'];
         }
 
+        if (!isset($input['password'])) {
+            $input['password'] = Hash::make(str_random(8));
+        }
         $input['password'] = bcrypt($input['password']);
 
         $member = Member::create(array_merge($input, $userData));

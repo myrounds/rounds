@@ -55,7 +55,7 @@
             };
         },
         created() {
-            this.type = this.$route.name.replace('login.', '');
+            this.type = this.$route.name === 'login.member' ? 'member' : 'account';
             const user = storage.get('user');
 
             if (user && user.type) {

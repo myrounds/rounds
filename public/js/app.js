@@ -1878,6 +1878,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      name: '',
       type: null,
       members: [],
       showScheduleMembers: false
@@ -1889,11 +1890,15 @@ __webpack_require__.r(__webpack_exports__);
     var user = _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default.a.get('user');
 
     if (user && user.type) {
+      this.name = user.name;
       this.type = user.type;
     }
 
     _helpers_events__WEBPACK_IMPORTED_MODULE_1___default.a.addListener('account-changed', function (data) {
-      _this.type = data.user.type;
+      if (data) {
+        _this.name = data.user.name;
+        _this.type = data.user.type;
+      }
     });
     var members = _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default.a.get('members');
 
@@ -2039,6 +2044,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.date = _helpers_datetime__WEBPACK_IMPORTED_MODULE_0___default.a.getCurrentDate();
     this.currentDay = _helpers_datetime__WEBPACK_IMPORTED_MODULE_0___default.a.getCurrentDay();
+    this.setIsLoggedIn();
     _helpers_events__WEBPACK_IMPORTED_MODULE_1___default.a.addListener('account-changed', this.onAccountChanged);
     $(window).scroll(function () {
       var scroll = $(window).scrollTop();
@@ -2061,8 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onAccountChanged: function onAccountChanged() {
-      var user = _helpers_storage__WEBPACK_IMPORTED_MODULE_2___default.a.get('user');
-      this.isLoggedIn = user && user.id;
+      this.setIsLoggedIn();
     },
     showDaySelector: function showDaySelector() {
       this.daySelectorOpened = !this.daySelectorOpened;
@@ -2073,6 +2078,10 @@ __webpack_require__.r(__webpack_exports__);
       _helpers_events__WEBPACK_IMPORTED_MODULE_1___default.a.dispatch('filters-changed', {
         day: this.selectedDay
       });
+    },
+    setIsLoggedIn: function setIsLoggedIn() {
+      var user = _helpers_storage__WEBPACK_IMPORTED_MODULE_2___default.a.get('user');
+      this.isLoggedIn = user && user.id;
     }
   }
 });
@@ -2292,7 +2301,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     };
   },
   created: function created() {
-    this.type = this.$route.name.replace('login.', '');
+    this.type = this.$route.name === 'login.member' ? 'member' : 'account';
     var user = _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default.a.get('user');
 
     if (user && user.type) {
@@ -2423,9 +2432,15 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/storage */ "./resources/js/helpers/storage.js");
-/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_helpers_storage__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Modal */ "./resources/js/components/Modal.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/storage */ "./resources/js/helpers/storage.js");
+/* harmony import */ var _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_helpers_storage__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/api */ "./resources/js/helpers/api.js");
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_helpers_api__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _helpers_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/events */ "./resources/js/helpers/events.js");
+/* harmony import */ var _helpers_events__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_helpers_events__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Modal */ "./resources/js/components/Modal.vue");
 //
 //
 //
@@ -2495,22 +2510,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Modal: _components_Modal__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Modal: _components_Modal__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
       loading: false,
       members: [],
       selected: {},
-      showManageMember: false
+      showManageMember: false,
+      name: null,
+      errors: {}
     };
   },
   created: function created() {
-    this.members = _helpers_storage__WEBPACK_IMPORTED_MODULE_0___default.a.get('members');
+    this.members = _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default.a.get('members');
     this.error = this.users = null;
     this.loading = true;
   },
@@ -2522,9 +2549,45 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.showManageMember = true;
     },
-    createMember: function createMember() {
+    showCreateMember: function showCreateMember() {
       this.selected = {};
       this.showManageMember = true;
+    },
+    saveMember: function saveMember() {
+      var _this = this;
+
+      Object.keys(this.selected).forEach(function (key) {
+        return _this.selected[key] == null && delete _this.selected[key];
+      }); // todo: use Object.clean();
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a[this.selected.id ? 'put' : 'post']("/api/members/".concat(this.selected.id ? "update/".concat(this.selected.id) : 'create'), this.selected).then(function (response) {
+        var payload = response.data;
+        var member = payload.data;
+
+        _this.$msg("Member ".concat(_this.selected.id ? 'updated' : 'added', " successfully"));
+
+        _this.showManageMember = false;
+        _this.selected = {};
+        _helpers_api__WEBPACK_IMPORTED_MODULE_2___default.a.updateMembers(axios__WEBPACK_IMPORTED_MODULE_0___default.a, _helpers_storage__WEBPACK_IMPORTED_MODULE_1___default.a).then(function (members) {
+          _helpers_events__WEBPACK_IMPORTED_MODULE_3___default.a.dispatch('members-changed', {
+            members: members
+          });
+        })["catch"](function (error) {
+          if (error.message) {
+            _this.$msg(error.message);
+          }
+        });
+      })["catch"](function (error) {
+        var payload = error.response.data;
+
+        if (payload.message) {
+          _this.$msg(payload.message);
+        }
+
+        if (payload.errors) {
+          _this.errors = payload.errors;
+        }
+      });
     }
   }
 });
@@ -2578,24 +2641,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       loading: false,
-      error: null,
       name: '',
       email: '',
       phone: '',
       password: '',
       repeat_password: '',
-      type: 'account'
+      type: 'account',
+      errors: {}
     };
   },
   methods: {
-    register: function register() {
+    register: function register(event) {
       var _this = this;
 
+      event.preventDefault();
+      this.errors = {};
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/accounts/create", {
         category_id: 1,
         name: this.name,
@@ -2620,7 +2690,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         if (payload.errors) {
-          _this.$msg(JSON.stringify(payload.errors));
+          _this.errors = payload.errors;
         }
       });
     }
@@ -4693,7 +4763,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "mui-divider" }),
       _vm._v(" "),
-      _vm._m(1),
+      _c("div", { staticClass: "sidedrawer-username" }, [
+        _c("span", [_vm._v("Hi, "), _c("b", [_vm._v(_vm._s(_vm.name || ""))])]),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "fas fa-toggle-on",
+          attrs: { id: "user_status", "data-status": "active", title: "active" }
+        })
+      ]),
       _vm._v(" "),
       _c("ul", [
         !_vm.type
@@ -4798,7 +4875,7 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(1)
     ]
   )
 }
@@ -4818,19 +4895,6 @@ var staticRenderFns = [
       _c("img", {
         staticClass: "user-profile",
         attrs: { src: __webpack_require__(/*! ../../images/human.svg */ "./resources/images/human.svg") }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sidedrawer-username" }, [
-      _c("span", [_vm._v("Hi, "), _c("b", [_vm._v("Human")])]),
-      _vm._v(" "),
-      _c("i", {
-        staticClass: "fas fa-toggle-on",
-        attrs: { id: "user_status", "data-status": "active", title: "active" }
       })
     ])
   },
@@ -5359,7 +5423,7 @@ var render = function() {
       _c("div", { staticClass: "mui-container-fluid" }, [
         _c(
           "button",
-          { staticClass: "add_assignee", on: { click: _vm.createMember } },
+          { staticClass: "add-member", on: { click: _vm.showCreateMember } },
           [_c("i", { staticClass: "fas fa-user-plus" })]
         ),
         _vm._v(" "),
@@ -5372,25 +5436,22 @@ var render = function() {
             _vm._l(_vm.members, function(member) {
               return _c(
                 "div",
-                {
-                  staticClass: "row member_row",
-                  on: { click: _vm.selectMember }
-                },
+                { staticClass: "row", on: { click: _vm.selectMember } },
                 [
                   _c("div", { staticClass: "col", attrs: { id: member.id } }, [
-                    _vm._v(_vm._s(member.name))
+                    _vm._v(_vm._s(member.name || "-"))
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col", attrs: { id: member.id } }, [
-                    _vm._v(_vm._s(member.email))
+                    _vm._v(_vm._s(member.email || "-"))
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col", attrs: { id: member.id } }, [
-                    _vm._v(_vm._s(member.phone))
+                    _vm._v(_vm._s(member.phone || "-"))
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col", attrs: { id: member.id } }, [
-                    _vm._v(_vm._s(member.license_plate))
+                    _vm._v(_vm._s(member.license_plate || "-"))
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col", attrs: { id: member.id } }, [
@@ -5424,72 +5485,210 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-                _c(
-                  "div",
-                  { staticClass: "mui-textfield mui-textfield--float-label" },
-                  [
-                    _c("input", {
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.selected.name }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Name")])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "mui-textfield mui-textfield--float-label" },
-                  [
-                    _c("input", {
-                      attrs: { type: "email" },
-                      domProps: { value: _vm.selected.email }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Email")])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "mui-textfield mui-textfield--float-label" },
-                  [
-                    _c("input", {
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.selected.phone }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Phone")])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "mui-textfield mui-textfield--float-label" },
-                  [
-                    _c("input", {
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.selected.license_plate }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("License Plate")])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "mui-textfield" }, [
-                  _c("textarea", [_vm._v(_vm._s(_vm.selected.notes))]),
+                _c("form", { staticClass: "mui-form" }, [
+                  _c(
+                    "div",
+                    { staticClass: "mui-textfield" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected.name,
+                            expression: "selected.name"
+                          }
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.selected.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.selected, "name", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _vm._l(this.errors.name, function(error) {
+                        return _c("div", { staticClass: "error" }, [
+                          _vm._v(_vm._s(error))
+                        ])
+                      })
+                    ],
+                    2
+                  ),
                   _vm._v(" "),
-                  _c("label", [_vm._v("Notes")])
-                ]),
-                _vm._v(" "),
-                _c("button", { staticClass: "mui-btn mui-btn--raised" }, [
-                  _vm._v("Save")
-                ]),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("button", { staticClass: "mui-btn mui-btn--raised" }, [
-                  _vm._v("Set Password")
+                  _c(
+                    "div",
+                    { staticClass: "mui-textfield" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected.email,
+                            expression: "selected.email"
+                          }
+                        ],
+                        attrs: { type: "email" },
+                        domProps: { value: _vm.selected.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.selected, "email", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Email")]),
+                      _vm._v(" "),
+                      _vm._l(this.errors.email, function(error) {
+                        return _c("div", { staticClass: "error" }, [
+                          _vm._v(_vm._s(error))
+                        ])
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "mui-textfield" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected.phone,
+                            expression: "selected.phone"
+                          }
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.selected.phone },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.selected, "phone", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Phone")]),
+                      _vm._v(" "),
+                      _vm._l(this.errors.phone, function(error) {
+                        return _c("div", { staticClass: "error" }, [
+                          _vm._v(_vm._s(error))
+                        ])
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "mui-textfield" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected.license_plate,
+                            expression: "selected.license_plate"
+                          }
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.selected.license_plate },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.selected,
+                              "license_plate",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("License Plate")]),
+                      _vm._v(" "),
+                      _vm._l(this.errors.license_plate, function(error) {
+                        return _c("div", { staticClass: "error" }, [
+                          _vm._v(_vm._s(error))
+                        ])
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "mui-textfield" },
+                    [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected.notes,
+                            expression: "selected.notes"
+                          }
+                        ],
+                        domProps: { value: _vm.selected.notes },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.selected, "notes", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Notes")]),
+                      _vm._v(" "),
+                      _vm._l(this.errors.notes, function(error) {
+                        return _c("div", { staticClass: "error" }, [
+                          _vm._v(_vm._s(error))
+                        ])
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "mui-btn mui-btn--raised",
+                      attrs: { type: "button" },
+                      on: { click: _vm.saveMember }
+                    },
+                    [_vm._v("Save")]
+                  ),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "mui-btn mui-btn--raised",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Reset Password")]
+                  )
                 ])
               ])
             ]
@@ -5504,7 +5703,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row  member_row header" }, [
+    return _c("div", { staticClass: "row header" }, [
       _c("div", { staticClass: "col" }, [_vm._v("Name")]),
       _vm._v(" "),
       _c("div", { staticClass: "col" }, [_vm._v("Email")]),
@@ -5543,130 +5742,185 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "mui-container-fluid logged-out-page" }, [
       _c("form", { staticClass: "mui-form" }, [
-        _c("div", { staticClass: "mui-textfield" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.name,
-                expression: "name"
-              }
-            ],
-            attrs: { type: "text" },
-            domProps: { value: _vm.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "mui-textfield" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name"
                 }
-                _vm.name = $event.target.value
+              ],
+              attrs: { type: "text", required: "" },
+              domProps: { value: _vm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", [_vm._v("Name")])
-        ]),
+            }),
+            _vm._v(" "),
+            _c("label", [_vm._v("Name")]),
+            _vm._v(" "),
+            _vm._l(this.errors.name, function(error) {
+              return _c("div", { staticClass: "error" }, [
+                _vm._v(_vm._s(error))
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "mui-textfield" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.email,
-                expression: "email"
-              }
-            ],
-            attrs: { type: "email" },
-            domProps: { value: _vm.email },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "mui-textfield" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email"
                 }
-                _vm.email = $event.target.value
+              ],
+              attrs: { type: "email", required: "" },
+              domProps: { value: _vm.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", [_vm._v("Email")])
-        ]),
+            }),
+            _vm._v(" "),
+            _c("label", [_vm._v("Email")]),
+            _vm._v(" "),
+            _vm._l(this.errors.email, function(error) {
+              return _c("div", { staticClass: "error" }, [
+                _vm._v(_vm._s(error))
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "mui-textfield" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.phone,
-                expression: "phone"
-              }
-            ],
-            attrs: { type: "number" },
-            domProps: { value: _vm.phone },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "mui-textfield" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.phone,
+                  expression: "phone"
                 }
-                _vm.phone = $event.target.value
+              ],
+              attrs: { type: "tel", required: "" },
+              domProps: { value: _vm.phone },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.phone = $event.target.value
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", [_vm._v("Phone")])
-        ]),
+            }),
+            _vm._v(" "),
+            _c("label", [_vm._v("Phone")]),
+            _vm._v(" "),
+            _vm._l(this.errors.phone, function(error) {
+              return _c("div", { staticClass: "error" }, [
+                _vm._v(_vm._s(error))
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "mui-textfield" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.password,
-                expression: "password"
-              }
-            ],
-            attrs: { type: "password" },
-            domProps: { value: _vm.password },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "mui-textfield" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.password,
+                  expression: "password"
                 }
-                _vm.password = $event.target.value
+              ],
+              attrs: { type: "password", required: "" },
+              domProps: { value: _vm.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.password = $event.target.value
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", [_vm._v("Password")])
-        ]),
+            }),
+            _vm._v(" "),
+            _c("label", [_vm._v("Password")]),
+            _vm._v(" "),
+            _vm._l(this.errors.password, function(error) {
+              return _c("div", { staticClass: "error" }, [
+                _vm._v(_vm._s(error))
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "mui-textfield" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.repeat_password,
-                expression: "repeat_password"
-              }
-            ],
-            attrs: { type: "password" },
-            domProps: { value: _vm.repeat_password },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "mui-textfield" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.repeat_password,
+                  expression: "repeat_password"
                 }
-                _vm.repeat_password = $event.target.value
+              ],
+              attrs: { type: "password", required: "" },
+              domProps: { value: _vm.repeat_password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.repeat_password = $event.target.value
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", [_vm._v("Repeat Password")])
-        ]),
+            }),
+            _vm._v(" "),
+            _c("label", [_vm._v("Repeat Password")]),
+            _vm._v(" "),
+            _vm._l(this.errors.repeat_password, function(error) {
+              return _c("div", { staticClass: "error" }, [
+                _vm._v(_vm._s(error))
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
         _c(
           "button",
@@ -24579,11 +24833,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
-  name: 'login.account',
+  name: 'home',
   component: _views_Login__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   path: '/login',
-  name: 'login.account',
+  name: 'login',
   component: _views_Login__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   path: '/login/account',

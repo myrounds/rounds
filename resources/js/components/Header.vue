@@ -54,10 +54,9 @@
         created() {
             this.date = DateTime.getCurrentDate();
             this.currentDay = DateTime.getCurrentDay();
+            this.setIsLoggedIn();
 
             Events.addListener('account-changed', this.onAccountChanged);
-
-
 
             $(window).scroll(() => {
                 const scroll = $(window).scrollTop();
@@ -78,8 +77,7 @@
         },
         methods: {
             onAccountChanged() {
-                const user = Storage.get('user');
-                this.isLoggedIn = user && user.id;
+                this.setIsLoggedIn();
             },
             showDaySelector() {
                 this.daySelectorOpened = !this.daySelectorOpened;
@@ -90,6 +88,10 @@
                 this.selectedDay = day === '' ? null : day;
 
                 Events.dispatch('filters-changed', { day: this.selectedDay });
+            },
+            setIsLoggedIn() {
+                const user = Storage.get('user');
+                this.isLoggedIn = user && user.id;
             }
         }
     }
