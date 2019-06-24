@@ -19,7 +19,7 @@
 
             <li v-if="type != null">
                 <div @click="toggleScheduleMembers">
-                    <router-link class="section" :to="{ name: 'schedule' }"> <i class="fas fa-dot-circle"></i>Filter Rounds</router-link>
+                    <router-link class="section" :to="{ name: 'schedule' }"> <i class="fas fa-dot-circle"></i>Schedule Rounds</router-link>
                 </div>
 
 
@@ -34,7 +34,7 @@
                 <router-link
                     class="section"
                     v-if="type === 'account'"
-                    :to="{ name: 'members' }"><i class="fas fa-users"></i>Manage Assignees</router-link>
+                    :to="{ name: 'members' }"><i class="fas fa-users"></i>Manage Members</router-link>
             </li>
 
             <li v-if="type" class='logout'>

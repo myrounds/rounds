@@ -987,10 +987,6 @@ ul#members_ul li:nth-child(even) {
       margin-left: -10px;
       margin-right: -10px;
       margin-bottom: 10px;
-      @media (min-width: 768px) {
-        position: absolute;
-      }      
-      
 
       h4 {
         margin-top: 0.5rem;
@@ -1051,7 +1047,7 @@ ul#members_ul li:nth-child(even) {
     padding-bottom: 170px;
     width: 90%;
     @media (min-width: 768px) {
-      width: calc(20% - 10px);
+      width: 300px;
     }
     overflow-x: hidden;
 

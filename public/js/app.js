@@ -4803,7 +4803,7 @@ var render = function() {
                       },
                       [
                         _c("i", { staticClass: "fas fa-dot-circle" }),
-                        _vm._v("Filter Rounds")
+                        _vm._v("Schedule Rounds")
                       ]
                     )
                   ],
@@ -4856,7 +4856,7 @@ var render = function() {
                       },
                       [
                         _c("i", { staticClass: "fas fa-users" }),
-                        _vm._v("Manage Assignees")
+                        _vm._v("Manage Members")
                       ]
                     )
                   : _vm._e()

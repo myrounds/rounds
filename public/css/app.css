@@ -11658,12 +11658,6 @@ ul#members_ul li:nth-child(even) {
   margin-bottom: 10px;
 }
 
-@media (min-width: 768px) {
-  .schedule-week .week-grid .mui-row {
-    position: absolute;
-  }
-}
-
 .schedule-week .week-grid .mui-row h4 {
   margin-top: 0.5rem;
   color: var(--secondaryColor);
@@ -11724,7 +11718,7 @@ ul#members_ul li:nth-child(even) {
 
 @media (min-width: 768px) {
   .schedule-week .day-col {
-    width: calc(20% - 10px);
+    width: 300px;
   }
 }
 
