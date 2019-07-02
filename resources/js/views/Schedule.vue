@@ -144,38 +144,108 @@
             </h3>
             <div slot="body">
 
-                TASK CREATE FORM GOES HERE
+                <div class="task-modal-block">
+                    <!-- name text input -->
+                    <div class="mui-textfield mui-textfield--float-label">
+                        <input type="text">
+                        <label>Task Name</label>
+                    </div>
 
-                <!-- text input -->
-                <div class="mui-textfield mui-textfield--float-label">
-                    <input type="text">
-                    <label>Text Field</label>
+                    <!-- time select -->
+                    <div>
+
+                        <!--<div class="mui-select day">-->
+                            <!--<select>-->
+                                <!--<option value="monday">Monday</option>-->
+                                <!--<option value="tuesday">Tuesday</option>-->
+                                <!--<option value="wednesday">Wednesday</option>-->
+                                <!--<option value="thursday">Thursday</option>-->
+                                <!--<option value="friday">Friday</option>-->
+                                <!--<option value="saturday">Saturday</option>-->
+                                <!--<option value="sunday">Sunday</option>-->
+                            <!--</select>-->
+                            <!--<label>Day</label>-->
+                        <!--</div>-->
+
+                        <div class="mui-select hour">
+                            <select>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <label>Hour</label>
+                        </div>
+                        <div class="mui-select min">
+                            <select>
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                            </select>
+                            <label>Min</label>
+                        </div>
+                        <div class="mui-select am-pm">
+                            <select>
+                                <option value="am">AM</option>
+                                <option value="pm">PM</option>
+                            </select>
+                            <label></label>
+                        </div>
+
+                        <!-- repeat checkbox -->
+                        <div class="mui-checkbox repeat">
+                            <label>
+                                <input type="checkbox" value="">
+                                Repeat Weekly
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- address text input -->
+                    <div class="mui-textfield mui-textfield--float-label">
+                        <input type="text">
+                        <label>Place/ Address</label>
+                    </div>
+
+                    <!-- email text input -->
+                    <div class="mui-textfield mui-textfield--float-label">
+                        <input type="email">
+                        <label>Contact Email</label>
+                    </div>
+
+                    <!-- phone text input -->
+                    <div class="mui-textfield mui-textfield--float-label">
+                        <input type="number">
+                        <label>Contact Phone</label>
+                    </div>
+
+                    <!-- member text input -->
+                    <div class="mui-textfield mui-textfield--float-label">
+                        <input type="text">
+                        <label>Assign Member</label>
+                    </div>
                 </div>
 
-                <!-- textarea -->
-                <div class="mui-textfield">
-                    <textarea placeholder="Textarea"></textarea>
+                <div class="task-modal-block">
+                    <!-- notes textarea -->
+                    <div class="mui-textfield notes">
+                        <textarea placeholder="Notes"></textarea>
+                    </div>
                 </div>
 
-                <!-- select -->
-                <div class="mui-select">
-                    <select>
-                        <option value="option_1">Option 1</option>
-                        <option value="option_2">Option 2</option>
-                    </select>
-                    <label>Type</label>
-                </div>
 
-                <!-- checkbox -->
-                <div class="mui-checkbox">
-                    <label>
-                        <input type="checkbox" value="">
-                        checkbox
-                    </label>
-                </div>
 
-                <!-- button -->
-                <button class="mui-btn mui-btn--raised">Save</button>
+                <div>
+                    <!-- save button -->
+                    <button class="mui-btn mui-btn--raised">Save</button>
+                </div>
 
                 <!--
                 FOR MORE SUPPORTED FORM ELEMENTS, PLEASE SEE:
